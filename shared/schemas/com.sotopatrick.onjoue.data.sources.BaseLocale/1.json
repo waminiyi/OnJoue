@@ -1,0 +1,96 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "e5449180b58e0f2aab87239fad7412b8",
+    "entities": [
+      {
+        "tableName": "tags",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `libelle` TEXT NOT NULL, `groupe` TEXT NOT NULL, `parent` TEXT, PRIMARY KEY(`id`), FOREIGN KEY(`parent`) REFERENCES `tags`(`id`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "libelle",
+            "columnName": "libelle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "groupe",
+            "columnName": "groupe",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent",
+            "columnName": "parent",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_tags_parent",
+            "unique": false,
+            "columnNames": [
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_tags_parent` ON `${TABLE_NAME}` (`parent`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "tags",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parent"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "materiels",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `libelle` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "libelle",
+            "columnName": "libelle",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e5449180b58e0f2aab87239fad7412b8')"
+    ]
+  }
+}

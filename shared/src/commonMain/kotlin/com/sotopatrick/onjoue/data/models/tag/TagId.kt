@@ -3,8 +3,8 @@ package com.sotopatrick.onjoue.data.models.tag
 import kotlin.jvm.JvmInline
 
 @JvmInline
-value class TagId(val valeur: String) {
+value class TagId(val value: String) {
     init {
-        require(valeur.isNotBlank()) { "TagId vide" }
+        require(value.isNotBlank()) { "TagId vide" }
     }
 }

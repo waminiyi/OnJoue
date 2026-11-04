@@ -1,0 +1,515 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "5db52c1376279a25973817693d9a0ae8",
+    "entities": [
+      {
+        "tableName": "tags",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `label` TEXT NOT NULL, `groupName` TEXT NOT NULL, `parent` TEXT, `normalizedLabel` TEXT NOT NULL DEFAULT '', PRIMARY KEY(`id`), FOREIGN KEY(`parent`) REFERENCES `tags`(`id`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "label",
+            "columnName": "label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "groupName",
+            "columnName": "groupName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent",
+            "columnName": "parent",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "normalizedLabel",
+            "columnName": "normalizedLabel",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "''"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_tags_parent",
+            "unique": false,
+            "columnNames": [
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_tags_parent` ON `${TABLE_NAME}` (`parent`)"
+          },
+          {
+            "name": "index_tags_groupName_normalizedLabel",
+            "unique": true,
+            "columnNames": [
+              "groupName",
+              "normalizedLabel"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_tags_groupName_normalizedLabel` ON `${TABLE_NAME}` (`groupName`, `normalizedLabel`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "tags",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parent"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "equipment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `label` TEXT NOT NULL, `normalizedLabel` TEXT NOT NULL DEFAULT '', PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "label",
+            "columnName": "label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedLabel",
+            "columnName": "normalizedLabel",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "''"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_equipment_normalizedLabel",
+            "unique": true,
+            "columnNames": [
+              "normalizedLabel"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_equipment_normalizedLabel` ON `${TABLE_NAME}` (`normalizedLabel`)"
+          }
+        ]
+      },
+      {
+        "tableName": "activities",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `note` TEXT, `minAge` INTEGER NOT NULL, `maxAge` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `image` TEXT, `document` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "minAge",
+            "columnName": "minAge",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxAge",
+            "columnName": "maxAge",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "document",
+            "columnName": "document",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "steps",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activityId` TEXT NOT NULL, `position` INTEGER NOT NULL, `text` TEXT NOT NULL, `timerSeconds` INTEGER, PRIMARY KEY(`activityId`, `position`), FOREIGN KEY(`activityId`) REFERENCES `activities`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "activityId",
+            "columnName": "activityId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timerSeconds",
+            "columnName": "timerSeconds",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "activityId",
+            "position"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "activities",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "activityId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "variants",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activityId` TEXT NOT NULL, `position` INTEGER NOT NULL, `text` TEXT NOT NULL, PRIMARY KEY(`activityId`, `position`), FOREIGN KEY(`activityId`) REFERENCES `activities`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "activityId",
+            "columnName": "activityId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "activityId",
+            "position"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "activities",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "activityId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "activity_tags",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activityId` TEXT NOT NULL, `tagId` TEXT NOT NULL, PRIMARY KEY(`activityId`, `tagId`), FOREIGN KEY(`activityId`) REFERENCES `activities`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`tagId`) REFERENCES `tags`(`id`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "activityId",
+            "columnName": "activityId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagId",
+            "columnName": "tagId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "activityId",
+            "tagId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_activity_tags_tagId",
+            "unique": false,
+            "columnNames": [
+              "tagId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_activity_tags_tagId` ON `${TABLE_NAME}` (`tagId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "activities",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "activityId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "tags",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tagId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "activity_equipment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activityId` TEXT NOT NULL, `equipmentId` TEXT NOT NULL, PRIMARY KEY(`activityId`, `equipmentId`), FOREIGN KEY(`activityId`) REFERENCES `activities`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`equipmentId`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "activityId",
+            "columnName": "activityId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equipmentId",
+            "columnName": "equipmentId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "activityId",
+            "equipmentId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_activity_equipment_equipmentId",
+            "unique": false,
+            "columnNames": [
+              "equipmentId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_activity_equipment_equipmentId` ON `${TABLE_NAME}` (`equipmentId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "activities",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "activityId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "equipment",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "equipmentId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "reviews",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `activityId` TEXT NOT NULL, `rating` TEXT NOT NULL, `comment` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`activityId`) REFERENCES `activities`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activityId",
+            "columnName": "activityId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "rating",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comment",
+            "columnName": "comment",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_reviews_activityId",
+            "unique": false,
+            "columnNames": [
+              "activityId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_reviews_activityId` ON `${TABLE_NAME}` (`activityId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "activities",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "activityId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "favorites",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `activityId` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`activityId`) REFERENCES `activities`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activityId",
+            "columnName": "activityId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_favorites_activityId",
+            "unique": true,
+            "columnNames": [
+              "activityId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_favorites_activityId` ON `${TABLE_NAME}` (`activityId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "activities",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "activityId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5db52c1376279a25973817693d9a0ae8')"
+    ]
+  }
+}

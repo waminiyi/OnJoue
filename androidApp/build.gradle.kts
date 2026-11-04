@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.screenshot)
 }
 
 kotlin {
@@ -17,9 +18,13 @@ dependencies {
 
     implementation(libs.compose.uiToolingPreview)
     debugImplementation(libs.compose.uiTooling)
+    screenshotTestImplementation(libs.screenshot.validation.api)
+    screenshotTestImplementation(libs.compose.uiTooling)
+    screenshotTestImplementation(libs.compose.material3)
 }
 
 android {
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
     namespace = "com.sotopatrick.onjoue"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
@@ -50,5 +55,6 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
