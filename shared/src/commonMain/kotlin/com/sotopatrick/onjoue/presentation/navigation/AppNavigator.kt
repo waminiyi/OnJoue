@@ -24,6 +24,14 @@ class AppNavigator(
         if (state.currentStack.last() == AppRoute.Settings) state.currentStack.add(route)
     }
 
+    fun openActivityDetail(activityId: String) {
+        require(activityId.isNotBlank()) { "Expected a non-blank activity id" }
+        check(state.selectedDestination == TopLevelDestination.ACTIVITY_SHEETS) {
+            "Activity details can only be opened from the activity sheets tab"
+        }
+        state.currentStack.add(AppRoute.ActivityDetail(activityId))
+    }
+
     fun goBack() {
         if (state.currentStack.last() in blockedRoutes) return
         if (state.currentStack.size > 1) {

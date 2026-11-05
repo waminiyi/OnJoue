@@ -1,16 +1,10 @@
 package com.sotopatrick.onjoue.presentation.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteItem
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import com.sotopatrick.onjoue.designsystem.components.DsNavigationItem
+import com.sotopatrick.onjoue.designsystem.components.DsNavigationScaffold
 import onjoue.shared.generated.resources.Res
 import onjoue.shared.generated.resources.ic_favorites
 import onjoue.shared.generated.resources.ic_idea
@@ -36,31 +30,22 @@ private val navigationItems = listOf(
 fun AppNavigationScaffold(
     selectedDestination: TopLevelDestination,
     onSelect: (TopLevelDestination) -> Unit,
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    NavigationSuiteScaffold(
-        modifier = Modifier.fillMaxSize(),
+    DsNavigationScaffold(
+        modifier = modifier,
         navigationItems = {
             navigationItems.forEach { item ->
-                NavigationSuiteItem(
+                DsNavigationItem(
                     selected = selectedDestination == item.destination,
+                    label = item.label,
+                    icon = painterResource(item.icon),
                     onClick = { onSelect(item.destination) },
-                    icon = { Icon(painterResource(item.icon), contentDescription = null) },
-                    label = {
-                        Text(
-                            item.label,
-                            color = if (selectedDestination == item.destination) {
-                                MaterialTheme.colorScheme.primary
-                            } else MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    },
                     modifier = Modifier.testTag("navigation-${item.destination.name}"),
                 )
             }
         },
-    ) {
-        Box(Modifier.fillMaxSize().safeDrawingPadding()) {
-            content()
-        }
-    }
+        content = content,
+    )
 }

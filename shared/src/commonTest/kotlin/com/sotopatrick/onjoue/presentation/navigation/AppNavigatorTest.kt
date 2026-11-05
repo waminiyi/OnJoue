@@ -96,9 +96,25 @@ class AppNavigatorTest {
         val json = Json { serializersModule = NavigationSavedStateConfiguration.serializersModule }
         val serializer = PolymorphicSerializer(NavKey::class)
         val routes = TopLevelDestination.entries.map { it.route } +
-            listOf(AppRoute.TagManagement, AppRoute.EquipmentManagement, AppRoute.ActivityManagement)
+            listOf(
+                AppRoute.TagManagement,
+                AppRoute.EquipmentManagement,
+                AppRoute.ActivityManagement,
+                AppRoute.ActivityDetail("activity-1"),
+            )
         routes.forEach { route ->
             assertEquals(route, json.decodeFromString(serializer, json.encodeToString(serializer, route)))
+        }
+
+        @Test
+        fun activityDetailIsPushedOnSheetsStackAndBackReturnsToList() {
+            val state = state()
+            val navigator = AppNavigator(state, managementEnabled = false)
+            navigator.select(TopLevelDestination.ACTIVITY_SHEETS)
+            navigator.openActivityDetail("activity-1")
+            assertEquals(AppRoute.ActivityDetail("activity-1"), state.currentStack.last())
+            navigator.goBack()
+            assertEquals<List<NavKey>>(listOf(AppRoute.ActivitySheets), state.currentStack)
         }
     }
 }

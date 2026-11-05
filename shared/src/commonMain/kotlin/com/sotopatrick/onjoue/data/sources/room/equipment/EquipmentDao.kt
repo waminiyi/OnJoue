@@ -21,6 +21,8 @@ interface EquipmentDao {
     fun observeUsage(): Flow<List<StoredEquipmentUsage>>
     @Query("SELECT * FROM equipment WHERE id = :id")
     suspend fun get(id: String): EquipmentEntity?
+    @Query("SELECT * FROM equipment WHERE normalizedLabel = :normalizedLabel LIMIT 1")
+    suspend fun getByNormalizedLabel(normalizedLabel: String): EquipmentEntity?
     @Insert
     suspend fun insert(equipment: EquipmentEntity)
     @Update
@@ -31,4 +33,6 @@ interface EquipmentDao {
     }
     @Query("DELETE FROM equipment WHERE id = :id")
     suspend fun delete(id: String): Int
+    @Query("DELETE FROM equipment")
+    suspend fun deleteAll()
 }

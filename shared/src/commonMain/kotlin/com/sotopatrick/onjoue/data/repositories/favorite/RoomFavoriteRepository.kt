@@ -1,7 +1,8 @@
 package com.sotopatrick.onjoue.data.repositories.favorite
 
 import com.sotopatrick.onjoue.data.models.activity.ActivityId
-import com.sotopatrick.onjoue.data.models.favorite.*
+import com.sotopatrick.onjoue.data.models.favorite.Favorite
+import com.sotopatrick.onjoue.data.models.favorite.FavoriteId
 import com.sotopatrick.onjoue.data.repositories.common.requireAffectedRow
 import com.sotopatrick.onjoue.data.sources.room.AppDatabase
 import com.sotopatrick.onjoue.data.sources.room.DatabaseOperation

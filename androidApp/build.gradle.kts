@@ -13,6 +13,7 @@ kotlin {
 }
 dependencies {
     implementation(project(":shared"))
+    implementation(project(":designsystem"))
 
     implementation(libs.androidx.activity.compose)
 
@@ -20,7 +21,6 @@ dependencies {
     debugImplementation(libs.compose.uiTooling)
     screenshotTestImplementation(libs.screenshot.validation.api)
     screenshotTestImplementation(libs.compose.uiTooling)
-    screenshotTestImplementation(libs.compose.material3)
 }
 
 android {

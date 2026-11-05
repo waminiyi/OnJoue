@@ -16,7 +16,7 @@ import com.sotopatrick.onjoue.presentation.management.ManagementState
 import com.sotopatrick.onjoue.presentation.management.TagEquipmentManagementContent
 import com.sotopatrick.onjoue.presentation.navigation.AppNavigationScaffold
 import com.sotopatrick.onjoue.presentation.navigation.TopLevelDestination
-import com.sotopatrick.onjoue.presentation.theme.OnJoueTheme
+import com.sotopatrick.onjoue.designsystem.OnJoueTheme
 
 private val inside = Tag(TagId("inside"), TagGroup.LOCATION, "Dedans")
 private val catalog = ManagementData(
@@ -33,14 +33,14 @@ private val catalog = ManagementData(
 )
 
 @PreviewTest
-@NavigationSizes
+@PreviewNavigationSizes
 @Composable
 fun TagsCatalogPreview() {
     OnJoueTheme(darkTheme = false) { CatalogPreviewContent(ManagementCategory.TAGS) }
 }
 
 @PreviewTest
-@NavigationSizes
+@PreviewNavigationSizes
 @Composable
 fun EquipmentCatalogPreview() {
     OnJoueTheme(darkTheme = false) { CatalogPreviewContent(ManagementCategory.EQUIPMENT) }

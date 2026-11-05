@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import androidx.sqlite.execSQL
 import com.sotopatrick.onjoue.data.models.common.AppException
+import com.sotopatrick.onjoue.data.models.activity.ActivityId
 import com.sotopatrick.onjoue.data.models.equipment.EquipmentId
 import com.sotopatrick.onjoue.data.models.tag.TagGroup
 import com.sotopatrick.onjoue.data.models.tag.TagId
@@ -15,7 +16,10 @@ import com.sotopatrick.onjoue.data.repositories.tag.RoomTagRepository
 import com.sotopatrick.onjoue.data.sources.room.AppDatabase
 import com.sotopatrick.onjoue.data.sources.room.DatabaseOperation
 import com.sotopatrick.onjoue.data.sources.room.configure
+import com.sotopatrick.onjoue.data.sources.room.seedInitialCatalog
 import com.sotopatrick.onjoue.data.sources.room.equipment.EquipmentEntity
+import com.sotopatrick.onjoue.data.sources.room.favorite.FavoriteEntity
+import com.sotopatrick.onjoue.data.sources.room.review.ReviewEntity
 import com.sotopatrick.onjoue.data.sources.room.transaction
 import kotlin.test.*
 import kotlin.uuid.Uuid
@@ -32,13 +36,15 @@ class RoomRepositoriesIosTest {
         val deletedId = try {
             verifyInitialCatalog(initial)
             val tags = RoomTagRepository(initial, true)
-            val game = tags.observeTags().first().single { it.label == "Jeu" }
+            val game = tags.observeTags().first().single { it.label == "Conte" }
             tags.deleteTag(game.id)
             game.id
         } finally { initial.close() }
         val reopened = Room.databaseBuilder<AppDatabase>(name = path).configure()
         try {
             assertNull(RoomTagRepository(reopened).getTag(deletedId))
+            assertEquals(40, RoomTagRepository(reopened).observeTags().first().size)
+            seedInitialCatalog(reopened)
             assertEquals(40, RoomTagRepository(reopened).observeTags().first().size)
         } finally {
             reopened.close()
@@ -49,19 +55,63 @@ class RoomRepositoriesIosTest {
     @Test
     fun bundledDriverObservesDistinctCatalogUsage() = runTest {
         val path = NSTemporaryDirectory() + "onjoue-usage-${Uuid.random()}.db"
-        val database = Room.databaseBuilder<AppDatabase>(name = path).configure(seedCatalog = false)
+        val database = Room.databaseBuilder<AppDatabase>(name = path).configure()
         try {
             verifyCatalogUsage(database)
         } finally {
             database.close()
             cleanUp(path)
         }
+
+        @Test
+        fun forcedResetReplacesCatalogAndKeepsHistoryForStableActivityIds() = runTest {
+            val path = NSTemporaryDirectory() + "onjoue-reset-${Uuid.random()}.db"
+            val database = Room.databaseBuilder<AppDatabase>(name = path).configure()
+            try {
+                seedInitialCatalog(database)
+                val tags = RoomTagRepository(database, debug = true)
+                val equipment = RoomEquipmentRepository(database, debug = true)
+                val customTag = sampleTag("Personnalisé", TagGroup.TYPE)
+                val customEquipment = sampleEquipment("Objet personnalisé")
+                tags.save(customTag)
+                equipment.save(customEquipment)
+                val customActivity = sampleActivity().copy(
+                    id = ActivityId("custom-activity"),
+                    tags = setOf(customTag),
+                    equipment = setOf(customEquipment),
+                )
+                RoomActivityRepository(database, debug = true).save(customActivity)
+
+                val canonicalId = "ng-bulles"
+                val gameTag = tags.observeTags().first().single { it.id.value == "catalog-tag-game" }
+                tags.save(gameTag.copy(label = "Jeu modifié"))
+                database.favoriteDao().insert(FavoriteEntity("favorite-canonical", canonicalId))
+                database.favoriteDao().insert(FavoriteEntity("favorite-custom", customActivity.id.id))
+                database.reviewDao().insert(ReviewEntity("review-canonical", canonicalId, "5", "À garder"))
+                database.reviewDao().insert(ReviewEntity("review-custom", customActivity.id.id, "4", "À supprimer"))
+
+                seedInitialCatalog(database, forceReset = true)
+
+                verifyInitialCatalog(database)
+                assertNull(tags.getTag(customTag.id))
+                assertNull(equipment.getEquipment(customEquipment.id))
+                assertNull(RoomActivityRepository(database).getActivity(customActivity.id))
+                assertEquals("Jeu", tags.getTag(gameTag.id)?.label)
+                assertTrue(database.favoriteDao().isFavorite(canonicalId))
+                assertFalse(database.favoriteDao().isFavorite(customActivity.id.id))
+                assertNotNull(database.reviewDao().get("review-canonical"))
+                assertNull(database.reviewDao().get("review-custom"))
+            } finally {
+                database.close()
+                cleanUp(path)
+            }
+        }
     }
 
     @Test
     fun bundledDriverEnforcesRelationsAndAtomicAggregates() = runTest {
         val path = NSTemporaryDirectory() + "onjoue-test-${Uuid.random()}.db"
-        val database = Room.databaseBuilder<AppDatabase>(name = path).configure(seedCatalog = false)
+        val database = Room.databaseBuilder<AppDatabase>(name = path).configure()
         try {
             verifyRepositoryRelations(database)
             assertFailsWith<AppException.NotFound> {
@@ -80,7 +130,7 @@ class RoomRepositoriesIosTest {
     @Test
     fun reopeningRetainsAccentsAndCompleteActivity() = runTest {
         val path = NSTemporaryDirectory() + "onjoue-test-${Uuid.random()}.db"
-        fun open() = Room.databaseBuilder<AppDatabase>(name = path).configure(seedCatalog = false)
+        fun open() = Room.databaseBuilder<AppDatabase>(name = path).configure()
         val item = sampleEquipment("Ballon")
         val summer = sampleTag("Été", TagGroup.SEASON)
         val activity = sampleActivity().copy(tags = setOf(summer), equipment = setOf(item))

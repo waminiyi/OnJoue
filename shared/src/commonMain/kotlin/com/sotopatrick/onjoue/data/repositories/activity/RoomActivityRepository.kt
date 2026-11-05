@@ -1,6 +1,7 @@
 package com.sotopatrick.onjoue.data.repositories.activity
 
-import com.sotopatrick.onjoue.data.models.activity.*
+import com.sotopatrick.onjoue.data.models.activity.Activity
+import com.sotopatrick.onjoue.data.models.activity.ActivityId
 import com.sotopatrick.onjoue.data.models.common.AppException
 import com.sotopatrick.onjoue.data.models.common.ValidationReason
 import com.sotopatrick.onjoue.data.models.equipment.EquipmentId
@@ -55,7 +56,9 @@ class RoomActivityRepository(
 
     private suspend fun insertRelations(activity: Activity) {
         val id = activity.id.id
-        steps.insert(activity.steps.mapIndexed { position, step -> StepEntity(id, position, step.text, step.timerSeconds) })
+        steps.insert(
+            activity.steps.mapIndexed { position, step -> StepEntity(id, position, step.text, step.timerSeconds) },
+        )
         variants.insert(activity.variants.mapIndexed { position, text -> VariantEntity(id, position, text) })
         tags.insert(activity.tags.map { ActivityTagEntity(id, it.id.value) })
         equipment.insert(activity.equipment.map { ActivityEquipmentEntity(id, it.id.value) })

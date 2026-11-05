@@ -27,6 +27,8 @@ internal fun mapDatabaseException(error: Exception, operation: DatabaseOperation
     }
 }
 
+// Storage boundary: every failure is translated by mapDatabaseException, which returns non-SQLite errors unchanged.
+@Suppress("TooGenericExceptionCaught")
 internal suspend fun <T> databaseAccess(
     operation: DatabaseOperation = DatabaseOperation.READ,
     action: suspend () -> T,

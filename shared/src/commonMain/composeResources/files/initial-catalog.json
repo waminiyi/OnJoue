@@ -1,0 +1,1468 @@
+{
+  "version": 1,
+  "tags": [
+    {
+      "id": "catalog-tag-game",
+      "label": "Jeu",
+      "group": "TYPE",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-craft",
+      "label": "Bricolage",
+      "group": "TYPE",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-drawing",
+      "label": "Dessin",
+      "group": "TYPE",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-story",
+      "label": "Conte",
+      "group": "TYPE",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-music",
+      "label": "Musique",
+      "group": "TYPE",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-exploration",
+      "label": "Exploration",
+      "group": "TYPE",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-cooking",
+      "label": "Cuisine",
+      "group": "TYPE",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-inside",
+      "label": "Dedans",
+      "group": "LOCATION",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-outside",
+      "label": "Dehors",
+      "group": "LOCATION",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-travel",
+      "label": "En déplacement",
+      "group": "LOCATION",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-rainy-day",
+      "label": "Jour de pluie",
+      "group": "OCCASION",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-birthday",
+      "label": "Anniversaire",
+      "group": "OCCASION",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-holidays",
+      "label": "Vacances",
+      "group": "OCCASION",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-waiting",
+      "label": "Temps d'attente",
+      "group": "OCCASION",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-spring",
+      "label": "Printemps",
+      "group": "SEASON",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-summer",
+      "label": "Été",
+      "group": "SEASON",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-autumn",
+      "label": "Automne",
+      "group": "SEASON",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-winter",
+      "label": "Hiver",
+      "group": "SEASON",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-morning",
+      "label": "Matin",
+      "group": "TIME",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-afternoon",
+      "label": "Après-midi",
+      "group": "TIME",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-evening",
+      "label": "Soir",
+      "group": "TIME",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-bedtime",
+      "label": "Avant le coucher",
+      "group": "TIME",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-solo",
+      "label": "Seul",
+      "group": "PARTICIPANTS",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-pair",
+      "label": "À deux",
+      "group": "PARTICIPANTS",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-family",
+      "label": "En famille",
+      "group": "PARTICIPANTS",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-group",
+      "label": "En groupe",
+      "group": "PARTICIPANTS",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-active",
+      "label": "Se dépenser",
+      "group": "MOOD",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-calm",
+      "label": "Se calmer",
+      "group": "MOOD",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-focus",
+      "label": "Se concentrer",
+      "group": "MOOD",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-creative",
+      "label": "Créer",
+      "group": "MOOD",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-cooperate",
+      "label": "Coopérer",
+      "group": "MOOD",
+      "parentId": null
+    },
+    {
+      "id": "catalog-tag-living-room",
+      "label": "Salon",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-inside"
+    },
+    {
+      "id": "catalog-tag-bedroom",
+      "label": "Chambre",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-inside"
+    },
+    {
+      "id": "catalog-tag-kitchen",
+      "label": "Cuisine",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-inside"
+    },
+    {
+      "id": "catalog-tag-small-space",
+      "label": "Petit espace",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-inside"
+    },
+    {
+      "id": "catalog-tag-garden",
+      "label": "Jardin",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-outside"
+    },
+    {
+      "id": "catalog-tag-park",
+      "label": "Parc",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-outside"
+    },
+    {
+      "id": "catalog-tag-forest",
+      "label": "Forêt",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-outside"
+    },
+    {
+      "id": "catalog-tag-playground",
+      "label": "Aire de jeux",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-outside"
+    },
+    {
+      "id": "catalog-tag-car",
+      "label": "Voiture",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-travel"
+    },
+    {
+      "id": "catalog-tag-train",
+      "label": "Train",
+      "group": "LOCATION",
+      "parentId": "catalog-tag-travel"
+    }
+  ],
+  "equipment": [
+    {
+      "id": "catalog-equipment-ball",
+      "label": "Ballon"
+    },
+    {
+      "id": "catalog-equipment-cushions",
+      "label": "Coussins"
+    },
+    {
+      "id": "catalog-equipment-soft-toys",
+      "label": "Peluches"
+    },
+    {
+      "id": "catalog-equipment-rope",
+      "label": "Corde"
+    },
+    {
+      "id": "catalog-equipment-chairs",
+      "label": "Chaises"
+    },
+    {
+      "id": "catalog-equipment-chalk",
+      "label": "Craie"
+    },
+    {
+      "id": "catalog-equipment-tape",
+      "label": "Ruban adhésif"
+    },
+    {
+      "id": "catalog-equipment-paper",
+      "label": "Papier"
+    },
+    {
+      "id": "catalog-equipment-colored-pencils",
+      "label": "Crayons de couleur"
+    },
+    {
+      "id": "catalog-equipment-markers",
+      "label": "Feutres"
+    },
+    {
+      "id": "catalog-equipment-scissors",
+      "label": "Ciseaux"
+    },
+    {
+      "id": "catalog-equipment-glue",
+      "label": "Colle"
+    },
+    {
+      "id": "catalog-equipment-cardboard",
+      "label": "Carton"
+    },
+    {
+      "id": "catalog-equipment-clay",
+      "label": "Pâte à modeler"
+    },
+    {
+      "id": "catalog-equipment-paint",
+      "label": "Peinture"
+    },
+    {
+      "id": "catalog-equipment-brushes",
+      "label": "Pinceaux"
+    },
+    {
+      "id": "catalog-equipment-books",
+      "label": "Livres"
+    },
+    {
+      "id": "catalog-equipment-blocks",
+      "label": "Cubes de construction"
+    },
+    {
+      "id": "catalog-equipment-hoops",
+      "label": "Cerceaux"
+    },
+    {
+      "id": "catalog-equipment-blanket",
+      "label": "Couverture"
+    },
+    {
+      "id": "catalog-equipment-containers",
+      "label": "Récipients"
+    },
+    {
+      "id": "catalog-equipment-spoons",
+      "label": "Cuillères"
+    },
+    {
+      "id": "catalog-equipment-clothespins",
+      "label": "Pinces à linge"
+    },
+    {
+      "id": "catalog-equipment-bubbles",
+      "label": "Bulles de savon"
+    },
+    {
+      "id": "catalog-equipment-pool-noodles",
+      "label": "Nouilles de piscine"
+    },
+    {
+      "id": "catalog-equipment-costumes",
+      "label": "Vêtements de déguisement"
+    },
+    {
+      "id": "catalog-equipment-socks",
+      "label": "Bas"
+    },
+    {
+      "id": "catalog-equipment-towel",
+      "label": "Serviette"
+    },
+    {
+      "id": "catalog-equipment-frisbee",
+      "label": "Frisbee"
+    },
+    {
+      "id": "catalog-equipment-broom",
+      "label": "Balai"
+    },
+    {
+      "id": "catalog-equipment-handkerchiefs",
+      "label": "Mouchoirs"
+    },
+    {
+      "id": "catalog-equipment-paper-towel-roll",
+      "label": "Rouleaux d’essuie-tout"
+    },
+    {
+      "id": "catalog-equipment-paper-plates",
+      "label": "Assiettes en carton"
+    },
+    {
+      "id": "catalog-equipment-ping-pong-paddle",
+      "label": "Raquette de ping-pong"
+    },
+    {
+      "id": "catalog-equipment-party-balloons",
+      "label": "Ballons de fête"
+    },
+    {
+      "id": "catalog-equipment-empty-bottles",
+      "label": "Bouteilles vides"
+    },
+    {
+      "id": "catalog-equipment-pom-poms",
+      "label": "Pompons"
+    },
+    {
+      "id": "catalog-equipment-ice-cube-tray",
+      "label": "Bac à glaçons"
+    },
+    {
+      "id": "catalog-equipment-kitchen-tongs",
+      "label": "Pinces de cuisine"
+    },
+    {
+      "id": "catalog-equipment-ice-cubes",
+      "label": "Blocs de glace"
+    },
+    {
+      "id": "catalog-equipment-figurines",
+      "label": "Figurines"
+    },
+    {
+      "id": "catalog-equipment-food-coloring",
+      "label": "Colorant alimentaire"
+    },
+    {
+      "id": "catalog-equipment-craft-foam",
+      "label": "Feuilles de mousse"
+    },
+    {
+      "id": "catalog-equipment-spray-bottle",
+      "label": "Vaporisateur"
+    },
+    {
+      "id": "catalog-equipment-wooden-sticks",
+      "label": "Bâtonnets en bois"
+    },
+    {
+      "id": "catalog-equipment-hook-and-loop",
+      "label": "Velcro adhésif"
+    },
+    {
+      "id": "catalog-equipment-family-photos",
+      "label": "Photos"
+    },
+    {
+      "id": "catalog-equipment-colored-paper",
+      "label": "Papier coloré"
+    },
+    {
+      "id": "catalog-equipment-varnish",
+      "label": "Vernis"
+    },
+    {
+      "id": "catalog-equipment-wooden-discs",
+      "label": "Rondelles de bois"
+    },
+    {
+      "id": "catalog-equipment-fabric-squares",
+      "label": "Carrés de tissu"
+    },
+    {
+      "id": "catalog-equipment-metal-ring",
+      "label": "Anneau métallique"
+    },
+    {
+      "id": "catalog-equipment-textured-materials",
+      "label": "Matériaux texturés"
+    },
+    {
+      "id": "catalog-equipment-yogurt-pot",
+      "label": "Pot de yogourt"
+    },
+    {
+      "id": "catalog-equipment-ring-binder",
+      "label": "Cartable à anneaux"
+    },
+    {
+      "id": "catalog-equipment-mirror",
+      "label": "Miroir"
+    },
+    {
+      "id": "catalog-equipment-clothing",
+      "label": "Vêtements"
+    }
+  ],
+  "activities": [
+    {
+      "id": "ng-bulles",
+      "name": "Party de bulles",
+      "description": "L’enfant bouge pour attraper des bulles de savon.",
+      "note": "Soufflez les bulles à l’extérieur ou dans un espace dégagé.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Faites des bulles à différentes hauteurs et distances.",
+        "Invitez l’enfant à les suivre et à essayer de les toucher avant qu’elles éclatent."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-bubbles"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-plage-mer",
+      "name": "La plage et la mer",
+      "description": "Un jeu de sauts où les consignes changent entre plage, mer et vague.",
+      "note": "Dégagez le sol autour de la corde.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 5,
+      "steps": [
+        "Posez une corde au sol pour séparer les deux côtés.",
+        "Annoncez « plage » ou « mer » pour que l’enfant saute du bon côté.",
+        "À « vague », demandez un saut vertical."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-rope"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-tapis-volant",
+      "name": "Le tapis volant",
+      "description": "Un adulte fait glisser doucement l’enfant assis ou allongé sur une serviette.",
+      "note": "Jeu réservé à un sol plat et dégagé; tirez lentement et arrêtez si l’enfant n’est pas à l’aise.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 5,
+      "steps": [
+        "Installez l’enfant sur une serviette, assis ou sur le ventre.",
+        "Faites-le tenir une corde et déplacez la serviette lentement au sol, en ligne droite ou en grands virages."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-towel",
+        "catalog-equipment-rope"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-guerre-bas",
+      "name": "La guerre des bas",
+      "description": "Des paires de bas roulées deviennent des projectiles souples à éviter, puis à lancer à tour de rôle.",
+      "note": "Visez le bas du corps et gardez le visage à l’écart.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Roulez plusieurs paires de bas en petites balles.",
+        "Lancez-les doucement vers l’enfant pendant qu’il les esquive, puis inversez les rôles."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-socks"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-nouilles-habiles",
+      "name": "Nouilles habiles",
+      "description": "Un jeu d’imitation avec des nouilles de piscine pour mobiliser les bras et le corps.",
+      "note": "Laissez assez d’espace entre les joueurs et utilisez les nouilles sans frapper.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Placez-vous face à l’enfant, chacun avec une nouille de piscine.",
+        "Imitez des gestes variés : faites-la passer autour du corps, tourner au-dessus de la tête ou lancez-la doucement pour la rattraper."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-pool-noodles",
+        "catalog-equipment-paper-towel-roll"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-defile-mode",
+      "name": "Défilé de mode",
+      "description": "Une parade de déguisements où chaque passage se fait avec une démarche différente.",
+      "note": "Choisissez des vêtements qui ne traînent pas au sol et ne gênent pas la marche.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Laissez l’enfant choisir un déguisement.",
+        "Faites un défilé en variant les façons de marcher : sur la pointe des pieds, sur les talons ou pieds tournés vers l’extérieur."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-costumes"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-parcours-urbain",
+      "name": "Parcours urbain",
+      "description": "Une marche jusqu’au parc ponctuée de sauts et d’un parcours d’obstacles inventé en famille.",
+      "note": "Au parc, utilisez seulement des équipements sûrs et adaptés; surveillez l’enfant.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 30,
+      "steps": [
+        "Sur le trajet, proposez de franchir les fissures du trottoir en sautant.",
+        "Au parc, chacun invente à son tour un parcours avec les obstacles disponibles, par exemple contourner des arbres ou passer sous une table de pique-nique."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-park",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-jeux-olympiques",
+      "name": "Jeux olympiques maison",
+      "description": "Une série de petits défis inspirés de la course, des sauts et du lancer.",
+      "note": "Adaptez les distances et retirez tout obstacle dangereux de la zone de jeu.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 15,
+      "steps": [
+        "Organisez une course courte entre deux repères.",
+        "Ajoutez un saut en longueur entre deux cordes, un petit saut au-dessus d’un ballon posé au sol et un lancer de frisbee."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-rope",
+        "catalog-equipment-ball",
+        "catalog-equipment-frisbee"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-randonnee-active",
+      "name": "Randonnée active",
+      "description": "Une petite randonnée ponctuée de missions de course, de collecte et de saut.",
+      "note": "Choisissez un sentier adapté à l’enfant et gardez-le toujours à portée de vue.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 30,
+      "steps": [
+        "Choisissez une courte boucle de randonnée.",
+        "Proposez des missions simples : courir jusqu’à un arbre puis revenir, repérer un élément naturel ou franchir une petite roche."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-limbo",
+      "name": "Limbo",
+      "description": "Un jeu de passage sous un manche au rythme de la musique.",
+      "note": "Un adulte tient le manche; gardez les mains libres et ne demandez pas de toucher le sol.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Faites jouer de la musique et tenez un balai horizontalement à hauteur confortable.",
+        "L’enfant passe dessous sans toucher le balai; abaissez-le légèrement seulement si cela reste confortable."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-broom"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-cirque",
+      "name": "Cirque en famille",
+      "description": "Quelques défis inspirés du cirque : jongler, marcher en équilibre et faire tourner un cerceau.",
+      "note": "Choisissez des objets légers et un espace sans meubles à proximité.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Essayez de lancer et rattraper deux mouchoirs.",
+        "Marchez le long d’une corde posée au sol, faites tourner un cerceau ou avancez avec une assiette en carton posée sur la tête."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-handkerchiefs",
+        "catalog-equipment-rope",
+        "catalog-equipment-hoops",
+        "catalog-equipment-paper-plates"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-ballon-fete",
+      "name": "Ballon en fête",
+      "description": "Gardez un ballon de fête dans les airs en le touchant à tour de rôle.",
+      "note": "Surveillez les ballons; ramassez et jetez immédiatement tout morceau si l’un éclate.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Lancez un ballon de fête et essayez ensemble de l’empêcher de toucher le sol.",
+        "Pour varier, utilisez seulement la tête ou une raquette de ping-pong pour le toucher."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-party-balloons",
+        "catalog-equipment-ping-pong-paddle"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-loup",
+      "name": "Attention au loup!",
+      "description": "Un jeu de poursuite où le rôle du loup change quand il touche l’autre joueur.",
+      "note": "Définissez une zone de jeu sans obstacles et évitez les bousculades.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Désignez un joueur comme loup et l’autre comme poursuivi.",
+        "Le loup essaie de toucher l’autre; une fois touché, les rôles sont échangés."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-nage-vole",
+      "name": "Nage ou vole?",
+      "description": "L’enfant prend des postures au sol en imaginant nager, planer ou voler.",
+      "note": "Restez dans une posture confortable; ne forcez pas le dos ou les jambes.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongé sur le ventre, l’enfant soulève doucement bras et jambes comme s’il nageait.",
+        "Recommencez avec les bras en croix pour planer, puis tendus devant pour voler comme un superhéros."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-courses-folles",
+      "name": "Courses folles",
+      "description": "Des courses amusantes avec une consigne de déplacement ou un objet à transporter.",
+      "note": "Choisissez un trajet court et sans obstacle; adaptez les défis à l’enfant.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Choisissez une course et une consigne : marcher avec une peluche sur la tête, avancer à quatre pattes avec un coussin sur le dos ou sauter sur un pied.",
+        "Faites la course sur une courte distance, puis choisissez un nouveau défi."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-soft-toys",
+        "catalog-equipment-cushions"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-bonjour-soleil",
+      "name": "Bonjour soleil!",
+      "description": "Une courte routine d’étirements pour commencer la journée.",
+      "note": "Les mouvements restent doux et sans douleur.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 5,
+      "steps": [
+        "Debout, étirez les bras vers le haut comme pour toucher le soleil.",
+        "Penchez-vous ensuite doucement vers l’avant.",
+        "Répétez la séquence trois ou quatre fois."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-soccer-quilles",
+      "name": "Soccer-quilles",
+      "description": "Un ballon sert à faire tomber des objets posés comme des quilles.",
+      "note": "Utilisez des objets légers et incassables, sans personne dans la trajectoire.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Disposez quelques objets légers à courte distance, par exemple des blocs ou une bouteille vide.",
+        "L’enfant essaie de les faire tomber en frappant ou en lançant le ballon; donnez-lui trois essais."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-ball",
+        "catalog-equipment-blocks",
+        "catalog-equipment-empty-bottles"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-defi-mouchoir",
+      "name": "Défi du mouchoir",
+      "description": "L’enfant réalise un mouvement avant qu’un mouchoir lancé ne retombe.",
+      "note": "Laissez une zone libre et choisissez des gestes adaptés au lieu.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 5,
+      "steps": [
+        "Lancez un mouchoir en l’air.",
+        "Avant qu’il ne touche le sol, demandez à l’enfant de réaliser un geste simple, comme s’asseoir ou courir jusqu’à un mur."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-handkerchiefs"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-chevre-montagne",
+      "name": "Chèvre de montagne",
+      "description": "Monter et redescendre une petite pente en variant la démarche.",
+      "note": "Choisissez une pente douce, dégagée et adaptée aux capacités de l’enfant.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 15,
+      "steps": [
+        "Repérez une petite butte de gazon dans un parc.",
+        "Montez et redescendez en marchant, en courant doucement ou accroupis, selon le confort de chacun."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-park",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-marelle-sportive",
+      "name": "Marelle sportive",
+      "description": "Une marelle à la craie devient un parcours de sauts variés.",
+      "note": "Dessinez la marelle sur une surface plane où l’on peut jouer sans circulation.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Tracez à la craie une marelle de huit à dix cases.",
+        "Parcourez les cases en sautant à deux pieds, puis sur un pied si l’enfant le souhaite."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-chalk"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-slalom-bouteilles",
+      "name": "Slalom entre les bouteilles",
+      "description": "Un parcours de bouteilles à contourner à pied ou avec un ballon.",
+      "note": "Utilisez des bouteilles vides stables, espacées et sans arêtes coupantes.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Alignez quatre bouteilles vides en laissant un passage entre elles.",
+        "Demandez à l’enfant de slalomer en marchant, en courant, en sautant ou en faisant rouler un ballon avec le pied."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-empty-bottles",
+        "catalog-equipment-ball"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-escrime",
+      "name": "Combat d’escrime",
+      "description": "Un duel amical où les joueurs essaient de toucher une cible avec un objet souple.",
+      "note": "Utilisez des nouilles de piscine ou des rouleaux en carton, jamais de bâtons durs; évitez la tête.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Choisissez une nouille de piscine ou un rouleau de papier essuie-tout comme épée.",
+        "Essayez chacun de toucher doucement le bras ou le mollet de l’autre; le premier à cinq points gagne."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-pool-noodles"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-traversee-lac",
+      "name": "La traversée du lac",
+      "description": "Des objets au sol deviennent des îles à traverser sans poser le pied dans le lac.",
+      "note": "Les objets doivent être stables, espacés de façon sécuritaire et posés au sol.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Disposez des coussins, livres ou peluches au sol comme des îles.",
+        "Traversez en posant les pieds sur les îles; sur certaines, ajoutez un défi comme s’accroupir ou tenir quelques secondes sur un pied."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-cushions",
+        "catalog-equipment-books",
+        "catalog-equipment-soft-toys",
+        "catalog-equipment-clothing"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-ballon-precision",
+      "name": "Ballon précision",
+      "description": "L’enfant lance un ballon pour viser une cible au sol ou un cerceau.",
+      "note": "Choisissez une zone de lancer dégagée et une cible sans risque de casse.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Tracez un cercle au sol avec une corde ou de la craie, ou posez un cerceau.",
+        "L’enfant lance le ballon pour le faire rebondir dans le cercle ou passer dans le cerceau; éloignez-vous progressivement si c’est facile."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-ball",
+        "catalog-equipment-rope",
+        "catalog-equipment-chalk",
+        "catalog-equipment-hoops"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-yoga",
+      "name": "Séance de yoga",
+      "description": "Trois postures simples inspirées du chat, du papillon et de l’arbre.",
+      "note": "Adaptez les postures et arrêtez si elles causent un inconfort.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "À quatre pattes, levez le regard en inspirant puis arrondissez le dos en expirant.",
+        "Assis, rapprochez les plantes des pieds et bougez doucement les genoux comme des ailes.",
+        "Debout, posez un pied contre le mollet si l’équilibre le permet et joignez les mains."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-ballon-acrobate",
+      "name": "Ballon acrobate",
+      "description": "L’enfant lance et rattrape un ballon en ajoutant progressivement un défi.",
+      "note": "Utilisez un ballon léger et une zone sans objets fragiles.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Lancez le ballon à deux mains et rattrapez-le.",
+        "Essayez ensuite de le rattraper après deux rebonds au sol.",
+        "Pour compliquer, faites une pirouette ou frappez dans les mains avant de le rattraper."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-ball"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-courses-geometriques",
+      "name": "Courses géométriques",
+      "description": "L’enfant court en imaginant dessiner des formes avec son trajet.",
+      "note": "Faites le jeu sur une surface dégagée et sans circulation.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Proposez une forme à tracer en courant, comme un cercle, un carré ou un triangle.",
+        "Laissez ensuite l’enfant choisir une autre forme à imaginer."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-outside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-danse-miroir",
+      "name": "Danse miroir",
+      "description": "Un meneur improvise des gestes de danse que l’autre reproduit.",
+      "note": "Gardez un espace dégagé; adaptez les mouvements à chacun.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Désignez le meneur et mettez de la musique.",
+        "L’autre l’imite; changez de meneur et ajoutez des consignes comme bouger seulement les bras ou danser au ralenti."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-twister",
+      "name": "Twister maison",
+      "description": "Des repères de couleurs au sol guident les mains, pieds, coudes et genoux.",
+      "note": "Les repères restent à plat et ne glissent pas; choisissez des postures confortables.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Disposez quatre coussins ou cartons de couleurs différentes au sol.",
+        "Donnez des consignes pour poser une main, un pied, un coude ou un genou sur une couleur annoncée."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-cushions",
+        "catalog-equipment-cardboard"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-ballon-tunnel",
+      "name": "Ballon tunnel",
+      "description": "Un ballon est passé au pied dans un tunnel formé de chaises.",
+      "note": "Vérifiez la stabilité des chaises et gardez le trajet dégagé.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Alignez trois chaises pour former un tunnel et placez les joueurs à chaque extrémité.",
+        "Faites passer le ballon sous les chaises en le frappant doucement du pied; les plus jeunes peuvent le faire rouler avec les mains."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-chairs",
+        "catalog-equipment-ball"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-statue-musicale",
+      "name": "Statue musicale",
+      "description": "On danse quand la musique joue et on s’immobilise lorsqu’elle s’arrête.",
+      "note": "Choisissez des postures stables et un espace libre.",
+      "minAgeMonths": 60,
+      "maxAgeMonths": 96,
+      "durationMinutes": 10,
+      "steps": [
+        "Faites jouer de la musique et invitez tout le monde à danser.",
+        "Arrêtez la musique : chacun s’immobilise en suivant une consigne, par exemple s’asseoir ou tenir l’équilibre sur un pied."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/"
+    },
+    {
+      "id": "ng-acrobaties-geometriques",
+      "name": "Acrobaties géométriques",
+      "description": "Un jeu d’équilibre où les joueurs posent une main ou un pied sur des formes indiquées.",
+      "note": "Utilisez un ruban qui se retire facilement. Les enfants jouent à leur rythme; interrompez avant qu’ils ne perdent l’équilibre.",
+      "minAgeMonths": 36,
+      "maxAgeMonths": 60,
+      "durationMinutes": 10,
+      "steps": [
+        "Avec du ruban adhésif repositionnable, tracez plusieurs carrés et triangles au sol.",
+        "À tour de rôle, annoncez une forme sur laquelle l’autre pose une main ou un pied.",
+        "Continuez avec de nouvelles consignes tant que chacun reste à l’aise."
+      ],
+      "variants": [
+        "Pour rendre le jeu plus difficile, précisez la main ou le pied gauche ou droit, ou ajoutez des formes."
+      ],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-tape"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/jeux/acrobaties-geometriques/"
+    },
+    {
+      "id": "ng-classons-pompons",
+      "name": "Classons des pompons!",
+      "description": "L’enfant transfère et trie des pompons dans les alvéoles d’un bac à glaçons.",
+      "note": "Surveillez les petites pièces et adaptez le matériel à l’âge; les pompons ne doivent pas être portés à la bouche.",
+      "minAgeMonths": 36,
+      "maxAgeMonths": 60,
+      "durationMinutes": 10,
+      "steps": [
+        "Placez des pompons et un bac à glaçons sur la table.",
+        "L’enfant dépose les pompons dans les cases avec les doigts ou une pince de cuisine.",
+        "Proposez un tri par couleur ou par taille."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-pom-poms",
+        "catalog-equipment-ice-cube-tray",
+        "catalog-equipment-kitchen-tongs"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/classons-des-pompons/"
+    },
+    {
+      "id": "ng-mini-banquise",
+      "name": "Mini-banquise",
+      "description": "Des figurines explorent des blocs de glace colorés dans un bac peu profond.",
+      "note": "Préparez la glace à l’avance et surveillez le jeu avec l’eau et les petites figurines.",
+      "minAgeMonths": 36,
+      "maxAgeMonths": 60,
+      "durationMinutes": 15,
+      "steps": [
+        "Congelez de l’eau colorée dans de petits contenants de formes variées.",
+        "Démoulez les blocs dans un bac peu profond et ajoutez quelques figurines.",
+        "Laissez l’enfant inventer des jeux de banquise avec les animaux."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-creative"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-containers",
+        "catalog-equipment-food-coloring",
+        "catalog-equipment-ice-cubes",
+        "catalog-equipment-figurines"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/mini-banquise/"
+    },
+    {
+      "id": "ng-jardin-interieur",
+      "name": "Le jardin intérieur",
+      "description": "Des formes en mousse se collent sur une fenêtre mouillée pour composer un jardin.",
+      "note": "Utilisez une fenêtre accessible et restez près de l’enfant; l’activité ne requiert pas de monter sur un meuble.",
+      "minAgeMonths": 36,
+      "maxAgeMonths": 60,
+      "durationMinutes": 10,
+      "steps": [
+        "Découpez des formes de jardin dans des feuilles de mousse et placez-les dans un panier.",
+        "Vaporisez un peu d’eau sur une fenêtre accessible.",
+        "L’enfant colle les formes sur la vitre pour créer plantes, tiges et fleurs."
+      ],
+      "variants": [
+        "Remplacez le jardin par des formes d’animaux, de fruits ou de légumes."
+      ],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-creative"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-craft-foam",
+        "catalog-equipment-spray-bottle"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/le-jardin-interieur/"
+    },
+    {
+      "id": "ng-batons-construction",
+      "name": "Bâtons de construction",
+      "description": "Des bâtonnets colorés munis de bandes autoagrippantes s’assemblent en formes et constructions.",
+      "note": "La préparation avec peinture, colle et petites pièces se fait sous la supervision d’un adulte; attendre le séchage complet.",
+      "minAgeMonths": 36,
+      "maxAgeMonths": 60,
+      "durationMinutes": 15,
+      "steps": [
+        "Décorez des bâtonnets de bois larges et laissez-les sécher.",
+        "Fixez une partie de velcro adhésif à chaque extrémité.",
+        "Assemblez les bâtonnets pour créer des formes, des chemins ou des structures."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-creative"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-wooden-sticks",
+        "catalog-equipment-paint",
+        "catalog-equipment-glue",
+        "catalog-equipment-hook-and-loop"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/batons-de-construction/"
+    },
+    {
+      "id": "ng-jeu-memoire",
+      "name": "Jeu de mémoire en photos",
+      "description": "Des paires de cartes illustrées par des photos de proches permettent de jouer ou simplement de regarder les images.",
+      "note": "Pour les tout-petits, l’adulte garde les cartes et les petites pièces hors de portée.",
+      "minAgeMonths": 12,
+      "maxAgeMonths": 36,
+      "durationMinutes": 10,
+      "steps": [
+        "Préparez deux cartes avec la même photo pour chaque personne.",
+        "Posez les cartes face cachée et retournez-en deux pour chercher une paire.",
+        "Avec un tout-petit, montrez simplement les photos et nommez les proches."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-family-photos",
+        "catalog-equipment-cardboard",
+        "catalog-equipment-colored-paper",
+        "catalog-equipment-glue",
+        "catalog-equipment-varnish"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/1_3_ans/fiches-activites/jeu-de-memoire/"
+    },
+    {
+      "id": "ng-jouet-tout-rond",
+      "name": "Jouet tout rond",
+      "description": "Un casse-tête de formes rondes à replacer sur le dessin selon leur taille et leur couleur.",
+      "note": "La préparation avec outils de découpe et peinture est faite par un adulte; surveillez les petites rondelles.",
+      "minAgeMonths": 12,
+      "maxAgeMonths": 36,
+      "durationMinutes": 10,
+      "steps": [
+        "Dessinez une grande forme, par exemple un sapin, sur du carton épais.",
+        "Préparez des pièces rondes de tailles variées et coloriez-les ainsi que leurs emplacements correspondants.",
+        "L’enfant associe chaque pièce à la bonne taille et à la bonne couleur."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-cardboard",
+        "catalog-equipment-wooden-discs",
+        "catalog-equipment-paint"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/1_3_ans/fiches-activites/jouet-tout-rond/"
+    },
+    {
+      "id": "ng-touche-a-tout",
+      "name": "Touche-à-tout",
+      "description": "Un petit ensemble de tissus ou un panneau de textures invite l’enfant à explorer au toucher.",
+      "note": "Fixez solidement les éléments et restez avec l’enfant, surtout en présence d’un anneau ou de petites pièces.",
+      "minAgeMonths": 12,
+      "maxAgeMonths": 36,
+      "durationMinutes": 10,
+      "steps": [
+        "Pour un jeu à emporter, découpez des carrés de tissus de textures différentes et reliez-les avec un anneau sécuritaire.",
+        "Ou fixez des matières texturées sur un grand carton.",
+        "Laissez l’enfant toucher et comparer les surfaces avec vous."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-creative"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-fabric-squares",
+        "catalog-equipment-metal-ring",
+        "catalog-equipment-cardboard",
+        "catalog-equipment-textured-materials"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/1_3_ans/fiches-activites/touche-a-tout/"
+    },
+    {
+      "id": "ng-affaire-classee",
+      "name": "Affaire classée!",
+      "description": "L’enfant dépose des pompons dans des ouvertures de tailles différentes, puis les récupère pour recommencer.",
+      "note": "Jeu à faire sous surveillance rapprochée : les pompons sont de petites pièces et ne doivent pas être mis à la bouche.",
+      "minAgeMonths": 12,
+      "maxAgeMonths": 36,
+      "durationMinutes": 10,
+      "steps": [
+        "Découpez dans le couvercle d’un pot de yogourt des ouvertures de tailles différentes.",
+        "Présentez des pompons de plusieurs tailles et laissez l’enfant trouver une ouverture adaptée.",
+        "Ouvrez le contenant pour récupérer les pompons et recommencer."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-yogurt-pot",
+        "catalog-equipment-pom-poms"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/1_3_ans/fiches-activites/affaire-classee/"
+    },
+    {
+      "id": "ng-plaisirs-lecture",
+      "name": "Plaisirs de lecture",
+      "description": "Un livre sensoriel fait maison rassemble des textures, des photos et des pages d’activités à feuilleter.",
+      "note": "Fabriquez et vérifiez les pages avec soin; les pièces détachables et petits éléments restent sous la responsabilité d’un adulte.",
+      "minAgeMonths": 12,
+      "maxAgeMonths": 36,
+      "durationMinutes": 10,
+      "steps": [
+        "Rassemblez des feuilles d’activités dans un cartable à anneaux.",
+        "Ajoutez une page tactile, une photo transformée en puzzle et des pages pour exprimer une humeur ou se regarder dans un miroir.",
+        "Feuilletez le livre ensemble et ajoutez des pages selon les intérêts de l’enfant."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-creative"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-ring-binder",
+        "catalog-equipment-paper",
+        "catalog-equipment-family-photos",
+        "catalog-equipment-hook-and-loop",
+        "catalog-equipment-mirror",
+        "catalog-equipment-textured-materials"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/1_3_ans/fiches-activites/plaisirs-de-lecture/"
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import com.android.tools.screenshot.PreviewTest
 import com.sotopatrick.onjoue.presentation.navigation.AppNavigationScaffold
 import com.sotopatrick.onjoue.presentation.navigation.TopLevelDestination
 import com.sotopatrick.onjoue.presentation.settings.SettingsScreen
-import com.sotopatrick.onjoue.presentation.theme.OnJoueTheme
+import com.sotopatrick.onjoue.designsystem.OnJoueTheme
 
 @Preview(widthDp = 400, heightDp = 400)
 @Preview(widthDp = 400, heightDp = 500)
@@ -17,10 +17,10 @@ import com.sotopatrick.onjoue.presentation.theme.OnJoueTheme
 @Preview(widthDp = 900, heightDp = 400)
 @Preview(widthDp = 900, heightDp = 500)
 @Preview(widthDp = 900, heightDp = 1000)
-annotation class NavigationSizes
+annotation class PreviewNavigationSizes
 
 @PreviewTest
-@NavigationSizes
+@PreviewNavigationSizes
 @Composable
 fun SettingsNavigationPreview() {
     OnJoueTheme(darkTheme = false) { SettingsNavigationContent() }

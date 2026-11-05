@@ -21,6 +21,8 @@ import com.sotopatrick.onjoue.data.sources.room.favorite.FavoriteDao
 import com.sotopatrick.onjoue.data.sources.room.favorite.FavoriteEntity
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration1To2
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration2To3
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration3To4
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration4To5
 import com.sotopatrick.onjoue.data.sources.room.review.ReviewDao
 import com.sotopatrick.onjoue.data.sources.room.review.ReviewEntity
 import com.sotopatrick.onjoue.data.sources.room.tag.TagDao
@@ -33,10 +35,12 @@ import kotlinx.coroutines.IO
         TagEntity::class, EquipmentEntity::class, ActivityEntity::class, StepEntity::class,
         VariantEntity::class, ActivityTagEntity::class, ActivityEquipmentEntity::class,
         ReviewEntity::class, FavoriteEntity::class,
-    ], version = 3, exportSchema = true,
+        CatalogStateEntity::class,
+    ], version = 5, exportSchema = true,
 )
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class AppDatabase : RoomDatabase() {
+    abstract fun catalogStateDao(): CatalogStateDao
     abstract fun tagDao(): TagDao
     abstract fun equipmentDao(): EquipmentDao
     abstract fun activityDao(): ActivityDao
@@ -53,9 +57,8 @@ expect object AppDatabaseConstructor : RoomDatabaseConstructor<AppDatabase> {
     override fun initialize(): AppDatabase
 }
 
-fun RoomDatabase.Builder<AppDatabase>.configure(seedCatalog: Boolean = true): AppDatabase {
+fun RoomDatabase.Builder<AppDatabase>.configure(): AppDatabase {
     setDriver(BundledSQLiteDriver()).setQueryCoroutineContext(Dispatchers.IO)
-        .addMigrations(Migration1To2, Migration2To3)
-    if (seedCatalog) addCallback(InitialCatalogCallback)
+        .addMigrations(Migration1To2, Migration2To3, Migration3To4, Migration4To5)
     return build()
 }

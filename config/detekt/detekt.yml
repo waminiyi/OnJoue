@@ -1,0 +1,174 @@
+# Detekt configuration for OnJoue. Applied on top of detekt's default config
+# (buildUponDefaultConfig) for every module; a module may add its own `detekt.yml`.
+# No baseline: the build must stay at zero findings.
+
+config:
+  validation: true
+  excludes: ['testSources']
+  warningsAsErrors: false
+
+# Test sources may build raw sizes and colors to drive layouts; production and screenshot code may not.
+testSources: &testSources
+  - '**/commonTest/**'
+  - '**/androidHostTest/**'
+  - '**/androidDeviceTest/**'
+  - '**/iosTest/**'
+  - '**/src/test/**'
+
+onjoue-design-system:
+  active: true
+  RawColorUsage:
+    active: true
+    excludes: *testSources
+  HardcodedDimension:
+    active: true
+    excludes: *testSources
+  SpacingArithmetic:
+    active: true
+    excludes: *testSources
+  DirectMaterialThemeUsage:
+    active: true
+    excludes: *testSources
+  DirectTextUsage:
+    active: true
+    excludes: *testSources
+  ForbiddenMaterialImport:
+    active: true
+    excludes: *testSources
+    allowedImports: []
+
+# Compose and Kotlin Multiplatform conventions.
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+  MatchingDeclarationName:
+    # KMP `expect`/`actual` files are suffixed by platform (Platform.android.kt).
+    active: false
+  TopLevelPropertyNaming:
+    # Compose convention: PascalCase constants.
+    constantPattern: '[A-Z][A-Za-z0-9_]*'
+
+style:
+  ReturnCount:
+    excludeGuardClauses: true
+  # Tests, previews and Room migrations (versioned SQL scripts) are exempt from literal and size rules.
+  MagicNumber:
+    ignoreEnums: true
+    excludes: &testAndPreviewSources
+      - '**/commonTest/**'
+      - '**/androidHostTest/**'
+      - '**/androidDeviceTest/**'
+      - '**/iosTest/**'
+      - '**/src/test/**'
+      - '**/screenshotTest/**'
+      - '**/migrations/**'
+  MaxLineLength:
+    maxLineLength: 120
+    excludes: *testAndPreviewSources
+  WildcardImport:
+    excludes: *testAndPreviewSources
+
+complexity:
+  LongMethod:
+    excludes: *testAndPreviewSources
+  TooManyFunctions:
+    excludes: *testAndPreviewSources
+
+Compose:
+  ComposableAnnotationNaming:
+    active: true
+  ComposableNaming:
+    active: true
+  ComposableNestingDepth:
+    active: false
+  ComposableParamOrder:
+    active: true
+  CompositionLocalAllowlist:
+    active: true
+  CompositionLocalNaming:
+    active: true
+  ConditionHoist:
+    active: true
+  ContentEmitterReturningValues:
+    active: true
+  ContentSlotReused:
+    active: true
+  ContentTrailingLambda:
+    active: true
+  DefaultsVisibility:
+    active: true
+  InvalidReadOnlyComposable:
+    active: true
+  LambdaParameterEventTrailing:
+    active: true
+  LambdaParameterInRestartableEffect:
+    active: true
+  Material2:
+    active: false
+  MissingNonRestartableComposable:
+    active: true
+    # -- Ignore direct and custom @Preview composables (default: true)
+    # ignoresPreviews: true
+  MissingReadOnlyComposable:
+    active: true
+  ModifierClickableOrder:
+    active: true
+  ModifierComposed:
+    active: true
+  ModifierMissing:
+    active: true
+  ModifierNaming:
+    active: true
+  ModifierNotUsedAtRoot:
+    active: true
+  ModifierReused:
+    active: true
+  ModifierShouldBeForwardedToEveryBranch:
+    active: true
+  ModifierWithoutDefault:
+    active: true
+  MultipleEmitters:
+    active: true
+  MutableParams:
+    active: true
+  MutableStateAutoboxing:
+    active: true
+  MutableStateParam:
+    active: true
+  ParameterNaming:
+    active: true
+  PreviewAnnotationNaming:
+    active: true
+  PreviewNaming:
+    active: false
+  PreviewPublic:
+    active: true
+    # Screenshot test previews are discovered by the screenshot plugin and stay public.
+    excludes: ['**/screenshotTest/**']
+  RememberContentMissing:
+    active: true
+  RememberMissing:
+    active: true
+  StaleRememberUpdatedStateInRemember:
+    active: true
+  StateParam:
+    active: true
+  UnnecessaryComposable:
+    active: true
+  UnnecessaryLaunchedEffect:
+    active: true
+    # -- Calls whose dispatch or extension receiver has one of these fully qualified types keep LaunchedEffect.
+    # allowedCallReceiverTypes:
+    #   - androidx.compose.ui.focus.FocusRequester
+    # -- Calls whose fully qualified name is listed here keep LaunchedEffect.
+    # allowedCallNames:
+    #   - androidx.compose.ui.focus.FocusRequester.requestFocus
+  UnstableCollections:
+    active: false
+  VarsWithoutStateBacking:
+    active: true
+  ViewModelForwarding:
+    active: true
+  ViewModelInjection:
+    # Manual DI: ViewModels are created by factories inside Navigation 3 entries.
+    active: false

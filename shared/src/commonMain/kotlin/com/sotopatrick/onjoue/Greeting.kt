@@ -1,5 +1,6 @@
 package com.sotopatrick.onjoue
 
+
 class Greeting {
     private val platform = getPlatform()
 

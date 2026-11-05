@@ -16,6 +16,10 @@ data class StoredActivity(
     ) val tags: List<TagEntity>,
     @Relation(
         parentColumn = "id", entityColumn = "id",
-        associateBy = Junction(ActivityEquipmentEntity::class, parentColumn = "activityId", entityColumn = "equipmentId"),
+        associateBy = Junction(
+            ActivityEquipmentEntity::class,
+            parentColumn = "activityId",
+            entityColumn = "equipmentId",
+        ),
     ) val equipment: List<EquipmentEntity>,
 )

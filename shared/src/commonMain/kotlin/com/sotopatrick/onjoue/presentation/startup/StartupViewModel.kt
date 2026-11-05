@@ -14,6 +14,7 @@ data class StartupState(val ready: Boolean = false, val loading: Boolean = false
 class StartupViewModel(
     private val tags: TagRepository,
     private val errorParser: ErrorParser,
+    private val initializeCatalog: suspend () -> Unit = {},
 ) : ViewModel() {
     private val mutableState = MutableStateFlow(StartupState())
     val state = mutableState.asStateFlow()
@@ -27,7 +28,10 @@ class StartupViewModel(
             errorParser = errorParser,
             onSuccess = { mutableState.value = StartupState(ready = true) },
             onError = { mutableState.value = StartupState(error = it) },
-            action = { tags.observeTags().first() },
+            action = {
+                initializeCatalog()
+                tags.observeTags().first()
+            },
         )
     }
 }

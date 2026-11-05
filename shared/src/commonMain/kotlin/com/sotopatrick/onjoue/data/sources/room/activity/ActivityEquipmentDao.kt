@@ -10,6 +10,8 @@ interface ActivityEquipmentDao {
     suspend fun insert(equipment: List<ActivityEquipmentEntity>)
     @Query("DELETE FROM activity_equipment WHERE activityId = :activityId")
     suspend fun deleteByActivity(activityId: String)
+    @Query("DELETE FROM activity_equipment")
+    suspend fun deleteAll()
     @Query("SELECT EXISTS(SELECT 1 FROM activity_equipment WHERE equipmentId = :equipmentId)")
     suspend fun isEquipmentUsed(equipmentId: String): Boolean
 }

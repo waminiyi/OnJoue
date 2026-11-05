@@ -1,97 +1,224 @@
 package com.sotopatrick.onjoue.data.sources.room
 
-import androidx.room.RoomDatabase
-import androidx.sqlite.SQLiteConnection
 import com.sotopatrick.onjoue.data.models.common.AppException
-import com.sotopatrick.onjoue.data.models.common.ValidationReason
 import com.sotopatrick.onjoue.data.models.tag.TagGroup
+import com.sotopatrick.onjoue.data.sources.room.activity.ActivityEntity
+import com.sotopatrick.onjoue.data.sources.room.activity.ActivityEquipmentEntity
+import com.sotopatrick.onjoue.data.sources.room.activity.ActivityTagEntity
+import com.sotopatrick.onjoue.data.sources.room.activity.StepEntity
+import com.sotopatrick.onjoue.data.sources.room.activity.VariantEntity
+import com.sotopatrick.onjoue.data.sources.room.equipment.EquipmentEntity
+import com.sotopatrick.onjoue.data.sources.room.tag.TagEntity
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
+import onjoue.shared.generated.resources.Res
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
-internal object InitialCatalog {
-    private data class SeedTag(val key: String, val label: String, val group: TagGroup, val parentKey: String? = null)
+private const val INITIAL_CATALOG_PATH = "files/initial-catalog.json"
 
-    private val tags = buildList {
-        fun group(group: TagGroup, vararg entries: Pair<String, String>) {
-            entries.forEach { (key, label) -> add(SeedTag(key, label, group)) }
-        }
-        group(TagGroup.TYPE, "game" to "Jeu", "craft" to "Bricolage", "drawing" to "Dessin",
-            "story" to "Conte", "music" to "Musique", "exploration" to "Exploration", "cooking" to "Cuisine")
-        group(TagGroup.LOCATION, "inside" to "Dedans", "outside" to "Dehors", "travel" to "En déplacement")
-        listOf(
-            Triple("living-room", "Salon", "inside"), Triple("bedroom", "Chambre", "inside"),
-            Triple("kitchen", "Cuisine", "inside"), Triple("small-space", "Petit espace", "inside"),
-            Triple("garden", "Jardin", "outside"), Triple("park", "Parc", "outside"),
-            Triple("forest", "Forêt", "outside"), Triple("playground", "Aire de jeux", "outside"),
-            Triple("car", "Voiture", "travel"), Triple("train", "Train", "travel"),
-        ).forEach { (key, label, parent) -> add(SeedTag(key, label, TagGroup.LOCATION, parent)) }
-        group(TagGroup.OCCASION, "rainy-day" to "Jour de pluie", "birthday" to "Anniversaire",
-            "holidays" to "Vacances", "waiting" to "Temps d'attente")
-        group(TagGroup.SEASON, "spring" to "Printemps", "summer" to "Été", "autumn" to "Automne", "winter" to "Hiver")
-        group(TagGroup.TIME, "morning" to "Matin", "afternoon" to "Après-midi", "evening" to "Soir", "bedtime" to "Avant le coucher")
-        group(TagGroup.PARTICIPANTS, "solo" to "Seul", "pair" to "À deux", "family" to "En famille", "group" to "En groupe")
-        group(TagGroup.MOOD, "active" to "Se dépenser", "calm" to "Se calmer", "focus" to "Se concentrer",
-            "creative" to "Créer", "cooperate" to "Coopérer")
+@Serializable
+private data class InitialCatalogJson(
+    val version: Int,
+    val tags: List<InitialTagJson>,
+    val equipment: List<InitialEquipmentJson>,
+    val activities: List<InitialActivityJson>,
+)
+
+@Serializable
+private data class InitialTagJson(
+    val id: String,
+    val label: String,
+    val group: String,
+    val parentId: String? = null,
+)
+
+@Serializable
+private data class InitialEquipmentJson(val id: String, val label: String)
+
+@Serializable
+private data class InitialActivityJson(
+    val id: String,
+    val name: String,
+    val description: String,
+    val note: String? = null,
+    val minAgeMonths: Int,
+    val maxAgeMonths: Int,
+    val durationMinutes: Int,
+    val steps: List<String>,
+    val variants: List<String>,
+    val tagIds: List<String>,
+    val equipmentIds: List<String>,
+    val document: String? = null,
+)
+
+private val catalogJson = Json { ignoreUnknownKeys = false }
+
+@OptIn(ExperimentalResourceApi::class)
+suspend fun seedInitialCatalog(database: AppDatabase, forceReset: Boolean = false) {
+    val catalog = try {
+        catalogJson.decodeFromString<InitialCatalogJson>(
+            Res.readBytes(INITIAL_CATALOG_PATH).decodeToString(),
+        )
+    } catch (exception: SerializationException) {
+        throw IllegalStateException("The initial activity catalog is invalid.", exception)
     }
+    validateCatalog(catalog)
 
-    private val equipment = listOf(
-        "ball" to "Ballon", "cushions" to "Coussins", "soft-toys" to "Peluches", "rope" to "Corde",
-        "chairs" to "Chaises", "chalk" to "Craie", "tape" to "Ruban adhésif", "paper" to "Papier",
-        "colored-pencils" to "Crayons de couleur", "markers" to "Feutres", "scissors" to "Ciseaux",
-        "glue" to "Colle", "cardboard" to "Carton", "clay" to "Pâte à modeler", "paint" to "Peinture",
-        "brushes" to "Pinceaux", "books" to "Livres", "blocks" to "Cubes de construction",
-        "hoops" to "Cerceaux", "blanket" to "Couverture", "containers" to "Récipients",
-        "spoons" to "Cuillères", "clothespins" to "Pinces à linge", "bubbles" to "Bulles de savon",
-    )
+    database.transaction(DatabaseOperation.INSERT) {
+        if (!forceReset && database.catalogStateDao().importedVersion() == catalog.version) return@transaction
+        if (forceReset) database.replaceCatalogWith(catalog) else database.mergeInitialCatalog(catalog)
+        database.catalogStateDao().save(CatalogStateEntity(catalogVersion = catalog.version))
+    }
+}
 
-    fun insert(connection: SQLiteConnection) {
-        val ids = mutableMapOf<String, String>()
-        for (tag in tags) {
-            val existing = connection.prepare("SELECT id FROM tags WHERE groupName = ? AND normalizedLabel = ?").use {
-                it.bindText(1, tag.group.name)
-                it.bindText(2, tag.label.lowercase())
-                if (it.step()) it.getText(0) else null
-            }
-            if (existing != null) {
-                ids[tag.key] = existing
-                continue
-            }
-            val parent = tag.parentKey?.let { ids.getValue(it) }
-            if (parent != null) {
-                connection.prepare("SELECT parent FROM tags WHERE id = ?").use {
-                    it.bindText(1, parent)
-                    check(it.step())
-                    if (!it.isNull(0)) throw AppException.Validation(ValidationReason.INVALID_HIERARCHY)
-                }
-            }
-            val id = "catalog-tag-${tag.key}"
-            connection.prepare("INSERT INTO tags(id, label, groupName, parent, normalizedLabel) VALUES(?, ?, ?, ?, ?)").use {
-                it.bindText(1, id)
-                it.bindText(2, tag.label)
-                it.bindText(3, tag.group.name)
-                if (parent == null) it.bindNull(4) else it.bindText(4, parent)
-                it.bindText(5, tag.label.lowercase())
-                it.step()
-            }
-            ids[tag.key] = id
+private suspend fun AppDatabase.replaceCatalogWith(catalog: InitialCatalogJson) {
+    val catalogActivityIds = catalog.activities.mapTo(mutableSetOf()) { it.id }
+    activityDao().ids().filterNot(catalogActivityIds::contains).forEach { id ->
+        activityDao().delete(id)
+    }
+    activityTagDao().deleteAll()
+    activityEquipmentDao().deleteAll()
+    tagDao().clearParents()
+    tagDao().deleteAll()
+    equipmentDao().deleteAll()
+    mergeInitialCatalog(catalog)
+}
+
+private suspend fun AppDatabase.mergeInitialCatalog(catalog: InitialCatalogJson) {
+    val tagIds = importTags(catalog.tags)
+    val equipmentIds = importEquipment(catalog.equipment)
+
+    catalog.activities.forEach { activity ->
+        activityDao().save(
+            ActivityEntity(
+                id = activity.id,
+                name = activity.name,
+                description = activity.description,
+                note = activity.note,
+                minAge = activity.minAgeMonths,
+                maxAge = activity.maxAgeMonths,
+                duration = activity.durationMinutes,
+                image = null,
+                document = activity.document,
+            ),
+        )
+        stepDao().deleteByActivity(activity.id)
+        variantDao().deleteByActivity(activity.id)
+        activityTagDao().deleteByActivity(activity.id)
+        activityEquipmentDao().deleteByActivity(activity.id)
+        if (activity.steps.isNotEmpty()) {
+            stepDao().insert(
+                activity.steps.mapIndexed { index, text ->
+                    StepEntity(activity.id, index, text, timerSeconds = null)
+                },
+            )
         }
-        for ((key, label) in equipment) {
-            val exists = connection.prepare("SELECT 1 FROM equipment WHERE normalizedLabel = ?").use {
-                it.bindText(1, label.lowercase())
-                it.step()
-            }
-            if (!exists) {
-                connection.prepare("INSERT INTO equipment(id, label, normalizedLabel) VALUES(?, ?, ?)").use {
-                    it.bindText(1, "catalog-equipment-$key")
-                    it.bindText(2, label)
-                    it.bindText(3, label.lowercase())
-                    it.step()
-                }
-            }
+        if (activity.variants.isNotEmpty()) {
+            variantDao().insert(
+                activity.variants.mapIndexed { index, text ->
+                    VariantEntity(activity.id, index, text)
+                },
+            )
+        }
+        if (activity.tagIds.isNotEmpty()) {
+            activityTagDao().insert(
+                activity.tagIds.map { tagId ->
+                    ActivityTagEntity(activity.id, tagIds.getValue(tagId))
+                },
+            )
+        }
+        if (activity.equipmentIds.isNotEmpty()) {
+            activityEquipmentDao().insert(
+                activity.equipmentIds.map { equipmentId ->
+                    ActivityEquipmentEntity(activity.id, equipmentIds.getValue(equipmentId))
+                },
+            )
         }
     }
 }
 
-internal object InitialCatalogCallback : RoomDatabase.Callback() {
-    override fun onCreate(connection: SQLiteConnection) {
-        InitialCatalog.insert(connection)
+private suspend fun AppDatabase.importTags(tags: List<InitialTagJson>): Map<String, String> {
+    val actualIds = mutableMapOf<String, String>()
+    val pending = tags.toMutableList()
+    while (pending.isNotEmpty()) {
+        val ready = pending.filter { it.parentId == null || it.parentId in actualIds }
+        require(ready.isNotEmpty()) { "Catalog tag hierarchy contains a cycle." }
+        ready.forEach { tag ->
+            val normalizedLabel = tag.label.trim().lowercase()
+            val existing = tagDao().get(tag.id)
+            if (existing != null &&
+                (existing.groupName != tag.group || existing.normalizedLabel != normalizedLabel)
+            ) {
+                throw AppException.Conflict()
+            }
+            val actualId = existing?.id
+                ?: tagDao().getByNormalizedLabel(tag.group, normalizedLabel)?.id
+                ?: tag.id
+            tagDao().save(
+                TagEntity(
+                    id = actualId,
+                    label = tag.label.trim(),
+                    groupName = tag.group,
+                    parent = tag.parentId?.let(actualIds::get),
+                    normalizedLabel = normalizedLabel,
+                ),
+            )
+            actualIds[tag.id] = actualId
+            pending.remove(tag)
+        }
+    }
+    return actualIds
+}
+
+private suspend fun AppDatabase.importEquipment(
+    equipment: List<InitialEquipmentJson>,
+): Map<String, String> = equipment.associate { item ->
+    val normalizedLabel = item.label.trim().lowercase()
+    val existing = equipmentDao().get(item.id)
+    if (existing != null && existing.normalizedLabel != normalizedLabel) {
+        throw AppException.Conflict()
+    }
+    val actualId = existing?.id
+        ?: equipmentDao().getByNormalizedLabel(normalizedLabel)?.id
+        ?: item.id
+    equipmentDao().save(EquipmentEntity(actualId, item.label.trim(), normalizedLabel))
+    item.id to actualId
+}.toMap()
+
+private fun validateCatalog(catalog: InitialCatalogJson) {
+    require(catalog.version > 0) { "Catalog version must be positive." }
+    requireUniqueIds(catalog.tags.map { it.id }, "tag")
+    requireUniqueIds(catalog.equipment.map { it.id }, "equipment")
+    requireUniqueIds(catalog.activities.map { it.id }, "activity")
+
+    val tagIds = catalog.tags.mapTo(mutableSetOf()) { it.id }
+    val equipmentIds = catalog.equipment.mapTo(mutableSetOf()) { it.id }
+    catalog.tags.forEach { tag ->
+        require(tag.label.isNotBlank()) { "Tag ${tag.id} has no label." }
+        TagGroup.valueOf(tag.group)
+        require(tag.parentId == null || tag.parentId in tagIds) {
+            "Tag ${tag.id} references an unknown parent."
+        }
+    }
+    catalog.activities.forEach { activity ->
+        require(activity.name.isNotBlank()) { "Activity ${activity.id} has no name." }
+        require(activity.minAgeMonths >= 0 && activity.maxAgeMonths >= activity.minAgeMonths) {
+            "Activity ${activity.id} has an invalid age range."
+        }
+        require(activity.durationMinutes > 0) { "Activity ${activity.id} has an invalid duration." }
+        require(activity.steps.all(String::isNotBlank)) { "Activity ${activity.id} has an empty step." }
+        require(activity.tagIds.all { it in tagIds }) {
+            "Activity ${activity.id} references an unknown tag."
+        }
+        require(activity.equipmentIds.all { it in equipmentIds }) {
+            "Activity ${activity.id} references unknown equipment."
+        }
+    }
+}
+
+private fun requireUniqueIds(ids: List<String>, type: String) {
+    require(ids.all(String::isNotBlank) && ids.distinct().size == ids.size) {
+        "Catalog contains an empty or duplicate $type id."
     }
 }

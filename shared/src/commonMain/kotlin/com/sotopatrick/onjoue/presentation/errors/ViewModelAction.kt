@@ -6,6 +6,8 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+// UI boundary: failures of a one-off action are turned into a user message by the ErrorParser.
+@Suppress("TooGenericExceptionCaught")
 fun <T> ViewModel.viewModelAction(
     errorParser: ErrorParser,
     onError: (Message) -> Unit,

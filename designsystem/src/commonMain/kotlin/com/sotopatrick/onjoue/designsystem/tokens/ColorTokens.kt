@@ -1,18 +1,10 @@
-package com.sotopatrick.onjoue.presentation.theme
+package com.sotopatrick.onjoue.designsystem.tokens
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
-import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 
-private val LightColors = lightColorScheme(
+internal val LightColors = lightColorScheme(
     primary = Color(0xFF0B7B72),
     onPrimary = Color.White,
     primaryContainer = Color(0xFFDDF3EF),
@@ -39,7 +31,7 @@ private val LightColors = lightColorScheme(
     onErrorContainer = Color(0xFF8B2800),
 )
 
-private val DarkColors = darkColorScheme(
+internal val DarkColors = darkColorScheme(
     primary = Color(0xFF80D5C9),
     onPrimary = Color(0xFF003C36),
     primaryContainer = Color(0xFF174B45),
@@ -65,31 +57,5 @@ private val DarkColors = darkColorScheme(
     onErrorContainer = Color(0xFFFFDBCB),
 )
 
-private val AppShapes = Shapes(
-    extraSmall = RoundedCornerShape(8.dp),
-    small = RoundedCornerShape(12.dp),
-    medium = RoundedCornerShape(16.dp),
-    large = RoundedCornerShape(24.dp),
-    extraLarge = RoundedCornerShape(28.dp),
-)
-
-private val BaseTypography = Typography()
-private val AppTypography = BaseTypography.copy(
-    headlineLarge = BaseTypography.headlineLarge.copy(fontWeight = FontWeight.Bold),
-    headlineMedium = BaseTypography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-    headlineSmall = BaseTypography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-    titleLarge = BaseTypography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
-    titleMedium = BaseTypography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-    labelLarge = BaseTypography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
-    labelMedium = BaseTypography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
-)
-
-@Composable
-fun OnJoueTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = if (darkTheme) DarkColors else LightColors,
-        typography = AppTypography,
-        shapes = AppShapes,
-        content = content,
-    )
-}
+/** Opacity of the surface behind the hero illustration. */
+internal const val HeroIllustrationSurfaceAlpha = 0.8f

@@ -2,7 +2,9 @@ package com.sotopatrick.onjoue.data.repositories.tag
 
 import com.sotopatrick.onjoue.data.models.common.AppException
 import com.sotopatrick.onjoue.data.models.common.ValidationReason
-import com.sotopatrick.onjoue.data.models.tag.*
+import com.sotopatrick.onjoue.data.models.tag.Tag
+import com.sotopatrick.onjoue.data.models.tag.TagGroup
+import com.sotopatrick.onjoue.data.models.tag.TagId
 import com.sotopatrick.onjoue.data.repositories.common.normalizedDisplayLabel
 import com.sotopatrick.onjoue.data.repositories.common.requireAffectedRow
 import com.sotopatrick.onjoue.data.repositories.common.requireDebug
@@ -35,14 +37,22 @@ class RoomTagRepository(
     }
 
     private suspend fun validateHierarchy(tag: Tag) {
-        if (dao.hasChildren(tag.id.value) && (tag.group != TagGroup.LOCATION || tag.parent != null)) {
-            throw AppException.Validation(ValidationReason.INVALID_HIERARCHY)
+        val hasChildren = dao.hasChildren(tag.id.value)
+        val parentId = tag.parent
+        val valid = when {
+            hasChildren -> tag.group == TagGroup.LOCATION && parentId == null
+            parentId == null -> true
+            else -> {
+                val parent = dao.get(parentId.value)?.toModel() ?: throw AppException.InvalidReference()
+                isValidLocationChild(tag, parent)
+            }
         }
-        val parentId = tag.parent ?: return
-        val parent = dao.get(parentId.value)?.toModel() ?: throw AppException.InvalidReference()
-        if (tag.id == parentId || tag.group != TagGroup.LOCATION ||
-            parent.group != TagGroup.LOCATION || parent.parent != null
-        ) throw AppException.Validation(ValidationReason.INVALID_HIERARCHY)
+        if (!valid) throw AppException.Validation(ValidationReason.INVALID_HIERARCHY)
+    }
+
+    private fun isValidLocationChild(tag: Tag, parent: Tag): Boolean {
+        val bothLocations = tag.group == TagGroup.LOCATION && parent.group == TagGroup.LOCATION
+        return tag.id != parent.id && bothLocations && parent.parent == null
     }
 
     override suspend fun deleteTag(id: TagId) {

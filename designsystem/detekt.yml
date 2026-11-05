@@ -1,0 +1,8 @@
+# The design system owns tokens and wraps Material 3: its own rules do not apply here.
+onjoue-design-system:
+  active: false
+
+style:
+  # Tokens are the single place where raw values are defined.
+  MagicNumber:
+    active: false

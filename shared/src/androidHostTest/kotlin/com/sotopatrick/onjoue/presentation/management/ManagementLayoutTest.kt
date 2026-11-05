@@ -17,7 +17,7 @@ import com.sotopatrick.onjoue.data.models.tag.TagGroup
 import com.sotopatrick.onjoue.data.models.tag.TagUsage
 import com.sotopatrick.onjoue.data.repositories.sampleEquipment
 import com.sotopatrick.onjoue.data.repositories.sampleTag
-import com.sotopatrick.onjoue.presentation.theme.OnJoueTheme
+import com.sotopatrick.onjoue.designsystem.OnJoueTheme
 import kotlin.test.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith

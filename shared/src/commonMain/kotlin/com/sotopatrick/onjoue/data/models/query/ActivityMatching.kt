@@ -6,7 +6,8 @@ import com.sotopatrick.onjoue.data.models.catalogs.TagCatalog
 fun Activity.matches(filter: ActivityFilter, catalog: TagCatalog): Boolean {
     if (filter.childAge !in age) return false
     if (filter.maxDuration != null && duration > filter.maxDuration) return false
-    if (filter.availableEquipment != null && !filter.availableEquipment.containsAll(equipment.map { it.id })) return false
+    val available = filter.availableEquipment
+    if (available != null && !available.containsAll(equipment.map { it.id })) return false
 
     return filter.selectedTags.all { (group, selected) ->
         if (selected.isEmpty()) return@all true

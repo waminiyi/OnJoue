@@ -1,6 +1,7 @@
 package com.sotopatrick.onjoue.data.repositories.equipment
 
-import com.sotopatrick.onjoue.data.models.equipment.*
+import com.sotopatrick.onjoue.data.models.equipment.Equipment
+import com.sotopatrick.onjoue.data.models.equipment.EquipmentId
 import com.sotopatrick.onjoue.data.repositories.common.normalizedDisplayLabel
 import com.sotopatrick.onjoue.data.repositories.common.requireAffectedRow
 import com.sotopatrick.onjoue.data.repositories.common.requireDebug
@@ -19,7 +20,8 @@ class RoomEquipmentRepository(
 ) : EquipmentRepository {
     private val dao = database.equipmentDao()
     override fun observeEquipment() = dao.observe().map { rows -> rows.map { it.toModel() } }.mapStorageErrors()
-    override fun observeEquipmentUsage() = dao.observeUsage().map { rows -> rows.map { it.toModel() } }.mapStorageErrors()
+    override fun observeEquipmentUsage() =
+        dao.observeUsage().map { rows -> rows.map { it.toModel() } }.mapStorageErrors()
     override suspend fun getEquipment(id: EquipmentId): Equipment? = databaseAccess { dao.get(id.value)?.toModel() }
 
     override suspend fun save(equipment: Equipment) {

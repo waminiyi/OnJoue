@@ -10,6 +10,8 @@ interface ActivityTagDao {
     suspend fun insert(tags: List<ActivityTagEntity>)
     @Query("DELETE FROM activity_tags WHERE activityId = :activityId")
     suspend fun deleteByActivity(activityId: String)
+    @Query("DELETE FROM activity_tags")
+    suspend fun deleteAll()
     @Query("SELECT EXISTS(SELECT 1 FROM activity_tags WHERE tagId = :tagId)")
     suspend fun isTagUsed(tagId: String): Boolean
 }

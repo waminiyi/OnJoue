@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Blocks the commit when Detekt (design-system rules, compose-rules, Kotlin style) reports a finding.
+set -euo pipefail
+
+staged_kotlin=$(git diff --cached --name-only --diff-filter=ACMR -- '*.kt' '*.kts' 'config/detekt/*' '*/detekt.yml')
+if [ -z "$staged_kotlin" ]; then
+  exit 0
+fi
+
+echo "pre-commit: ./gradlew detekt"
+if ! ./gradlew detekt --quiet; then
+  echo "pre-commit: Detekt a trouvé des violations. Corrigez-les avant de committer." >&2
+  exit 1
+fi

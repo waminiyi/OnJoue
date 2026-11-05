@@ -1,0 +1,15 @@
+onjoue-design-system:
+  active: true
+  RawColorUsage:
+    active: true
+  HardcodedDimension:
+    active: true
+  SpacingArithmetic:
+    active: true
+  DirectMaterialThemeUsage:
+    active: true
+  DirectTextUsage:
+    active: true
+  ForbiddenMaterialImport:
+    active: true
+    allowedImports: []

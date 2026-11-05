@@ -1,7 +1,8 @@
 package com.sotopatrick.onjoue.data.repositories.review
 
 import com.sotopatrick.onjoue.data.models.activity.ActivityId
-import com.sotopatrick.onjoue.data.models.review.*
+import com.sotopatrick.onjoue.data.models.review.Review
+import com.sotopatrick.onjoue.data.models.review.ReviewId
 import com.sotopatrick.onjoue.data.repositories.common.requireAffectedRow
 import com.sotopatrick.onjoue.data.sources.room.AppDatabase
 import com.sotopatrick.onjoue.data.sources.room.DatabaseOperation

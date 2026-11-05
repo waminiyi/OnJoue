@@ -16,7 +16,8 @@ class FrenchErrorParser : ErrorParser {
         val content = when (exception) {
             is AppException.Validation -> when (exception.reason) {
                 ValidationReason.EMPTY_LABEL -> "Le libellé ne peut pas être vide."
-                ValidationReason.INVALID_HIERARCHY -> "Seuls les lieux peuvent avoir un parent, sur deux niveaux maximum."
+                ValidationReason.INVALID_HIERARCHY ->
+                    "Seuls les lieux peuvent avoir un parent, sur deux niveaux maximum."
                 ValidationReason.INVALID_ACTIVITY -> "L'activité ou ses étapes sont invalides."
             }
             is AppException.Conflict -> "Un élément possède déjà cet identifiant ou ce libellé."

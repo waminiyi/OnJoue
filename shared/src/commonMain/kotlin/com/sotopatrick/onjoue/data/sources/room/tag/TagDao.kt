@@ -22,6 +22,10 @@ interface TagDao {
     fun observeUsage(): Flow<List<StoredTagUsage>>
     @Query("SELECT * FROM tags WHERE id = :id")
     suspend fun get(id: String): TagEntity?
+    @Query("SELECT * FROM tags WHERE groupName = :groupName AND normalizedLabel = :normalizedLabel LIMIT 1")
+    suspend fun getByNormalizedLabel(groupName: String, normalizedLabel: String): TagEntity?
+    @Query("UPDATE tags SET parent = NULL")
+    suspend fun clearParents()
     @Query("SELECT EXISTS(SELECT 1 FROM tags WHERE parent = :id)")
     suspend fun hasChildren(id: String): Boolean
     @Insert
@@ -34,4 +38,6 @@ interface TagDao {
     }
     @Query("DELETE FROM tags WHERE id = :id")
     suspend fun delete(id: String): Int
+    @Query("DELETE FROM tags")
+    suspend fun deleteAll()
 }

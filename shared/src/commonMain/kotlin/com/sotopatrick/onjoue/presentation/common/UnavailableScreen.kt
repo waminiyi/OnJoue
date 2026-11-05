@@ -5,30 +5,31 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import com.sotopatrick.onjoue.designsystem.components.DsText
+import com.sotopatrick.onjoue.designsystem.components.DsTextButton
+import com.sotopatrick.onjoue.designsystem.components.TextRole
+import com.sotopatrick.onjoue.designsystem.components.TextTone
+import com.sotopatrick.onjoue.designsystem.foundation.Spacing
 
 @Composable
-fun UnavailableScreen(title: String, onBack: (() -> Unit)? = null) {
-    Box(Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
+fun UnavailableScreen(title: String, modifier: Modifier = Modifier, onBack: (() -> Unit)? = null) {
+    Box(modifier.fillMaxSize().padding(Spacing.XXLarge), contentAlignment = Alignment.Center) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(Spacing.Large),
         ) {
-            Text(title, style = MaterialTheme.typography.headlineMedium, textAlign = TextAlign.Center)
-            Text(
+            DsText(title, role = TextRole.HeadlineMedium, textAlign = TextAlign.Center)
+            DsText(
                 "Fonctionnalité non disponible pour le moment.",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                role = TextRole.BodyLarge,
+                tone = TextTone.Secondary,
                 textAlign = TextAlign.Center,
             )
-            onBack?.let { TextButton(onClick = it) { Text("Retour aux paramètres") } }
+            onBack?.let { DsTextButton("Retour aux paramètres", onClick = it) }
         }
     }
 }

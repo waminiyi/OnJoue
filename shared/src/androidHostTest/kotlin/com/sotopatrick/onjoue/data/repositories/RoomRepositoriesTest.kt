@@ -7,6 +7,7 @@ import androidx.sqlite.driver.AndroidSQLiteDriver
 import androidx.sqlite.execSQL
 import com.sotopatrick.onjoue.data.models.activity.*
 import com.sotopatrick.onjoue.data.models.common.AppException
+import com.sotopatrick.onjoue.data.models.activity.ActivityId
 import com.sotopatrick.onjoue.data.models.equipment.EquipmentId
 import com.sotopatrick.onjoue.data.models.tag.*
 import com.sotopatrick.onjoue.data.repositories.activity.RoomActivityRepository
@@ -14,14 +15,18 @@ import com.sotopatrick.onjoue.data.repositories.equipment.RoomEquipmentRepositor
 import com.sotopatrick.onjoue.data.repositories.tag.RoomTagRepository
 import com.sotopatrick.onjoue.data.sources.room.AppDatabase
 import com.sotopatrick.onjoue.data.sources.room.DatabaseOperation
-import com.sotopatrick.onjoue.data.sources.room.InitialCatalogCallback
+import com.sotopatrick.onjoue.data.sources.room.seedInitialCatalog
 import com.sotopatrick.onjoue.presentation.errors.FrenchErrorParser
 import com.sotopatrick.onjoue.presentation.startup.StartupViewModel
 import com.sotopatrick.onjoue.data.sources.room.databaseAccess
 import com.sotopatrick.onjoue.data.sources.room.equipment.EquipmentEntity
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration1To2
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration2To3
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration3To4
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration4To5
 import com.sotopatrick.onjoue.data.sources.room.tag.TagEntity
+import com.sotopatrick.onjoue.data.sources.room.favorite.FavoriteEntity
+import com.sotopatrick.onjoue.data.sources.room.review.ReviewEntity
 import com.sotopatrick.onjoue.data.sources.room.transaction
 import java.io.File
 import kotlin.test.*
@@ -47,12 +52,11 @@ class RoomRepositoriesTest {
     private lateinit var equipment: RoomEquipmentRepository
     private val context: Context get() = RuntimeEnvironment.getApplication()
 
-    private fun open(path: String? = null, seedCatalog: Boolean = false): AppDatabase {
+    private fun open(path: String? = null): AppDatabase {
         val builder = if (path == null) Room.inMemoryDatabaseBuilder<AppDatabase>(context)
         else Room.databaseBuilder<AppDatabase>(context, path)
-        if (seedCatalog) builder.addCallback(InitialCatalogCallback)
         return builder.setDriver(AndroidSQLiteDriver()).setQueryCoroutineContext(Dispatchers.IO)
-            .addMigrations(Migration1To2, Migration2To3).build()
+            .addMigrations(Migration1To2, Migration2To3, Migration3To4, Migration4To5).build()
     }
 
     @Before
@@ -74,24 +78,27 @@ class RoomRepositoriesTest {
     fun initialCatalogIsAvailableInReleaseAndNeverResetsEditsOrDeletions() = runTest {
         val path = File(context.cacheDir, "initial-catalog.db").absolutePath
         try {
-            val initial = open(path, seedCatalog = true)
+            val initial = open(path)
             val removedId = try {
-                val startup = StartupViewModel(RoomTagRepository(initial), FrenchErrorParser())
+                val startup = StartupViewModel(RoomTagRepository(initial), FrenchErrorParser()) {
+                    seedInitialCatalog(initial)
+                }
                 assertTrue(startup.state.first { it.ready || it.error != null }.ready)
                 verifyInitialCatalog(initial)
                 val repository = RoomTagRepository(initial, true)
-                val game = repository.observeTags().first().single { it.label == "Jeu" }
+                val game = repository.observeTags().first().single { it.label == "Conte" }
                 repository.deleteTag(game.id)
                 val ball = RoomEquipmentRepository(initial, true)
                 val item = ball.observeEquipment().first().single { it.label == "Ballon" }
                 ball.save(item.copy(label = "Grand ballon"))
                 game.id
             } finally { initial.close() }
-            val reopened = open(path, seedCatalog = true)
+            val reopened = open(path)
             try {
                 assertNull(RoomTagRepository(reopened).getTag(removedId))
                 assertEquals(40, RoomTagRepository(reopened).observeTags().first().size)
                 assertTrue(RoomEquipmentRepository(reopened).observeEquipment().first().any { it.label == "Grand ballon" })
+                assertEquals(41, RoomActivityRepository(reopened).observeActivities().first().size)
             } finally { reopened.close() }
         } finally { context.deleteDatabase(path) }
     }
@@ -112,14 +119,17 @@ class RoomRepositoriesTest {
                 RoomActivityRepository(legacy, true).save(activity)
             } finally { legacy.close() }
             AndroidSQLiteDriver().open(path).use { it.execSQL("PRAGMA user_version = 2") }
-            val migrated = open(path, seedCatalog = true)
+            val migrated = open(path)
             try {
+                seedInitialCatalog(migrated)
                 val tags = RoomTagRepository(migrated).observeTags().first()
                 assertEquals(41, tags.size)
                 assertEquals(summer.id, tags.single { it.label == "Été" }.id)
                 assertEquals(inside.id, tags.single { it.label == "Salon" }.parent)
                 assertEquals(ball.id, RoomEquipmentRepository(migrated).observeEquipment().first().single { it.label == "Ballon" }.id)
                 assertEquals(activity, RoomActivityRepository(migrated).getActivity(activity.id))
+                assertEquals(42, RoomActivityRepository(migrated).observeActivities().first().size)
+                assertEquals(57, RoomEquipmentRepository(migrated).observeEquipment().first().size)
             } finally { migrated.close() }
         } finally { context.deleteDatabase(path) }
     }
@@ -135,9 +145,53 @@ class RoomRepositoriesTest {
                 )
             } finally { legacy.close() }
             AndroidSQLiteDriver().open(path).use { it.execSQL("PRAGMA user_version = 2") }
-            val failing = open(path, seedCatalog = true)
+            val failing = open(path)
             try {
-                val startup = StartupViewModel(RoomTagRepository(failing), FrenchErrorParser())
+                val startup = StartupViewModel(RoomTagRepository(failing), FrenchErrorParser()) {
+                    seedInitialCatalog(failing)
+                }
+
+                @Test
+                fun forcedCatalogReplacementRemovesCustomEntriesAndPreservesCanonicalActivityHistory() = runTest {
+                    val database = open()
+                    try {
+                        seedInitialCatalog(database)
+                        val tags = RoomTagRepository(database, true)
+                        val equipment = RoomEquipmentRepository(database, true)
+                        val customTag = sampleTag("Personnalisé", TagGroup.TYPE)
+                        val customEquipment = sampleEquipment("Objet personnalisé")
+                        tags.save(customTag)
+                        equipment.save(customEquipment)
+                        val customActivity = sampleActivity().copy(
+                            id = ActivityId("custom-activity"),
+                            tags = setOf(customTag),
+                            equipment = setOf(customEquipment),
+                        )
+                        RoomActivityRepository(database, true).save(customActivity)
+
+                        val canonicalId = "ng-bulles"
+                        val canonicalTag = tags.observeTags().first().single { it.id.value == "catalog-tag-game" }
+                        tags.save(canonicalTag.copy(label = "Jeu modifié"))
+                        database.favoriteDao().insert(FavoriteEntity("favorite-canonical", canonicalId))
+                        database.favoriteDao().insert(FavoriteEntity("favorite-custom", customActivity.id.id))
+                        database.reviewDao().insert(ReviewEntity("review-canonical", canonicalId, "5", "À garder"))
+                        database.reviewDao().insert(ReviewEntity("review-custom", customActivity.id.id, "4", "À supprimer"))
+
+                        seedInitialCatalog(database, forceReset = true)
+
+                        verifyInitialCatalog(database)
+                        assertNull(tags.getTag(customTag.id))
+                        assertNull(equipment.getEquipment(customEquipment.id))
+                        assertNull(RoomActivityRepository(database).getActivity(customActivity.id))
+                        assertEquals("Jeu", tags.getTag(canonicalTag.id)?.label)
+                        assertTrue(database.favoriteDao().isFavorite(canonicalId))
+                        assertFalse(database.favoriteDao().isFavorite(customActivity.id.id))
+                        assertNotNull(database.reviewDao().get("review-canonical"))
+                        assertNull(database.reviewDao().get("review-custom"))
+                    } finally {
+                        database.close()
+                    }
+                }
                 val state = startup.state.first { !it.loading }
                 assertFalse(state.ready)
                 assertEquals(FrenchErrorParser().parse(AppException.Conflict()), state.error)

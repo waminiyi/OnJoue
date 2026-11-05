@@ -15,6 +15,8 @@ interface ActivityDao {
     @Transaction
     @Query("SELECT * FROM activities WHERE id = :id")
     suspend fun get(id: String): StoredActivity?
+    @Query("SELECT id FROM activities")
+    suspend fun ids(): List<String>
     @Insert
     suspend fun insert(activity: ActivityEntity)
     @Update

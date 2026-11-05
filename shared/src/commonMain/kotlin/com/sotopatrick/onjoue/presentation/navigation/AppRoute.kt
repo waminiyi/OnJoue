@@ -16,6 +16,7 @@ sealed interface AppRoute : NavKey {
     @Serializable data object TagManagement : AppRoute
     @Serializable data object EquipmentManagement : AppRoute
     @Serializable data object ActivityManagement : AppRoute
+    @Serializable data class ActivityDetail(val activityId: String) : AppRoute
 }
 
 enum class TopLevelDestination(val route: AppRoute) {
@@ -35,6 +36,7 @@ internal val NavigationSavedStateConfiguration = SavedStateConfiguration {
             subclass(AppRoute.TagManagement::class, AppRoute.TagManagement.serializer())
             subclass(AppRoute.EquipmentManagement::class, AppRoute.EquipmentManagement.serializer())
             subclass(AppRoute.ActivityManagement::class, AppRoute.ActivityManagement.serializer())
+            subclass(AppRoute.ActivityDetail::class, AppRoute.ActivityDetail.serializer())
         }
     }
 }
