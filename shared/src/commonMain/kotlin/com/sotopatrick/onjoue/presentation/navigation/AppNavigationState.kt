@@ -35,7 +35,7 @@ class AppNavigationState(
 }
 
 @Composable
-fun rememberAppNavigationState(managementEnabled: Boolean): AppNavigationState {
+fun rememberAppNavigationState(): AppNavigationState {
     val selected = rememberSaveable(
         stateSaver = Saver<TopLevelDestination, String>(
             save = { it.name },
@@ -46,6 +46,6 @@ fun rememberAppNavigationState(managementEnabled: Boolean): AppNavigationState {
         rememberNavBackStack(NavigationSavedStateConfiguration, it.route)
     }
     val state = remember { AppNavigationState(selected, stacks) }
-    if (!managementEnabled) state.removeManagementRoutes()
+    state.removeManagementRoutes()
     return state
 }

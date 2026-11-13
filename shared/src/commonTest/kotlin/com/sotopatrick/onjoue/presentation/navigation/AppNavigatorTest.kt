@@ -4,7 +4,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.navigation3.runtime.NavKey
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import kotlinx.serialization.PolymorphicSerializer
@@ -27,41 +26,20 @@ class AppNavigatorTest {
     }
 
     @Test
-    fun switchingAndReselectingPreservesEachStack() {
+    fun switchingTabsPreservesActivityDetailAndBackReturnsToList() {
         val state = state()
-        val navigator = AppNavigator(state, managementEnabled = true)
-        navigator.openManagement(AppRoute.TagManagement)
+        val navigator = AppNavigator(state)
+        navigator.select(TopLevelDestination.ACTIVITY_SHEETS)
+        navigator.openActivityDetail("activity-1")
         navigator.select(TopLevelDestination.FAVORITES)
-        navigator.select(TopLevelDestination.SETTINGS)
-        navigator.select(TopLevelDestination.SETTINGS)
-        navigator.openManagement(AppRoute.TagManagement)
-        assertEquals<List<NavKey>>(listOf(AppRoute.Settings, AppRoute.TagManagement), state.currentStack)
-        assertEquals<List<NavKey>>(listOf(AppRoute.Favorites), state.backStacks.getValue(TopLevelDestination.FAVORITES))
-    }
-
-    @Test
-    fun backReturnsToSettingsThenIdeaWithoutClearingOtherTabs() {
-        val state = state()
-        val navigator = AppNavigator(state, managementEnabled = true)
-        navigator.openManagement(AppRoute.EquipmentManagement)
+        navigator.select(TopLevelDestination.ACTIVITY_SHEETS)
+        assertEquals(AppRoute.ActivityDetail("activity-1"), state.currentStack.last())
         assertTrue(state.canGoBack)
         navigator.goBack()
-        assertEquals<List<NavKey>>(listOf(AppRoute.Settings), state.currentStack)
+        assertEquals<List<NavKey>>(listOf(AppRoute.ActivitySheets), state.currentStack)
         navigator.goBack()
         assertEquals(TopLevelDestination.IDEA, state.selectedDestination)
         assertFalse(state.canGoBack)
-        navigator.goBack()
-        assertEquals<List<NavKey>>(listOf(AppRoute.Idea), state.currentStack)
-    }
-
-    @Test
-    fun allManagementRoutesAreUnavailableInRelease() {
-        val state = state()
-        val navigator = AppNavigator(state, managementEnabled = false)
-        listOf(AppRoute.TagManagement, AppRoute.EquipmentManagement, AppRoute.ActivityManagement).forEach {
-            assertFailsWith<IllegalStateException> { navigator.openManagement(it) }
-        }
-        assertEquals(TopLevelDestination.IDEA, state.selectedDestination)
     }
 
     @Test
@@ -75,24 +53,7 @@ class AppNavigatorTest {
     }
 
     @Test
-    fun busyEntryCannotBePoppedButDoesNotBlockAnotherTab() {
-        val state = state()
-        val navigator = AppNavigator(state, managementEnabled = true)
-        navigator.openManagement(AppRoute.TagManagement)
-        navigator.setBackBlocked(AppRoute.TagManagement, true)
-        navigator.goBack()
-        assertEquals(AppRoute.TagManagement, state.currentStack.last())
-        navigator.select(TopLevelDestination.FAVORITES)
-        navigator.goBack()
-        assertEquals(TopLevelDestination.IDEA, state.selectedDestination)
-        navigator.select(TopLevelDestination.SETTINGS)
-        navigator.setBackBlocked(AppRoute.TagManagement, false)
-        navigator.goBack()
-        assertEquals(AppRoute.Settings, state.currentStack.last())
-    }
-
-    @Test
-    fun everyRouteRoundTripsWithTheMultiplatformPolymorphicSerializer() {
+    fun currentAndLegacyRoutesRoundTripForStateRestoration() {
         val json = Json { serializersModule = NavigationSavedStateConfiguration.serializersModule }
         val serializer = PolymorphicSerializer(NavKey::class)
         val routes = TopLevelDestination.entries.map { it.route } +
@@ -104,17 +65,6 @@ class AppNavigatorTest {
             )
         routes.forEach { route ->
             assertEquals(route, json.decodeFromString(serializer, json.encodeToString(serializer, route)))
-        }
-
-        @Test
-        fun activityDetailIsPushedOnSheetsStackAndBackReturnsToList() {
-            val state = state()
-            val navigator = AppNavigator(state, managementEnabled = false)
-            navigator.select(TopLevelDestination.ACTIVITY_SHEETS)
-            navigator.openActivityDetail("activity-1")
-            assertEquals(AppRoute.ActivityDetail("activity-1"), state.currentStack.last())
-            navigator.goBack()
-            assertEquals<List<NavKey>>(listOf(AppRoute.ActivitySheets), state.currentStack)
         }
     }
 }

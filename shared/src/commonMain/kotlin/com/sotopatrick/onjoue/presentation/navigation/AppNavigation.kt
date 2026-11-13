@@ -1,7 +1,6 @@
 package com.sotopatrick.onjoue.presentation.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -18,40 +17,22 @@ import com.sotopatrick.onjoue.presentation.activity.ActivitySheetsScreen
 import com.sotopatrick.onjoue.presentation.activity.ActivitySheetsViewModel
 import com.sotopatrick.onjoue.presentation.activity.ActivityDetailScreen
 import com.sotopatrick.onjoue.presentation.activity.ActivityDetailsViewModel
-import com.sotopatrick.onjoue.presentation.management.ManagementCategory
-import com.sotopatrick.onjoue.presentation.management.ManagementViewModel
-import com.sotopatrick.onjoue.presentation.management.TagEquipmentManagementScreen
-import com.sotopatrick.onjoue.presentation.settings.CatalogResetViewModel
 import com.sotopatrick.onjoue.presentation.settings.SettingsScreen
 
 @Composable
 fun AppNavigation(
-    createManagement: (() -> ManagementViewModel)?,
     createActivitySheets: (() -> ActivitySheetsViewModel)? = null,
     createActivityDetails: ((String) -> ActivityDetailsViewModel)? = null,
-    createCatalogReset: (() -> CatalogResetViewModel)? = null,
     modifier: Modifier = Modifier,
 ) {
-    val managementEnabled = createManagement != null
-    val state = rememberAppNavigationState(managementEnabled)
-    val navigator = remember(state, managementEnabled) { AppNavigator(state, managementEnabled) }
+    val state = rememberAppNavigationState()
+    val navigator = remember(state) { AppNavigator(state) }
     val provider = entryProvider<NavKey> {
         entry<AppRoute.Idea> { UnavailableScreen("Idée") }
         entry<AppRoute.ActivitySheets> { ActivitySheetsEntry(createActivitySheets, navigator) }
         entry<AppRoute.ActivityDetail> { route -> ActivityDetailEntry(route, createActivityDetails, navigator) }
         entry<AppRoute.Favorites> { UnavailableScreen("Favoris") }
-        entry<AppRoute.Settings> { SettingsEntry(managementEnabled, createCatalogReset, navigator) }
-        if (createManagement != null) {
-            entry<AppRoute.TagManagement> {
-                ManagementEntry(ManagementCategory.TAGS, createManagement, navigator)
-            }
-            entry<AppRoute.EquipmentManagement> {
-                ManagementEntry(ManagementCategory.EQUIPMENT, createManagement, navigator)
-            }
-            entry<AppRoute.ActivityManagement> {
-                UnavailableScreen("Gérer les activités", onBack = navigator::goBack)
-            }
-        }
+        entry<AppRoute.Settings> { SettingsScreen() }
     }
     val entries = TopLevelDestination.entries.associateWith { destination ->
         rememberDecoratedNavEntries(
@@ -100,40 +81,4 @@ private fun ActivityDetailEntry(
         val state by vm.state.collectAsStateWithLifecycle()
         ActivityDetailScreen(state, onBack = navigator::goBack, onRetry = vm::load)
     }
-}
-
-@Composable
-private fun SettingsEntry(
-    managementEnabled: Boolean,
-    createCatalogReset: (() -> CatalogResetViewModel)?,
-    navigator: AppNavigator,
-) {
-    val catalogResetViewModel = createCatalogReset?.let { create ->
-        viewModel { create() }
-    }
-    val catalogResetState = catalogResetViewModel?.state?.collectAsStateWithLifecycle()?.value
-    SettingsScreen(
-        managementEnabled = managementEnabled,
-        onManageTags = { navigator.openManagement(AppRoute.TagManagement) },
-        onManageEquipment = { navigator.openManagement(AppRoute.EquipmentManagement) },
-        onManageActivities = { navigator.openManagement(AppRoute.ActivityManagement) },
-        catalogResetState = catalogResetState,
-        onResetCatalog = catalogResetViewModel?.let { it::reset },
-    )
-}
-
-@Composable
-private fun ManagementEntry(
-    category: ManagementCategory,
-    createManagement: () -> ManagementViewModel,
-    navigator: AppNavigator,
-) {
-    val vm = viewModel { createManagement() }
-    val state by vm.state.collectAsStateWithLifecycle()
-    val route = if (category == ManagementCategory.TAGS) AppRoute.TagManagement else AppRoute.EquipmentManagement
-    DisposableEffect(navigator, route, state.busy) {
-        navigator.setBackBlocked(route, state.busy)
-        onDispose { navigator.setBackBlocked(route, false) }
-    }
-    TagEquipmentManagementScreen(vm, category, onBack = navigator::goBack)
 }

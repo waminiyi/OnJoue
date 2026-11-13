@@ -2,7 +2,7 @@
 
 Une application Android et iOS pour trouver une activité à partager avec un enfant, construite avec Kotlin Multiplatform et Compose Multiplatform.
 
-Le catalogue local permet de rechercher des fiches, de filtrer par tranche d’âge et de consulter leurs étapes et matériels. Les outils de gestion du catalogue sont réservés au debug. Le parcours de recommandation et l’écran des favoris ne sont pas encore disponibles.
+Le catalogue local permet de rechercher des fiches, de filtrer par tranche d’âge et de consulter leurs étapes et matériels. Les outils de gestion éditoriale ne sont plus présents dans l’application. Le parcours de recommandation et l’écran des favoris ne sont pas encore disponibles.
 
 ## Documentation
 

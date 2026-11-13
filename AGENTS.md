@@ -29,13 +29,13 @@ Ces règles guident les développements et refactorings d’OnJoue. Pour les com
 - Charger et valider le JSON avec l’import suspendu existant avant de rendre l’application disponible. Ne pas bloquer le thread principal pour charger une ressource depuis un callback Room synchrone.
 - Respecter le marqueur `catalog_state` : une version déjà importée ne doit pas réinitialiser les modifications ou suppressions à chaque lancement. Faire évoluer explicitement la version du catalogue lorsqu’un nouvel import automatique est souhaité.
 - Conserver l’import et son marqueur dans la même transaction. Réutiliser les identifiants des tags/matériels existants de même libellé normalisé ; signaler les collisions incompatibles plutôt que les écraser silencieusement.
-- Réserver le remplacement forcé au parcours debug, avec confirmation explicite et retour d’état. Il doit restaurer exactement le JSON et supprimer les ajouts, sans effacer l’historique des activités conservées.
+- Ne pas exposer de remplacement forcé dans l’application utilisateur. Conserver les opérations de persistance nécessaires aux imports et futures synchronisations, sans effacer l’historique des activités conservées.
 
 ## Présentation et navigation
 
 - Utiliser les routes typées et sérialisables de Navigation 3. Enregistrer toute nouvelle route dans la configuration de sérialisation et conserver les piles et états indépendants des onglets.
-- Préserver les règles de Retour et les brouillons lors des changements d’onglet. Retirer les routes de gestion restaurées si la capacité debug n’est plus disponible.
-- Protéger les mutations de gestion par les gardes debug des repositories ; masquer l’UI seule ne suffit pas. Ne pas appliquer cette restriction aux opérations d’avis/favoris prévues en release.
+- Préserver les règles de Retour et les états des onglets. Retirer les anciennes routes de gestion restaurées.
+- Ne pas exposer les mutations éditoriales dans l’application utilisateur. Préserver les gardes des repositories tant que leurs opérations de gestion existent ; conserver séparément les écritures internes nécessaires aux imports et futures synchronisations. Ne pas restreindre les opérations d’avis/favoris prévues en release.
 - Présenter explicitement chargement, erreur, état vide et fonctionnalité indisponible. Ne pas remplir un écran de production avec des données fictives ou un succès de substitution.
 - Construire l’UI uniquement avec l’API publique de `:designsystem` : `OnJoueTheme`, composants `Ds*`, `Spacing` (pas utilisés tels quels avec `Modifier.padding`, `Arrangement.spacedBy`, `Spacer`, sans calcul), `TextRole`/`TextTone` et autres enums sémantiques. Hors de ce module, ne jamais utiliser `Color(...)`, de littéraux `dp`/`sp`, `MaterialTheme`, `Text` ni d’import `androidx.compose.material*`.
 - Si un besoin n’est pas couvert, ajouter ou étendre un composant dans `:designsystem` (tokens `internal`, valeurs sémantiques publiques) plutôt que contourner les règles par `@Suppress`. Suivre le design system sans figer les écrans sur une seule taille ou le seul thème clair.

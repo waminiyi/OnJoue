@@ -71,25 +71,22 @@ Associer chaque fond à son rôle de contenu (`onPrimary`, `onPrimaryContainer`,
 | Badges | Forme pilule, `primaryContainer` ; âge, durée, ambiance ; défilement horizontal si nécessaire |
 | Recherche et filtres | Champ bordé ; chips pour l’âge des fiches ; dropdown pour les groupes de tags |
 | Détail | Bandeau teinté, titre et résumé, étapes numérotées, matériel, note mise en évidence, variantes et source |
-| Gestion | Top bar avec Retour, FAB de création, cartes avec actions modifier/supprimer et compteur d’usage |
-| Paramètres | Cartes d’actions avec titre et description ; outils debug regroupés |
-| Confirmation | Dialogue avec conséquence explicite et actions confirmer/annuler ; suppression et remplacement du catalogue |
+| Paramètres | État explicitement vide tant qu’aucun paramètre n’est disponible |
 
 Les illustrations d’activités sont actuellement des emojis sélectionnés par le code, pas une bibliothèque d’images ni des photos du catalogue.
 
 ## États et interactions
 
-Afficher un indicateur pendant les chargements, un message d’erreur français et une action « Réessayer » lorsque le parcours la prévoit. Distinguer une liste vide, une recherche sans résultat et une fonctionnalité indisponible. Après une mutation, rendre le succès ou l’erreur visible ; bloquer les actions concurrentes de gestion pendant l’écriture.
+Afficher un indicateur pendant les chargements, un message d’erreur français et une action « Réessayer » lorsque le parcours la prévoit. Distinguer une liste vide, une recherche sans résultat et une fonctionnalité indisponible. Après une mutation, rendre le succès ou l’erreur visible.
 
-Conserver recherche, filtres et brouillons lors des changements d’onglet et de la restauration lorsque l’écran les enregistre. Les composants de gestion utilisent des descriptions d’actions pour les icônes et un état sémantique pour les sections repliables.
+Conserver recherche et filtres lors des changements d’onglet et de la restauration lorsque l’écran les enregistre.
 
 ## Adaptation et accessibilité
 
-- Préserver les zones sûres autour du contenu ; les formulaires de gestion prennent aussi en compte le clavier.
-- La gestion utilise une grille adaptative de 560 dp minimum par colonne. Ses champs se réorganisent selon la largeur et l’échelle de police ; ne pas imposer une disposition horizontale aux petites fenêtres.
-- Les actions modifier/supprimer de gestion disposent de cibles de 48 dp. Donner un libellé accessible à toute nouvelle icône d’action ; une couleur seule ne doit pas porter le sens d’une action.
+- Préserver les zones sûres autour du contenu et prendre en compte le clavier dans les formulaires.
+- Donner un libellé accessible à toute nouvelle icône d’action ; une couleur seule ne doit pas porter le sens d’une action.
 - Vérifier les nouveaux écrans en clair/sombre, petite/grande fenêtre et grande police. Les fiches restent aujourd’hui une liste à une colonne ; ne pas leur attribuer un comportement multi-pane inexistant.
 
 Ces conventions ne constituent pas une certification d’accessibilité. Les previews et captures Compose dans `androidApp/src/screenshotTest` servent à examiner plusieurs tailles, le mode sombre et la grande police ; leurs références doivent être approuvées visuellement.
 
-Sources complémentaires : [fiches et détail](../shared/src/commonMain/kotlin/com/sotopatrick/onjoue/presentation/activity/ActivitySheets.kt), [gestion](../shared/src/commonMain/kotlin/com/sotopatrick/onjoue/presentation/management/TagEquipmentManagementScreen.kt), [navigation](../shared/src/commonMain/kotlin/com/sotopatrick/onjoue/presentation/navigation/AppNavigationScaffold.kt).
+Sources complémentaires : [fiches et détail](../shared/src/commonMain/kotlin/com/sotopatrick/onjoue/presentation/activity/ActivitySheets.kt), [navigation](../shared/src/commonMain/kotlin/com/sotopatrick/onjoue/presentation/navigation/AppNavigationScaffold.kt).

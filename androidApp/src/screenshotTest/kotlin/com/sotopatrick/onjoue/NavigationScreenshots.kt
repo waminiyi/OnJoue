@@ -43,6 +43,6 @@ fun LargeTextSettingsNavigationPreview() {
 @Composable
 private fun SettingsNavigationContent() {
     AppNavigationScaffold(TopLevelDestination.SETTINGS, onSelect = {}) {
-        SettingsScreen(true, onManageTags = {}, onManageEquipment = {}, onManageActivities = {})
+        SettingsScreen()
     }
 }

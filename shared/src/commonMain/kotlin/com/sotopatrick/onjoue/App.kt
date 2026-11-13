@@ -22,23 +22,19 @@ import com.sotopatrick.onjoue.designsystem.components.TextTone
 import com.sotopatrick.onjoue.designsystem.foundation.Spacing
 import com.sotopatrick.onjoue.presentation.activity.ActivityDetailsViewModel
 import com.sotopatrick.onjoue.presentation.activity.ActivitySheetsViewModel
-import com.sotopatrick.onjoue.presentation.management.ManagementViewModel
 import com.sotopatrick.onjoue.presentation.navigation.AppNavigation
-import com.sotopatrick.onjoue.presentation.settings.CatalogResetViewModel
 import com.sotopatrick.onjoue.presentation.startup.StartupViewModel
 
 @Composable
 fun App(
-    createManagement: (() -> ManagementViewModel)? = null,
     darkTheme: Boolean = isSystemInDarkTheme(),
     createStartup: (() -> StartupViewModel)? = null,
     createActivitySheets: (() -> ActivitySheetsViewModel)? = null,
     createActivityDetails: ((String) -> ActivityDetailsViewModel)? = null,
-    createCatalogReset: (() -> CatalogResetViewModel)? = null,
     modifier: Modifier = Modifier,
 ) {
     val navigation: @Composable () -> Unit = {
-        AppNavigation(createManagement, createActivitySheets, createActivityDetails, createCatalogReset, modifier)
+        AppNavigation(createActivitySheets, createActivityDetails, modifier)
     }
     OnJoueTheme(darkTheme) {
         if (createStartup == null) {

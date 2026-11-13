@@ -7,8 +7,7 @@ OnJoue aide à trouver une activité à partager avec un enfant. L’objectif pr
 | Fonction | État |
 |---|---|
 | Fiches : catalogue, recherche, filtre d’âge et détail | Disponible en debug et release |
-| Gestion des tags et matériels | Disponible uniquement en debug |
-| Remplacement du catalogue initial | Disponible uniquement en debug |
+| Gestion éditoriale et remplacement du catalogue | Non disponibles dans l’application |
 | Onglets Idée et Favoris ; gestion des activités | Écrans explicitement indisponibles |
 | Avis et favoris ; création/modification d’activités | Modèles et repositories présents, sans parcours UI dédié |
 | Profil enfant, matériel du foyer, préférences et synchronisation | Non implémentés |
@@ -29,11 +28,11 @@ Le modèle d’une activité prévoit aussi un minuteur optionnel par étape, un
 
 Les quatre onglets sont **Idée**, **Fiches**, **Favoris** et **Paramètres**. Idée est l’onglet initial. Chaque onglet conserve sa pile de navigation ; retoucher l’onglet actif ne réinitialise pas les brouillons.
 
-Retour depuis un détail revient aux fiches ; depuis une gestion, à Paramètres. À la racine d’un autre onglet, Retour revient à Idée. À la racine Idée, Android gère la sortie. La navigation passe d’une barre basse à un rail selon l’espace disponible.
+Retour depuis un détail revient aux fiches. À la racine d’un autre onglet, Retour revient à Idée. À la racine Idée, Android gère la sortie. La navigation passe d’une barre basse à un rail selon l’espace disponible.
 
-## Gestion du catalogue en debug
+## Catalogue local
 
-**Paramètres → Gérer les tags / Gérer les matériels** permet de rechercher, créer, modifier et supprimer. Les tags sont filtrables par groupe et regroupés dans des sections repliables, ouvertes par défaut. Les compteurs reflètent les associations réelles ; pour un lieu parent, les activités des enfants sont incluses sans doublon.
+L’application ne propose plus d’outils éditoriaux, y compris en debug. Les opérations de persistance nécessaires à l’import restent disponibles en interne.
 
 | Règle | Comportement |
 |---|---|
@@ -44,16 +43,10 @@ Retour depuis un détail revient aux fiches ; depuis une gestion, à Paramètres
 | Renommage | Identifiant et associations conservés |
 | Suppression | Confirmation ; refus si le tag a des enfants ou si l’élément est associé à une activité |
 
-Ces écrans et les mutations de gestion sont désactivés en release.
-
-### Réimporter sans désinstaller
-
 Le JSON embarqué est importé au démarrage avant l’affichage de la navigation. Le marqueur d’import empêche de rejouer une version déjà installée : les modifications et suppressions sont conservées lors des lancements suivants.
-
-**Paramètres → Remplacer le catalogue**, en debug, demande confirmation puis restaure exactement le JSON dans une transaction. Les activités, tags et matériels ajoutés dans l’app sont supprimés et les éléments du catalogue sont restaurés. Les favoris et avis des activités conservées gardent leurs références ; ceux des activités supprimées sont effacés. Un état de progression puis un succès ou une erreur est affiché.
 
 ## Règles métier et intentions éditoriales
 
 Le moteur de filtrage existe dans le code, mais n’est pas encore exposé comme parcours Idée : âge inclus dans la plage, durée maximale, matériel requis disponible, **OU dans un groupe de tags et ET entre groupes**. Une fiche sans tag dans un groupe n’impose aucune contrainte sur ce groupe ; un lieu parent sélectionné inclut ses enfants.
 
-Les consignes éditoriales sont un vocabulaire contrôlé, un tag de type et au moins un tag d’ambiance par fiche, au plus huit tags par fiche et un nouveau tag utile à au moins cinq fiches. Ce sont des objectifs de contenu, pas des validations toutes imposées par l’outil debug. Les raccourcis « Il pleut », « On part en voyage » et le choix guidé temps/lieu/besoin restent des intentions produit.
+Les consignes éditoriales sont un vocabulaire contrôlé, un tag de type et au moins un tag d’ambiance par fiche, au plus huit tags par fiche et un nouveau tag utile à au moins cinq fiches. Ce sont des objectifs de contenu, pas des validations toutes imposées par l’import actuel. Les raccourcis « Il pleut », « On part en voyage » et le choix guidé temps/lieu/besoin restent des intentions produit.
