@@ -9,6 +9,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -107,6 +108,24 @@ public fun DsFilterChip(
     modifier: Modifier = Modifier,
 ) {
     FilterChip(selected = selected, onClick = onClick, label = { Text(label) }, modifier = modifier)
+}
+
+/** Transparent toggle action with an explicit accessible state and label. */
+@Composable
+public fun DsIconToggleButton(
+    checked: Boolean,
+    icon: Painter,
+    contentDescription: String,
+    onCheckedChange: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+    IconToggleButton(
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier,
+        enabled = enabled,
+    ) { Icon(icon, contentDescription = contentDescription) }
 }
 
 /** Indeterminate progress for loading and busy states. */

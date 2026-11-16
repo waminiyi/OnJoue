@@ -134,10 +134,23 @@ public fun DsScreenHeader(title: String, modifier: Modifier = Modifier, subtitle
     }
 }
 
-/** Background surface for full-screen states displayed outside of the navigation (startup…). */
+public enum class BackgroundTone {
+    Default,
+    Mint,
+}
+
+/** Background surface for screens and full-screen states. */
 @Composable
-public fun DsBackground(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-    Surface(modifier, color = MaterialTheme.colorScheme.background, content = content)
+public fun DsBackground(
+    modifier: Modifier = Modifier,
+    tone: BackgroundTone = BackgroundTone.Default,
+    content: @Composable () -> Unit,
+) {
+    val color = when (tone) {
+        BackgroundTone.Default -> MaterialTheme.colorScheme.background
+        BackgroundTone.Mint -> MaterialTheme.colorScheme.primaryContainer
+    }
+    Surface(modifier, color = color, content = content)
 }
 
 /** Full-size centered progress indicator. */

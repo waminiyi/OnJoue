@@ -10,7 +10,7 @@ Le module expose des **composants** et des **valeurs sémantiques**, jamais de t
 |---|---|
 | `designsystem` | `OnJoueTheme(darkTheme) { … }` |
 | `designsystem.foundation` | `Spacing` (`None` … `XXLarge`, constantes `Dp` à utiliser telles quelles avec `Modifier.padding`, `Arrangement.spacedBy`, `Spacer`), `Breakpoint` + `DsWidthBreakpoint` |
-| `designsystem.components` | Texte : `DsText` avec `TextRole` et `TextTone`. Actions : `DsButton`, `DsTextButton`, `DsOutlinedIconButton`, `DsFloatingActionButton`, `DsFilterChip`, `ActionTone`. Surfaces : `DsCard`, `DsActionCard`, `DsCallout`, `DsHeroBanner`, `DsSection`, `DsScreenHeader`, `DsBackground`, `DsLoadingState`, `DsErrorState`. Contenu : `DsBadge`, `DsIllustration`, `DsMonogram`, `DsNumberedItem`, `DsBulletItem`. Champs : `DsSearchField`, `DsTextField`, `DsSelectField`. Dialogues : `DsConfirmDialog`, `DsFormDialog`. Structure : `DsScaffold`, `DsAdaptiveGrid`, `DsCollapsibleHeader`, `DsNavigationScaffold` |
+| `designsystem.components` | Texte : `DsText` avec `TextRole` et `TextTone`. Actions : `DsButton`, `DsTextButton`, `DsOutlinedIconButton`, `DsIconToggleButton`, `DsFloatingActionButton`, `DsFilterChip`, `ActionTone`. Surfaces : `DsCard`, `DsActionCard`, `DsCallout`, `DsHeroBanner`, `DsSection`, `DsScreenHeader`, `DsBackground` avec `BackgroundTone`, `DsLoadingState`, `DsErrorState`. Contenu : `DsBadge` avec `BadgeTone`, `DsIllustration` avec `IllustrationStyle`, `DsMonogram`, `DsNumberedItem`, `DsBulletItem`. Champs : `DsSearchField`, `DsTextField`, `DsSelectField`. Dialogues : `DsConfirmDialog`, `DsFormDialog`. Structure : `DsScaffold`, `DsAdaptiveGrid`, `DsCollapsibleHeader`, `DsNavigationScaffold` |
 
 Les tokens (`tokens/ColorTokens.kt`, `TypographyTokens.kt`, `ShapeTokens.kt`, `DimensionTokens.kt`) sont `internal`. Le module est compilé en `explicitApi()` : toute déclaration publique est un choix délibéré.
 
@@ -44,16 +44,18 @@ Valeurs internes du module, exposées aux écrans uniquement via `TextTone`, `Ac
 
 | Rôle | Clair | Sombre | Usage |
 |---|---|---|---|
-| `primary` | `#0B7B72` | `#80D5C9` | Actions et sélection, vert pétrole |
+| `primary` | `#0F766E` | `#80D5C9` | Actions et sélection, teal |
 | `primaryContainer` | `#DDF3EF` | `#174B45` | Badges, illustrations et bandeau de détail |
-| `background` | `#F4F6F8` | `#0F1A20` | Fond d’écran |
+| `secondary` | `#64788A` | `#A9BDCD` | Texte et éléments secondaires |
+| `tertiary` | `#FFB703` | inchangé | Accent jaune, disponible via `TextTone.Tertiary` |
+| `background` | `#FFFFFF` | `#0F1A20` | Fond d’écran |
 | `surface` | `#FFFFFF` | `#18282F` | Cartes et surfaces de contenu |
-| `onSurface` | `#13232D` | `#E3EEF3` | Texte principal |
-| `onSurfaceVariant` | `#64798B` | `#A9BDCD` | Texte secondaire |
-| `outlineVariant` | `#DFE7ED` | `#344852` | Bordures discrètes |
-| `error` | `#BD3700` | `#FFB69A` | Erreurs et actions destructives |
+| `onSurface` | `#12121B` | `#E3EEF3` | Texte principal |
+| `onSurfaceVariant` | `#64788A` | `#A9BDCD` | Texte secondaire |
+| `outlineVariant` | `#E1E8ED` | `#344852` | Bordures discrètes |
+| `error` | `#C2410C` | `#FFB69A` | Erreurs et actions destructives |
 
-Associer chaque fond à son rôle de contenu (`onPrimary`, `onPrimaryContainer`, etc.). Les autres variantes de surface et de couleur restent définies dans [ColorTokens.kt](../designsystem/src/commonMain/kotlin/com/sotopatrick/onjoue/designsystem/tokens/ColorTokens.kt).
+Associer chaque fond à son rôle de contenu (`onPrimary`, `onPrimaryContainer`, `onTertiary`, etc.). Sur l’accent jaune, `onTertiary` et `onTertiaryContainer` utilisent l’encre `#12121B`. La palette du thème sombre reste inchangée. Les autres variantes de surface et de couleur restent définies dans [ColorTokens.kt](../designsystem/src/commonMain/kotlin/com/sotopatrick/onjoue/designsystem/tokens/ColorTokens.kt).
 
 ## Typographie, formes et rythme
 
@@ -67,9 +69,10 @@ Associer chaque fond à son rôle de contenu (`onPrimary`, `onPrimaryContainer`,
 | Élément | Convention actuelle |
 |---|---|
 | Navigation | Icône et libellé français ; barre basse ou rail Material 3 ; sélection en couleur primaire |
-| Carte d’activité | Surface, rayon 24 dp, bordure 1 dp, élévation 1 dp ; illustration emoji sur fond teinté ; nom sur une ligne et aperçu sur deux |
-| Badges | Forme pilule, `primaryContainer` ; âge, durée, ambiance ; défilement horizontal si nécessaire |
-| Recherche et filtres | Champ bordé ; chips pour l’âge des fiches ; dropdown pour les groupes de tags |
+| Listing d’idées | `DsBackground(tone = BackgroundTone.Mint)` sur `primaryContainer` ; cartes blanches en clair et surfaces adaptées en sombre ; en-tête, recherche et critères défilent avec les résultats pour rester accessibles en petite hauteur |
+| Carte d’idée | Surface, rayon 24 dp, bordure 1 dp, élévation 1 dp ; emoji sans fond (`IllustrationStyle.Plain`), titre pouvant revenir à la ligne, cœur vide/plein sans fond (`DsIconToggleButton`) ; pas d’aperçu descriptif |
+| Métadonnées et badges | Listing : âge, durée, ambiance sans fond (`BadgeTone.Plain`), défilement horizontal si nécessaire ; détail : conserver les badges en pilule et l’illustration teintée |
+| Recherche et filtres | Champ bordé ; chips d’âge, Dedans / Dehors exclusifs et durée courte ; entrée de filtres avancés désactivée, avec icône et mention « Bientôt disponible » |
 | Détail | Bandeau teinté, titre et résumé, étapes numérotées, matériel, note mise en évidence, variantes et source |
 | Paramètres | État explicitement vide tant qu’aucun paramètre n’est disponible |
 
@@ -79,13 +82,15 @@ Les illustrations d’activités sont actuellement des emojis sélectionnés par
 
 Afficher un indicateur pendant les chargements, un message d’erreur français et une action « Réessayer » lorsque le parcours la prévoit. Distinguer une liste vide, une recherche sans résultat et une fonctionnalité indisponible. Après une mutation, rendre le succès ou l’erreur visible.
 
+Le catalogue d’idées affiche « Les idées arrivent… » au chargement, une erreur dédiée avec nouvelle tentative ou « Les idées se préparent » quand il est réellement vide. L’absence de résultat avec critères actifs suggère de les élargir et propose « Retirer les filtres », recherche comprise. Les erreurs des favoris restent séparées de celles du catalogue, et leurs confirmations sont annoncées dans une région accessible.
+
 Conserver recherche et filtres lors des changements d’onglet et de la restauration lorsque l’écran les enregistre.
 
 ## Adaptation et accessibilité
 
 - Préserver les zones sûres autour du contenu et prendre en compte le clavier dans les formulaires.
 - Donner un libellé accessible à toute nouvelle icône d’action ; une couleur seule ne doit pas porter le sens d’une action.
-- Vérifier les nouveaux écrans en clair/sombre, petite/grande fenêtre et grande police. Les fiches restent aujourd’hui une liste à une colonne ; ne pas leur attribuer un comportement multi-pane inexistant.
+- Vérifier les nouveaux écrans en clair/sombre, petite/grande fenêtre et grande police. Les idées restent une liste à une colonne ; ne pas leur attribuer un comportement multi-pane inexistant.
 
 Ces conventions ne constituent pas une certification d’accessibilité. Les previews et captures Compose dans `androidApp/src/screenshotTest` servent à examiner plusieurs tailles, le mode sombre et la grande police ; leurs références doivent être approuvées visuellement.
 

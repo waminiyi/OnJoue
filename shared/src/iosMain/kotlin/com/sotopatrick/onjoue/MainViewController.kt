@@ -2,6 +2,7 @@ package com.sotopatrick.onjoue
 
 import androidx.compose.ui.window.ComposeUIViewController
 import com.sotopatrick.onjoue.data.repositories.activity.RoomActivityRepository
+import com.sotopatrick.onjoue.data.repositories.favorite.RoomFavoriteRepository
 import com.sotopatrick.onjoue.data.repositories.tag.RoomTagRepository
 import com.sotopatrick.onjoue.data.sources.room.createAppDatabase
 import com.sotopatrick.onjoue.data.sources.room.seedInitialCatalog
@@ -20,7 +21,9 @@ fun MainViewController(): platform.UIKit.UIViewController {
     return ComposeUIViewController {
         App(
             createStartup = { StartupViewModel(tags, FrenchErrorParser()) { seedInitialCatalog(appDatabase) } },
-            createActivitySheets = { ActivitySheetsViewModel(activities, FrenchErrorParser()) },
+            createActivitySheets = {
+                ActivitySheetsViewModel(activities, FrenchErrorParser(), RoomFavoriteRepository(appDatabase), tags)
+            },
             createActivityDetails = { id -> ActivityDetailsViewModel(activities, id, FrenchErrorParser()) },
         )
     }

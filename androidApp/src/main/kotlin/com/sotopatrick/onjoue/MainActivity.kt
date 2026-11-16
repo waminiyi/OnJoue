@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.sotopatrick.onjoue.data.repositories.activity.RoomActivityRepository
+import com.sotopatrick.onjoue.data.repositories.favorite.RoomFavoriteRepository
 import com.sotopatrick.onjoue.data.repositories.tag.RoomTagRepository
 import com.sotopatrick.onjoue.data.sources.room.getAppDatabase
 import com.sotopatrick.onjoue.data.sources.room.seedInitialCatalog
@@ -28,7 +29,9 @@ class MainActivity : ComponentActivity() {
                 createStartup = {
                     StartupViewModel(tags, FrenchErrorParser()) { seedInitialCatalog(database) }
                 },
-                createActivitySheets = { ActivitySheetsViewModel(activities, FrenchErrorParser()) },
+                createActivitySheets = {
+                    ActivitySheetsViewModel(activities, FrenchErrorParser(), RoomFavoriteRepository(database), tags)
+                },
                 createActivityDetails = { id -> ActivityDetailsViewModel(activities, id, FrenchErrorParser()) },
             )
         }

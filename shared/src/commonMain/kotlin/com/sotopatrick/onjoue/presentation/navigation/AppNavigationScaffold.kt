@@ -20,8 +20,8 @@ private data class NavigationItem(
 )
 
 private val navigationItems = listOf(
-    NavigationItem(TopLevelDestination.IDEA, "Idée", Res.drawable.ic_idea),
-    NavigationItem(TopLevelDestination.ACTIVITY_SHEETS, "Fiches", Res.drawable.ic_sheets),
+    NavigationItem(TopLevelDestination.IDEA, "Aujourd’hui", Res.drawable.ic_idea),
+    NavigationItem(TopLevelDestination.ACTIVITY_SHEETS, "Idées", Res.drawable.ic_sheets),
     NavigationItem(TopLevelDestination.FAVORITES, "Favoris", Res.drawable.ic_favorites),
     NavigationItem(TopLevelDestination.SETTINGS, "Paramètres", Res.drawable.ic_settings),
 )

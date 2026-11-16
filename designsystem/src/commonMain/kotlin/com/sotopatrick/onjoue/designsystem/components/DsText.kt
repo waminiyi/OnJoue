@@ -33,6 +33,7 @@ public enum class TextTone {
     Default,
     Secondary,
     Primary,
+    Tertiary,
     Error,
     OnPrimaryContainer,
 }
@@ -87,6 +88,7 @@ internal fun TextTone.color(): Color {
         TextTone.Default -> colors.onSurface
         TextTone.Secondary -> colors.onSurfaceVariant
         TextTone.Primary -> colors.primary
+        TextTone.Tertiary -> colors.tertiary
         TextTone.Error -> colors.error
         TextTone.OnPrimaryContainer -> colors.onPrimaryContainer
     }

@@ -28,12 +28,16 @@ public enum class BadgeTone {
 
     /** Neutral metadata (usage count, parent). */
     Neutral,
+
+    /** Plain metadata without a background. */
+    Plain,
 }
 
 /** Pill-shaped single-line label. */
 @Composable
 public fun DsBadge(label: String, modifier: Modifier = Modifier, tone: BadgeTone = BadgeTone.Accent) {
     when (tone) {
+        BadgeTone.Plain -> DsText(label, modifier, role = TextRole.LabelMedium, tone = TextTone.Secondary)
         BadgeTone.Accent -> Surface(
             modifier = modifier,
             color = MaterialTheme.colorScheme.primaryContainer,
@@ -71,12 +75,18 @@ public enum class IllustrationSize {
     Large,
 }
 
+public enum class IllustrationStyle {
+    Tinted,
+    Plain,
+}
+
 /** Emoji illustration on a tinted rounded background. */
 @Composable
 public fun DsIllustration(
     emoji: String,
     modifier: Modifier = Modifier,
     size: IllustrationSize = IllustrationSize.Medium,
+    style: IllustrationStyle = IllustrationStyle.Tinted,
 ) {
     val background = when (size) {
         IllustrationSize.Medium -> MaterialTheme.colorScheme.primaryContainer
@@ -87,7 +97,7 @@ public fun DsIllustration(
         modifier
             .size(if (medium) Dimens.IllustrationSize else Dimens.HeroIllustrationSize)
             .clip(if (medium) ComponentShapes.Illustration else ComponentShapes.HeroIllustration)
-            .background(background),
+            .then(if (style == IllustrationStyle.Tinted) Modifier.background(background) else Modifier),
         contentAlignment = Alignment.Center,
     ) {
         DsText(

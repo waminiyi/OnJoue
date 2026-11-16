@@ -28,7 +28,7 @@ fun AppNavigation(
     val state = rememberAppNavigationState()
     val navigator = remember(state) { AppNavigator(state) }
     val provider = entryProvider<NavKey> {
-        entry<AppRoute.Idea> { UnavailableScreen("Idée") }
+        entry<AppRoute.Idea> { UnavailableScreen("Aujourd’hui") }
         entry<AppRoute.ActivitySheets> { ActivitySheetsEntry(createActivitySheets, navigator) }
         entry<AppRoute.ActivityDetail> { route -> ActivityDetailEntry(route, createActivityDetails, navigator) }
         entry<AppRoute.Favorites> { UnavailableScreen("Favoris") }
@@ -60,11 +60,16 @@ fun AppNavigation(
 @Composable
 private fun ActivitySheetsEntry(create: (() -> ActivitySheetsViewModel)?, navigator: AppNavigator) {
     if (create == null) {
-        UnavailableScreen("Fiches")
+        UnavailableScreen("Idées")
     } else {
         val vm = viewModel { create() }
         val state by vm.state.collectAsStateWithLifecycle()
-        ActivitySheetsScreen(state, vm::load, onSelectActivity = navigator::openActivityDetail)
+        ActivitySheetsScreen(
+            state, vm::load,
+            onSelectActivity = navigator::openActivityDetail,
+            onToggleFavorite = vm::toggleFavorite,
+            onRetryFavorites = vm::loadFavorites,
+        )
     }
 }
 
@@ -75,7 +80,7 @@ private fun ActivityDetailEntry(
     navigator: AppNavigator,
 ) {
     if (create == null) {
-        UnavailableScreen("Détail de la fiche", onBack = navigator::goBack)
+        UnavailableScreen("Détail de l’idée", onBack = navigator::goBack)
     } else {
         val vm = viewModel { create(route.activityId) }
         val state by vm.state.collectAsStateWithLifecycle()
