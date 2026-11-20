@@ -1,11 +1,15 @@
 package com.sotopatrick.onjoue.designsystem.components
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -15,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.sotopatrick.onjoue.designsystem.tokens.ComponentShapes
 
@@ -125,3 +130,44 @@ private fun fieldColors(container: FieldContainer) = when (container) {
         unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
     )
 }
+
+/** Compact filter dropdown selector button displaying [label] and offering [options]. */
+@Composable
+public fun <T> DsFilterDropdown(
+    label: String,
+    options: List<Pair<T, String>>,
+    onSelect: (T) -> Unit,
+    modifier: Modifier = Modifier,
+    selected: Boolean = false,
+    enabled: Boolean = true,
+) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    Box(modifier = modifier) {
+        FilterChip(
+            selected = selected,
+            onClick = { if (enabled) expanded = !expanded },
+            enabled = enabled,
+            label = {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(label)
+                    DsText(" ▾", role = TextRole.LabelMedium)
+                }
+            },
+        )
+        DropdownMenu(
+            expanded = expanded && enabled,
+            onDismissRequest = { expanded = false },
+        ) {
+            options.forEach { (value, text) ->
+                DropdownMenuItem(
+                    text = { Text(text) },
+                    onClick = {
+                        expanded = false
+                        onSelect(value)
+                    },
+                )
+            }
+        }
+    }
+}
+

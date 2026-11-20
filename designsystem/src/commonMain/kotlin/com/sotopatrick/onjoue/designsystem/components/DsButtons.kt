@@ -27,6 +27,7 @@ public enum class ActionTone {
     Default,
     Destructive,
     OnPrimaryContainer,
+    Tertiary,
 }
 
 /** Main filled action of a screen or dialog. */
@@ -36,8 +37,24 @@ public fun DsButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    tone: ActionTone = ActionTone.Default,
 ) {
-    Button(onClick = onClick, modifier = modifier, enabled = enabled) { Text(text) }
+    val colors = when (tone) {
+        ActionTone.OnPrimaryContainer -> ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        )
+        ActionTone.Tertiary -> ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.tertiary,
+            contentColor = MaterialTheme.colorScheme.onTertiary,
+        )
+        ActionTone.Destructive -> ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.error,
+            contentColor = MaterialTheme.colorScheme.onError,
+        )
+        else -> ButtonDefaults.buttonColors()
+    }
+    Button(onClick = onClick, modifier = modifier, enabled = enabled, colors = colors) { Text(text) }
 }
 
 /** Low-emphasis action (back, retry, cancel, links). */
@@ -110,6 +127,31 @@ public fun DsFilterChip(
     FilterChip(selected = selected, onClick = onClick, label = { Text(label) }, modifier = modifier)
 }
 
+/** Filter icon chip matching [DsFilterChip] height, displaying an icon and an optional active count badge. */
+@Composable
+public fun DsFilterIconButton(
+    icon: Painter,
+    contentDescription: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    activeCount: Int = 0,
+    enabled: Boolean = true,
+) {
+    FilterChip(
+        selected = activeCount > 0,
+        onClick = onClick,
+        enabled = enabled,
+        modifier = modifier,
+        leadingIcon = { Icon(icon, contentDescription = contentDescription) },
+        label = {
+            if (activeCount > 0) {
+                DsText("$activeCount", role = TextRole.LabelMedium)
+            }
+        },
+    )
+}
+
+
 /** Transparent toggle action with an explicit accessible state and label. */
 @Composable
 public fun DsIconToggleButton(
@@ -140,4 +182,5 @@ private fun ActionTone.contentColor(): Color = when (this) {
     ActionTone.Default -> Color.Unspecified
     ActionTone.Destructive -> MaterialTheme.colorScheme.error
     ActionTone.OnPrimaryContainer -> MaterialTheme.colorScheme.onPrimaryContainer
+    ActionTone.Tertiary -> MaterialTheme.colorScheme.tertiary
 }

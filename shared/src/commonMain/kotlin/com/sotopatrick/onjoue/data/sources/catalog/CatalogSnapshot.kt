@@ -6,6 +6,7 @@ import kotlinx.serialization.json.Json
 
 private const val MAX_CATALOG_CHARACTERS = 2_000_000
 private const val MAX_CATALOG_ITEMS = 10_000
+private val catalogJson = Json { ignoreUnknownKeys = true }
 
 @Serializable
 internal data class CatalogSnapshot(
@@ -44,13 +45,13 @@ internal data class CatalogActivity(
     val variants: List<String>,
     val tagIds: List<String>,
     val equipmentIds: List<String>,
-    val iconId: String,
     val document: String? = null,
+    val image: String? = null,
 )
 
 internal fun decodeCatalogSnapshot(json: String): CatalogSnapshot {
     require(json.length <= MAX_CATALOG_CHARACTERS) { "Catalog is too large." }
-    return Json.decodeFromString<CatalogSnapshot>(json).also(::validateCatalogSnapshot)
+    return catalogJson.decodeFromString<CatalogSnapshot>(json).also(::validateCatalogSnapshot)
 }
 
 internal fun validateCatalogSnapshot(catalog: CatalogSnapshot) {
@@ -88,8 +89,9 @@ internal fun validateCatalogSnapshot(catalog: CatalogSnapshot) {
         }
     }
     catalog.activities.forEach { activity ->
-        require(activity.name.isNotBlank() && activity.iconId.isNotBlank()) {
-            "Catalog contains an activity without a name or icon."
+        require(activity.name.isNotBlank()) { "Catalog contains an activity without a name." }
+        require(activity.image == null || activity.image.startsWith("https://")) {
+            "Catalog contains an invalid activity image URL."
         }
         require(activity.minAgeMonths >= 0 && activity.maxAgeMonths >= activity.minAgeMonths) {
             "Catalog contains an invalid age range."

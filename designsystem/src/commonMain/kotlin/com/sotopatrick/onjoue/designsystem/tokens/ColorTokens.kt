@@ -63,3 +63,7 @@ internal val DarkColors = darkColorScheme(
 
 /** Opacity of the surface behind the hero illustration. */
 internal const val HeroIllustrationSurfaceAlpha = 0.8f
+
+/** Light theme background color for ideas and content screens. */
+internal val ScreenBackgroundColor = Color(0xFFF6F8F4)
+

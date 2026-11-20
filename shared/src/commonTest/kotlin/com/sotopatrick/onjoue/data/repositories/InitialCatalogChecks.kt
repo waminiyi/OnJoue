@@ -30,7 +30,8 @@ internal suspend fun verifyInitialCatalog(database: AppDatabase) {
     assertTrue(equipment.any { it.label == "Pâte à modeler" })
     assertTrue(tags.any { it.label == "Été" })
     val activities = RoomActivityRepository(database).observeActivities().first()
-    assertEquals(41, activities.size)
+    assertEquals(88, activities.size)
+    assertEquals(47, activities.count { it.document?.value?.contains("/0_12_mois/") == true })
     assertTrue(activities.all { it.steps.isNotEmpty() && it.document != null })
     assertTrue(RoomTagRepository(database).observeTagUsage().first().any { it.activityCount > 0 })
 }

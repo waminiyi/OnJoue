@@ -18,9 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import com.sotopatrick.onjoue.designsystem.foundation.Spacing
 import com.sotopatrick.onjoue.designsystem.tokens.ComponentShapes
 import com.sotopatrick.onjoue.designsystem.tokens.Dimens
+import com.sotopatrick.onjoue.designsystem.tokens.ScreenBackgroundColor
 
 /** Elevation of a content card. */
 public enum class CardElevation {
@@ -109,8 +111,10 @@ public fun DsCallout(title: String, body: String, modifier: Modifier = Modifier)
 public fun DsHeroBanner(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
     Column(
         modifier
+            .fillMaxWidth()
+            .clip(ComponentShapes.HeroIllustration)
             .background(MaterialTheme.colorScheme.primaryContainer)
-            .padding(horizontal = Dimens.HeroHorizontalPadding, vertical = Spacing.LargePlus),
+            .padding(horizontal = Dimens.HeroHorizontalPadding, vertical = Spacing.XXLarge),
         verticalArrangement = Arrangement.spacedBy(Spacing.MediumPlus),
         content = content,
     )
@@ -137,6 +141,7 @@ public fun DsScreenHeader(title: String, modifier: Modifier = Modifier, subtitle
 public enum class BackgroundTone {
     Default,
     Mint,
+    Screen,
 }
 
 /** Background surface for screens and full-screen states. */
@@ -149,6 +154,7 @@ public fun DsBackground(
     val color = when (tone) {
         BackgroundTone.Default -> MaterialTheme.colorScheme.background
         BackgroundTone.Mint -> MaterialTheme.colorScheme.primaryContainer
+        BackgroundTone.Screen -> ScreenBackgroundColor
     }
     Surface(modifier, color = color, content = content)
 }
@@ -175,3 +181,5 @@ public fun DsErrorState(
         DsButton(retryLabel, onClick = onRetry)
     }
 }
+
+

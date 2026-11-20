@@ -24,6 +24,8 @@ import com.sotopatrick.onjoue.data.sources.room.migrations.Migration1To2
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration2To3
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration3To4
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration4To5
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration7To8
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration8To9
 import com.sotopatrick.onjoue.data.sources.room.tag.TagEntity
 import com.sotopatrick.onjoue.data.sources.room.favorite.FavoriteEntity
 import com.sotopatrick.onjoue.data.sources.room.review.ReviewEntity
@@ -400,6 +402,60 @@ class RoomRepositoriesTest {
         val stored = equipment.observeEquipment().first().single()
         assertEquals(id, stored.id)
         assertTrue(stored.label in (1..5).map { "Objet $it" })
+    }
+
+    @Test
+    fun removingActivityIconPreservesImagesAndActivityData() = runTest {
+        val path = File(context.cacheDir, "activity-icon-migration.db").absolutePath
+        try {
+            AndroidSQLiteDriver().open(path).use { connection ->
+                connection.execSQL(
+                    "CREATE TABLE activities (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL, note TEXT, minAge INTEGER NOT NULL, maxAge INTEGER NOT NULL, duration INTEGER NOT NULL, image TEXT, document TEXT, icon TEXT)",
+                )
+                connection.execSQL(
+                    "INSERT INTO activities VALUES ('baby-game', 'Jeu', 'Description', NULL, 4, 12, 5, 'https://example.org/image.webp', 'https://example.org/source', 'old-icon')",
+                )
+                Migration7To8.migrate(connection)
+                connection.prepare("SELECT name, image, document FROM activities WHERE id = 'baby-game'").use {
+                    assertTrue(it.step())
+                    assertEquals("Jeu", it.getText(0))
+                    assertEquals("https://example.org/image.webp", it.getText(1))
+                    assertEquals("https://example.org/source", it.getText(2))
+                }
+                connection.prepare("PRAGMA table_info(activities)").use { result ->
+                    val columns = buildList {
+                        while (result.step()) add(result.getText(1))
+                    }
+                    assertFalse("icon" in columns)
+                }
+            }
+        } finally {
+            context.deleteDatabase(path)
+        }
+    }
+
+    @Test
+    fun addingEquipmentIconIdPreservesEquipmentData() = runTest {
+        val path = File(context.cacheDir, "equipment-icon-migration.db").absolutePath
+        try {
+            AndroidSQLiteDriver().open(path).use { connection ->
+                connection.execSQL(
+                    "CREATE TABLE equipment (id TEXT NOT NULL PRIMARY KEY, label TEXT NOT NULL, normalizedLabel TEXT NOT NULL DEFAULT '')",
+                )
+                connection.execSQL(
+                    "INSERT INTO equipment VALUES ('eq-ball', 'Ballon', 'ballon')",
+                )
+                Migration8To9.migrate(connection)
+                connection.prepare("SELECT label, normalizedLabel, iconId FROM equipment WHERE id = 'eq-ball'").use {
+                    assertTrue(it.step())
+                    assertEquals("Ballon", it.getText(0))
+                    assertEquals("ballon", it.getText(1))
+                    assertEquals("", it.getText(2))
+                }
+            }
+        } finally {
+            context.deleteDatabase(path)
+        }
     }
 
     @Test

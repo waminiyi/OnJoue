@@ -20,8 +20,8 @@ import com.sotopatrick.onjoue.designsystem.components.DsText
 import com.sotopatrick.onjoue.designsystem.components.DsTextButton
 import com.sotopatrick.onjoue.designsystem.components.TextTone
 import com.sotopatrick.onjoue.designsystem.foundation.Spacing
-import com.sotopatrick.onjoue.presentation.activity.ActivityDetailsViewModel
-import com.sotopatrick.onjoue.presentation.activity.ActivitySheetsViewModel
+import com.sotopatrick.onjoue.presentation.activity.details.ActivityDetailsViewModel
+import com.sotopatrick.onjoue.presentation.activity.listing.ActivitySheetsViewModel
 import com.sotopatrick.onjoue.presentation.navigation.AppNavigation
 import com.sotopatrick.onjoue.presentation.startup.StartupViewModel
 

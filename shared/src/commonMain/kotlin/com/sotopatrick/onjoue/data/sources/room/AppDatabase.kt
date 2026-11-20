@@ -23,10 +23,16 @@ import com.sotopatrick.onjoue.data.sources.room.migrations.Migration1To2
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration2To3
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration3To4
 import com.sotopatrick.onjoue.data.sources.room.migrations.Migration4To5
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration5To6
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration6To7
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration7To8
+import com.sotopatrick.onjoue.data.sources.room.migrations.Migration8To9
 import com.sotopatrick.onjoue.data.sources.room.review.ReviewDao
 import com.sotopatrick.onjoue.data.sources.room.review.ReviewEntity
 import com.sotopatrick.onjoue.data.sources.room.tag.TagDao
 import com.sotopatrick.onjoue.data.sources.room.tag.TagEntity
+import com.sotopatrick.onjoue.data.sources.room.tried.TriedDao
+import com.sotopatrick.onjoue.data.sources.room.tried.TriedEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 
@@ -34,9 +40,9 @@ import kotlinx.coroutines.IO
     entities = [
         TagEntity::class, EquipmentEntity::class, ActivityEntity::class, StepEntity::class,
         VariantEntity::class, ActivityTagEntity::class, ActivityEquipmentEntity::class,
-        ReviewEntity::class, FavoriteEntity::class,
+        ReviewEntity::class, FavoriteEntity::class, TriedEntity::class,
         CatalogStateEntity::class,
-    ], version = 5, exportSchema = true,
+    ], version = 9, exportSchema = true,
 )
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -50,6 +56,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun activityEquipmentDao(): ActivityEquipmentDao
     abstract fun reviewDao(): ReviewDao
     abstract fun favoriteDao(): FavoriteDao
+    abstract fun triedDao(): TriedDao
 }
 
 @Suppress("KotlinNoActualForExpect")
@@ -59,6 +66,9 @@ expect object AppDatabaseConstructor : RoomDatabaseConstructor<AppDatabase> {
 
 fun RoomDatabase.Builder<AppDatabase>.configure(): AppDatabase {
     setDriver(BundledSQLiteDriver()).setQueryCoroutineContext(Dispatchers.IO)
-        .addMigrations(Migration1To2, Migration2To3, Migration3To4, Migration4To5)
+        .addMigrations(
+            Migration1To2, Migration2To3, Migration3To4, Migration4To5, Migration5To6, Migration6To7, Migration7To8,
+            Migration8To9,
+        )
     return build()
 }

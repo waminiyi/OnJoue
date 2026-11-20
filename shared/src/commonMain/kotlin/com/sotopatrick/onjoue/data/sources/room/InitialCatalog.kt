@@ -34,7 +34,11 @@ private data class InitialTagJson(
 )
 
 @Serializable
-private data class InitialEquipmentJson(val id: String, val label: String)
+private data class InitialEquipmentJson(
+    val id: String,
+    val label: String,
+    val iconId: String = "",
+)
 
 @Serializable
 private data class InitialActivityJson(
@@ -50,6 +54,7 @@ private data class InitialActivityJson(
     val tagIds: List<String>,
     val equipmentIds: List<String>,
     val document: String? = null,
+    val image: String? = null,
 )
 
 private val catalogJson = Json { ignoreUnknownKeys = false }
@@ -99,7 +104,7 @@ private suspend fun AppDatabase.mergeInitialCatalog(catalog: InitialCatalogJson)
                 minAge = activity.minAgeMonths,
                 maxAge = activity.maxAgeMonths,
                 duration = activity.durationMinutes,
-                image = null,
+                image = activity.image,
                 document = activity.document,
             ),
         )
@@ -182,7 +187,7 @@ private suspend fun AppDatabase.importEquipment(
     val actualId = existing?.id
         ?: equipmentDao().getByNormalizedLabel(normalizedLabel)?.id
         ?: item.id
-    equipmentDao().save(EquipmentEntity(actualId, item.label.trim(), normalizedLabel))
+    equipmentDao().save(EquipmentEntity(actualId, item.label.trim(), normalizedLabel, item.iconId))
     item.id to actualId
 }.toMap()
 
@@ -208,6 +213,9 @@ private fun validateCatalog(catalog: InitialCatalogJson) {
         }
         require(activity.durationMinutes > 0) { "Activity ${activity.id} has an invalid duration." }
         require(activity.steps.all(String::isNotBlank)) { "Activity ${activity.id} has an empty step." }
+        require(activity.image == null || activity.image.startsWith("https://")) {
+            "Activity ${activity.id} has an invalid image URL."
+        }
         require(activity.tagIds.all { it in tagIds }) {
             "Activity ${activity.id} references an unknown tag."
         }

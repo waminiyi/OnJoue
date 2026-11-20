@@ -11,9 +11,12 @@ internal object Dimens {
     val TouchTarget = 48.dp
     val IllustrationSize = 66.dp
     val HeroIllustrationSize = 76.dp
+    val DetailHeroIllustrationSize = 112.dp
     val StepNumberSize = 30.dp
     val DialogMaxWidth = 560.dp
     val DialogMaxHeight = 640.dp
     val GridMinColumnWidth = 560.dp
     val FabClearance = 96.dp
+    val IconSmall = 16.dp
+    val MaterialIconSize = 28.dp
 }

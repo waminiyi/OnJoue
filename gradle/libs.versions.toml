@@ -26,6 +26,8 @@ screenshot = "0.0.1-alpha16"
 composeAndroid = "1.12.1"
 detekt = "2.0.0-alpha.6"
 composeRules = "0.6.8"
+coil = "3.6.3"
+ktor = "3.1.0"
 
 [libraries]
 detekt-api = { module = "dev.detekt:detekt-api", version.ref = "detekt" }
@@ -67,6 +69,10 @@ compose-material3 = { module = "org.jetbrains.compose.material3:material3", vers
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
 compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 
 [plugins]
 detekt = { id = "dev.detekt", version.ref = "detekt" }

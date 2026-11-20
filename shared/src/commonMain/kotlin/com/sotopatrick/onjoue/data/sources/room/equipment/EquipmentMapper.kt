@@ -6,6 +6,6 @@ import com.sotopatrick.onjoue.data.sources.room.decodeStoredData
 
 internal fun EquipmentEntity.toModel(): Equipment = decodeStoredData {
     require(label.isNotBlank())
-    Equipment(EquipmentId(id), label)
+    Equipment(EquipmentId(id), label, iconId)
 }
-internal fun Equipment.toEntity() = EquipmentEntity(id.value, label, label.trim().lowercase())
+internal fun Equipment.toEntity() = EquipmentEntity(id.value, label, label.trim().lowercase(), iconId)

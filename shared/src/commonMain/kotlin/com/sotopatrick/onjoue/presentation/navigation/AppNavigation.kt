@@ -13,10 +13,10 @@ import androidx.navigation3.runtime.rememberDecoratedNavEntries
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.sotopatrick.onjoue.presentation.common.UnavailableScreen
-import com.sotopatrick.onjoue.presentation.activity.ActivitySheetsScreen
-import com.sotopatrick.onjoue.presentation.activity.ActivitySheetsViewModel
-import com.sotopatrick.onjoue.presentation.activity.ActivityDetailScreen
-import com.sotopatrick.onjoue.presentation.activity.ActivityDetailsViewModel
+import com.sotopatrick.onjoue.presentation.activity.details.ActivityDetailScreen
+import com.sotopatrick.onjoue.presentation.activity.details.ActivityDetailsViewModel
+import com.sotopatrick.onjoue.presentation.activity.listing.ActivitySheetsScreen
+import com.sotopatrick.onjoue.presentation.activity.listing.ActivitySheetsViewModel
 import com.sotopatrick.onjoue.presentation.settings.SettingsScreen
 
 @Composable
@@ -69,6 +69,7 @@ private fun ActivitySheetsEntry(create: (() -> ActivitySheetsViewModel)?, naviga
             onSelectActivity = navigator::openActivityDetail,
             onToggleFavorite = vm::toggleFavorite,
             onRetryFavorites = vm::loadFavorites,
+            onClearNotice = vm::clearNotice,
         )
     }
 }
@@ -84,6 +85,13 @@ private fun ActivityDetailEntry(
     } else {
         val vm = viewModel { create(route.activityId) }
         val state by vm.state.collectAsStateWithLifecycle()
-        ActivityDetailScreen(state, onBack = navigator::goBack, onRetry = vm::load)
+        ActivityDetailScreen(
+            state = state,
+            onBack = navigator::goBack,
+            onRetry = vm::load,
+            onToggleFavorite = vm::toggleFavorite,
+            onToggleTriedStatus = vm::toggleTried,
+            onClearNotice = vm::clearNotice,
+        )
     }
 }

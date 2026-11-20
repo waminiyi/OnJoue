@@ -10,4 +10,5 @@ data class EquipmentEntity(
     @PrimaryKey val id: String,
     val label: String,
     @ColumnInfo(defaultValue = "''") val normalizedLabel: String,
+    @ColumnInfo(defaultValue = "''") val iconId: String = "",
 )

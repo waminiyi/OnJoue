@@ -13,21 +13,21 @@ OnJoue aide à trouver une activité à partager avec un enfant. L’objectif pr
 | Avis ; création/modification d’activités | Modèles et repositories présents, sans parcours UI dédié |
 | Profil enfant, matériel du foyer, préférences et synchronisation | Non implémentés |
 
-Les données sont conservées sur l’appareil, sans compte ni serveur. Le catalogue est livré avec l’application ; seul l’accès à une source externe nécessite d’ouvrir son lien.
+Les fiches du catalogue sont conservées sur l’appareil. Les images d’activité peuvent être chargées depuis Firebase Storage; l’application utilise alors une illustration générique embarquée si l’image est absente ou indisponible.
 
 ## Consulter les idées
 
-- Le catalogue livré contient **41 activités, 41 tags et 57 matériels**, issus des trois sources Naître et grandir : [31 activités pour bouger](https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/), [Acrobaties géométriques](https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/jeux/acrobaties-geometriques/) et [Jeux maison](https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/jeux/jeux-maison/). Les descriptions et étapes sont reformulées.
+- Le catalogue livré contient **88 activités, 41 tags et 57 matériels**, issus de quatre sources Naître et grandir : [47 activités pour les bébés de 0 à 12 mois](https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/), [31 activités pour bouger](https://naitreetgrandir.com/fr/etape/5-8-ans/jouer-bouger/31-activites-bouger-avec-enfant/), [Acrobaties géométriques](https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/jeux/acrobaties-geometriques/) et [Jeux maison](https://naitreetgrandir.com/fr/etape/3-5-ans/fiches-activites/jeux/jeux-maison/). Les descriptions et étapes sont reformulées.
 - Dans **Idées**, la recherche porte sur le nom, la description, les tags et les matériels, sans distinction de casse et en ignorant les espaces de bord.
 - Les filtres **Tous les âges**, **1–3 ans**, **3–5 ans** et **5–8 ans** retiennent les activités dont l’intervalle d’âge chevauche la tranche choisie, bornes incluses. Ils ne représentent pas un profil enfant enregistré.
 - Les raccourcis **Dedans** et **Dehors** sont exclusifs entre eux ; retoucher le lieu sélectionné retire ce critère. Un lieu racine inclut ses enfants ; une activité sans contrainte de lieu reste proposée.
 - Le raccourci **15 min ou moins** inclut les idées de 15 minutes. Âge, lieu, durée et recherche se combinent. L’entrée des filtres avancés est désactivée et annoncée « Bientôt disponible » ; aucune bottom sheet n’est encore proposée.
-- Le listing présente un fond mint et des cartes claires, adaptées au thème sombre. Chaque carte affiche une illustration sans fond, le titre, puis l’âge, la durée et une ambiance lorsqu’elle existe, sans pastilles de fond. Un appui ouvre le détail : description, étapes ordonnées, matériel, note, variantes si présentes et lien vers la source.
+- Le listing présente un fond mint et des cartes claires, adaptées au thème sombre. Chaque carte affiche l’image de l’activité, ou une illustration générique embarquée si l’image est absente ou ne peut pas être chargée, puis le titre, l’âge, la durée et une ambiance lorsqu’elle existe, sans pastilles de fond. Un appui ouvre le détail, qui reprend l’image avec le même fallback, puis la description, les étapes ordonnées, le matériel, la note, les variantes si présentes et le lien vers la source.
 - Le cœur vide/plein permet d’ajouter ou de retirer un favori sans ouvrir le détail. Les favoris sont enregistrés sur l’appareil ; leur chargement et leurs erreurs n’empêchent pas la consultation du catalogue. Les actions sont désactivées tant que leur état n’est pas fiable ou qu’une écriture est en cours.
 - Le chargement affiche **« Les idées arrivent… »**. Une erreur de chargement propose **Réessayer** ; si des idées étaient déjà chargées, elles restent consultables.
 - Le catalogue réellement vide invite à revenir plus tard et à réessayer. Une recherche sans résultat invite à élargir les critères ; **Retirer les filtres** efface tous les filtres rapides et la recherche.
 
-Le modèle d’une activité prévoit aussi un minuteur optionnel par étape, une image et un lien de document. Tous ces champs ne disposent pas encore d’un usage dédié dans l’interface ; le catalogue actuel utilise le lien de document comme source.
+Le modèle d’une activité prévoit aussi un minuteur optionnel par étape, une image et un lien de document. Les images sont référencées par URL HTTPS Firebase Storage; leur absence ou échec de chargement ne bloque pas la consultation. Le catalogue utilise le lien de document comme source.
 
 ## Navigation
 

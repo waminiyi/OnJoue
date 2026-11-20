@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 3,
   "tags": [
     {
       "id": "catalog-tag-game",
@@ -251,231 +251,288 @@
   "equipment": [
     {
       "id": "catalog-equipment-ball",
-      "label": "Ballon"
+      "label": "Ballon",
+      "iconId": "ic_equipment_ball"
     },
     {
       "id": "catalog-equipment-cushions",
-      "label": "Coussins"
+      "label": "Coussins",
+      "iconId": "ic_equipment_cushions"
     },
     {
       "id": "catalog-equipment-soft-toys",
-      "label": "Peluches"
+      "label": "Peluches",
+      "iconId": "ic_equipment_soft_toys"
     },
     {
       "id": "catalog-equipment-rope",
-      "label": "Corde"
+      "label": "Corde",
+      "iconId": "ic_equipment_rope"
     },
     {
       "id": "catalog-equipment-chairs",
-      "label": "Chaises"
+      "label": "Chaises",
+      "iconId": "ic_equipment_chairs"
     },
     {
       "id": "catalog-equipment-chalk",
-      "label": "Craie"
+      "label": "Craie",
+      "iconId": "ic_equipment_chalk"
     },
     {
       "id": "catalog-equipment-tape",
-      "label": "Ruban adhésif"
+      "label": "Ruban adhésif",
+      "iconId": "ic_equipment_tape"
     },
     {
       "id": "catalog-equipment-paper",
-      "label": "Papier"
+      "label": "Papier",
+      "iconId": "ic_equipment_paper"
     },
     {
       "id": "catalog-equipment-colored-pencils",
-      "label": "Crayons de couleur"
+      "label": "Crayons de couleur",
+      "iconId": "ic_equipment_colored_pencils"
     },
     {
       "id": "catalog-equipment-markers",
-      "label": "Feutres"
+      "label": "Feutres",
+      "iconId": "ic_equipment_markers"
     },
     {
       "id": "catalog-equipment-scissors",
-      "label": "Ciseaux"
+      "label": "Ciseaux",
+      "iconId": "ic_equipment_scissors"
     },
     {
       "id": "catalog-equipment-glue",
-      "label": "Colle"
+      "label": "Colle",
+      "iconId": "ic_equipment_glue"
     },
     {
       "id": "catalog-equipment-cardboard",
-      "label": "Carton"
+      "label": "Carton",
+      "iconId": "ic_equipment_cardboard"
     },
     {
       "id": "catalog-equipment-clay",
-      "label": "Pâte à modeler"
+      "label": "Pâte à modeler",
+      "iconId": "ic_equipment_clay"
     },
     {
       "id": "catalog-equipment-paint",
-      "label": "Peinture"
+      "label": "Peinture",
+      "iconId": "ic_equipment_paint"
     },
     {
       "id": "catalog-equipment-brushes",
-      "label": "Pinceaux"
+      "label": "Pinceaux",
+      "iconId": "ic_equipment_brushes"
     },
     {
       "id": "catalog-equipment-books",
-      "label": "Livres"
+      "label": "Livres",
+      "iconId": "ic_equipment_books"
     },
     {
       "id": "catalog-equipment-blocks",
-      "label": "Cubes de construction"
+      "label": "Cubes de construction",
+      "iconId": "ic_equipment_blocks"
     },
     {
       "id": "catalog-equipment-hoops",
-      "label": "Cerceaux"
+      "label": "Cerceaux",
+      "iconId": "ic_equipment_hoops"
     },
     {
       "id": "catalog-equipment-blanket",
-      "label": "Couverture"
+      "label": "Couverture",
+      "iconId": "ic_equipment_blanket"
     },
     {
       "id": "catalog-equipment-containers",
-      "label": "Récipients"
+      "label": "Récipients",
+      "iconId": "ic_equipment_containers"
     },
     {
       "id": "catalog-equipment-spoons",
-      "label": "Cuillères"
+      "label": "Cuillères",
+      "iconId": "ic_equipment_spoons"
     },
     {
       "id": "catalog-equipment-clothespins",
-      "label": "Pinces à linge"
+      "label": "Pinces à linge",
+      "iconId": "ic_equipment_clothespins"
     },
     {
       "id": "catalog-equipment-bubbles",
-      "label": "Bulles de savon"
+      "label": "Bulles de savon",
+      "iconId": "ic_equipment_bubbles"
     },
     {
       "id": "catalog-equipment-pool-noodles",
-      "label": "Nouilles de piscine"
+      "label": "Nouilles de piscine",
+      "iconId": "ic_equipment_pool_noodles"
     },
     {
       "id": "catalog-equipment-costumes",
-      "label": "Vêtements de déguisement"
+      "label": "Vêtements de déguisement",
+      "iconId": "ic_equipment_costumes"
     },
     {
       "id": "catalog-equipment-socks",
-      "label": "Bas"
+      "label": "Bas",
+      "iconId": "ic_equipment_socks"
     },
     {
       "id": "catalog-equipment-towel",
-      "label": "Serviette"
+      "label": "Serviette",
+      "iconId": "ic_equipment_towel"
     },
     {
       "id": "catalog-equipment-frisbee",
-      "label": "Frisbee"
+      "label": "Frisbee",
+      "iconId": "ic_equipment_frisbee"
     },
     {
       "id": "catalog-equipment-broom",
-      "label": "Balai"
+      "label": "Balai",
+      "iconId": "ic_equipment_broom"
     },
     {
       "id": "catalog-equipment-handkerchiefs",
-      "label": "Mouchoirs"
+      "label": "Mouchoirs",
+      "iconId": "ic_equipment_handkerchiefs"
     },
     {
       "id": "catalog-equipment-paper-towel-roll",
-      "label": "Rouleaux d’essuie-tout"
+      "label": "Rouleaux d’essuie-tout",
+      "iconId": "ic_equipment_paper_towel_roll"
     },
     {
       "id": "catalog-equipment-paper-plates",
-      "label": "Assiettes en carton"
+      "label": "Assiettes en carton",
+      "iconId": "ic_equipment_paper_plates"
     },
     {
       "id": "catalog-equipment-ping-pong-paddle",
-      "label": "Raquette de ping-pong"
+      "label": "Raquette de ping-pong",
+      "iconId": "ic_equipment_ping_pong_paddle"
     },
     {
       "id": "catalog-equipment-party-balloons",
-      "label": "Ballons de fête"
+      "label": "Ballons de fête",
+      "iconId": "ic_equipment_party_balloons"
     },
     {
       "id": "catalog-equipment-empty-bottles",
-      "label": "Bouteilles vides"
+      "label": "Bouteilles vides",
+      "iconId": "ic_equipment_empty_bottles"
     },
     {
       "id": "catalog-equipment-pom-poms",
-      "label": "Pompons"
+      "label": "Pompons",
+      "iconId": "ic_equipment_pom_poms"
     },
     {
       "id": "catalog-equipment-ice-cube-tray",
-      "label": "Bac à glaçons"
+      "label": "Bac à glaçons",
+      "iconId": "ic_equipment_ice_cube_tray"
     },
     {
       "id": "catalog-equipment-kitchen-tongs",
-      "label": "Pinces de cuisine"
+      "label": "Pinces de cuisine",
+      "iconId": "ic_equipment_kitchen_tongs"
     },
     {
       "id": "catalog-equipment-ice-cubes",
-      "label": "Blocs de glace"
+      "label": "Blocs de glace",
+      "iconId": "ic_equipment_ice_cubes"
     },
     {
       "id": "catalog-equipment-figurines",
-      "label": "Figurines"
+      "label": "Figurines",
+      "iconId": "ic_equipment_figurines"
     },
     {
       "id": "catalog-equipment-food-coloring",
-      "label": "Colorant alimentaire"
+      "label": "Colorant alimentaire",
+      "iconId": "ic_equipment_food_coloring"
     },
     {
       "id": "catalog-equipment-craft-foam",
-      "label": "Feuilles de mousse"
+      "label": "Feuilles de mousse",
+      "iconId": "ic_equipment_craft_foam"
     },
     {
       "id": "catalog-equipment-spray-bottle",
-      "label": "Vaporisateur"
+      "label": "Vaporisateur",
+      "iconId": "ic_equipment_spray_bottle"
     },
     {
       "id": "catalog-equipment-wooden-sticks",
-      "label": "Bâtonnets en bois"
+      "label": "Bâtonnets en bois",
+      "iconId": "ic_equipment_wooden_sticks"
     },
     {
       "id": "catalog-equipment-hook-and-loop",
-      "label": "Velcro adhésif"
+      "label": "Velcro adhésif",
+      "iconId": "ic_equipment_hook_and_loop"
     },
     {
       "id": "catalog-equipment-family-photos",
-      "label": "Photos"
+      "label": "Photos",
+      "iconId": "ic_equipment_family_photos"
     },
     {
       "id": "catalog-equipment-colored-paper",
-      "label": "Papier coloré"
+      "label": "Papier coloré",
+      "iconId": "ic_equipment_colored_paper"
     },
     {
       "id": "catalog-equipment-varnish",
-      "label": "Vernis"
+      "label": "Vernis",
+      "iconId": "ic_equipment_varnish"
     },
     {
       "id": "catalog-equipment-wooden-discs",
-      "label": "Rondelles de bois"
+      "label": "Rondelles de bois",
+      "iconId": "ic_equipment_wooden_discs"
     },
     {
       "id": "catalog-equipment-fabric-squares",
-      "label": "Carrés de tissu"
+      "label": "Carrés de tissu",
+      "iconId": "ic_equipment_fabric_squares"
     },
     {
       "id": "catalog-equipment-metal-ring",
-      "label": "Anneau métallique"
+      "label": "Anneau métallique",
+      "iconId": "ic_equipment_metal_ring"
     },
     {
       "id": "catalog-equipment-textured-materials",
-      "label": "Matériaux texturés"
+      "label": "Matériaux texturés",
+      "iconId": "ic_equipment_textured_materials"
     },
     {
       "id": "catalog-equipment-yogurt-pot",
-      "label": "Pot de yogourt"
+      "label": "Pot de yogourt",
+      "iconId": "ic_equipment_yogurt_pot"
     },
     {
       "id": "catalog-equipment-ring-binder",
-      "label": "Cartable à anneaux"
+      "label": "Cartable à anneaux",
+      "iconId": "ic_equipment_ring_binder"
     },
     {
       "id": "catalog-equipment-mirror",
-      "label": "Miroir"
+      "label": "Miroir",
+      "iconId": "ic_equipment_mirror"
     },
     {
       "id": "catalog-equipment-clothing",
-      "label": "Vêtements"
+      "label": "Vêtements",
+      "iconId": "ic_equipment_clothing"
     }
   ],
   "activities": [
@@ -1463,6 +1520,1085 @@
         "catalog-equipment-textured-materials"
       ],
       "document": "https://naitreetgrandir.com/fr/etape/1_3_ans/fiches-activites/plaisirs-de-lecture/"
+    },
+    {
+      "id": "ng-bebe-ascenseur",
+      "name": "Bébé-ascenseur",
+      "description": "Un jeu de mouvements tout doux où le parent soulève bébé et échange un sourire avec lui.",
+      "note": "À partir de 4 mois, lorsque bébé maîtrise bien sa tête et son cou. Gardez-le à l’horizontale et soutenez-le constamment.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le dos, genoux fléchis, et tenez bébé fermement contre vous.",
+        "Soulevez-le doucement au-dessus de votre visage, puis rapprochez-le pour vous regarder."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/bebe-ascenseur/"
+    },
+    {
+      "id": "ng-bebes-au-galop",
+      "name": "Bébés au galop!",
+      "description": "Une comptine rythmée transforme les genoux du parent en petit cheval pour bébé.",
+      "note": "Installez bébé bien droit sur vos genoux et soutenez son tronc et sa tête; faites de petits mouvements seulement.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Asseyez bébé sur vos genoux, face à vous, en le tenant bien.",
+        "Récitez ou chantez une comptine et faites-le doucement sautiller au rythme des mots."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-bebe-galop/"
+    },
+    {
+      "id": "ng-bonjour-les-chats",
+      "name": "Bonjour les chats!",
+      "description": "Regardez ensemble des images de chats, nommez-les et imitez leur miaulement.",
+      "minAgeMonths": 3,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Installez-vous près de bébé avec un livre ou de grandes images de chats.",
+        "Pointez un chat, dites bonjour et faites doucement « miaou »; laissez bébé regarder ou toucher la page."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-books"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/bonjour-les-chats/"
+    },
+    {
+      "id": "ng-bulles-savon-maison",
+      "name": "Bulles de savon maison",
+      "description": "Bébé observe les bulles qui flottent et suit leur déplacement du regard.",
+      "note": "L’adulte prépare et souffle les bulles hors de portée; évitez tout contact avec les yeux et la bouche de bébé.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Installez bébé confortablement à l’extérieur ou dans une pièce dégagée.",
+        "Faites quelques bulles à distance et décrivez leur trajet pendant que bébé les observe."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-outside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-bubbles"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-bulle-de-savon-maison/"
+    },
+    {
+      "id": "ng-coucou",
+      "name": "Coucou!",
+      "description": "Un jeu de cache-cache avec un linge léger fait apparaître puis disparaître le visage du parent.",
+      "note": "Ne recouvrez jamais le visage de bébé; gardez le linge dans les mains de l’adulte.",
+      "minAgeMonths": 2,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Asseyez-vous face à bébé et montrez-lui un linge léger.",
+        "Cachez votre propre visage un instant, puis réapparaissez en disant « coucou! »."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-fabric-squares"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-coucou/"
+    },
+    {
+      "id": "ng-decouvre-corps",
+      "name": "Découvre les parties du corps",
+      "description": "Une petite exploration guidée aide bébé à découvrir les noms des parties de son corps.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Installez bébé confortablement et nommez une partie de son corps.",
+        "Touchez-la très doucement, puis attendez sa réaction avant de poursuivre."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/decouvre-parties-corps/"
+    },
+    {
+      "id": "ng-destination-lune",
+      "name": "Destination Lune",
+      "description": "Un parent bouge lentement les jambes comme une fusée pendant que l’autre soutient bébé face à lui.",
+      "note": "À partir de 6 mois si bébé peut s’asseoir avec du soutien. Un adulte le tient fermement pendant tout l’exercice.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Un parent s’allonge sur le dos, jambes levées; l’autre se place devant ses pieds et soutient bébé sous les bras.",
+        "Le parent allonge puis replie les jambes lentement, sans secouer bébé."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/destination-lune/"
+    },
+    {
+      "id": "ng-en-haut-en-bas",
+      "name": "En haut! En bas!",
+      "description": "Le parent fait lentement monter et descendre son bassin pendant que bébé est assis sur son ventre et bien soutenu.",
+      "note": "À partir de 6 mois si bébé peut s’asseoir avec du soutien; tenez-le sous les bras et gardez le mouvement lent.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le dos, genoux pliés, et installez bébé assis sur le bas de votre ventre en le tenant sous les bras.",
+        "Soulevez puis redescendez doucement le bassin sans creuser le dos."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/haut-bas/"
+    },
+    {
+      "id": "ng-explorer-visage",
+      "name": "Explorer le visage",
+      "description": "Bébé découvre les traits du visage en regardant le parent et en les touchant à son rythme.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Placez votre visage près de celui de bébé, dans son champ de vision.",
+        "Nommez doucement votre nez, vos yeux ou votre bouche et laissez bébé essayer de les toucher."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-explorer-visage/"
+    },
+    {
+      "id": "ng-jallume-etoile",
+      "name": "J’allume une étoile",
+      "description": "Une chanson douce et des gestes imaginaires créent un petit moment de complicité.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Prenez bébé dans vos bras ou installez-le confortablement.",
+        "Chantez doucement et mimez avec vos mains le dessin d’une étoile ou l’allumage d’une lumière."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-music",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-allume-etoile/"
+    },
+    {
+      "id": "ng-jouer-casse-tete",
+      "name": "Jouer au casse-tête",
+      "description": "De gros objets familiers deviennent des pièces à placer dans les espaces d’un contenant.",
+      "note": "Choisissez uniquement de gros objets sans petites pièces détachables et surveillez bébé de près.",
+      "minAgeMonths": 8,
+      "maxAgeMonths": 18,
+      "durationMinutes": 10,
+      "steps": [
+        "Posez un moule propre à grandes cavités et quelques jouets adaptés à l’âge de bébé.",
+        "Montrez comment poser un jouet dans une cavité, puis laissez bébé essayer à son rythme."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-containers",
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-jouer-au-casse-tete/"
+    },
+    {
+      "id": "ng-jouer-avec-bebe",
+      "name": "Jouer avec bébé",
+      "description": "Des échanges de regards, de sons et de gestes s’adaptent à l’âge et aux réactions de bébé.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 6,
+      "durationMinutes": 10,
+      "steps": [
+        "Placez-vous face à bébé et attendez son regard ou un son.",
+        "Répondez par un sourire, une parole ou une courte comptine, puis faites une pause pour lui laisser le tour."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-cooperate"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/bg-naitre-grandir-jouer-bebe/"
+    },
+    {
+      "id": "ng-jouer-dehors-bebe",
+      "name": "Jouer dehors avec bébé",
+      "description": "Une sortie tranquille permet à bébé d’observer les couleurs, d’écouter les sons et de découvrir l’air extérieur.",
+      "note": "Restez près de bébé, choisissez un endroit ombragé et adapté à la météo.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 15,
+      "steps": [
+        "Installez bébé confortablement dans un endroit ombragé et sûr.",
+        "Décrivez ensemble ce que vous voyez et entendez, en lui laissant le temps d’observer."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-outside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/bg-naitre-grandir-bebe-jouer-dehors/"
+    },
+    {
+      "id": "ng-balade-tracteur",
+      "name": "La balade en tracteur",
+      "description": "Le parent fait doucement avancer son bassin comme un tracteur pendant que bébé est bien installé dans ses bras.",
+      "note": "À partir de 4 mois lorsque bébé contrôle sa tête et son cou. Gardez une prise stable et évitez les secousses.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Asseyez-vous confortablement en tenant bébé contre vous.",
+        "Faites de petits déplacements du bassin vers l’avant puis vers l’arrière en racontant la balade."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/balade-tracteur/"
+    },
+    {
+      "id": "ng-balancoire",
+      "name": "La balançoire",
+      "description": "Le parent allongé fait de petits mouvements de jambes pendant que bébé reste couché sur son ventre, face à lui.",
+      "note": "Bébé doit rester éveillé et surveillé; maintenez-le avec les mains et arrêtez si sa position ou son confort vous inquiète.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le dos, genoux pliés, et placez bébé sur votre ventre, face à vous, en le tenant avec les mains.",
+        "Levez légèrement les pieds et faites de petits battements contrôlés, puis revenez au repos."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/balancoire/"
+    },
+    {
+      "id": "ng-berceuse",
+      "name": "La berceuse",
+      "description": "Le parent allongé fait doucement rouler son bassin d’un côté à l’autre pendant que bébé est installé sur son ventre.",
+      "note": "À partir de 4 mois lorsque bébé maîtrise sa tête et son cou; soutenez-le toujours fermement.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le dos, genoux pliés, et placez bébé assis sur le bas de votre ventre en le tenant sous les bras.",
+        "Faites rouler doucement le bassin d’un côté puis de l’autre, sans forcer bébé ni creuser le dos."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-music",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/berceuse/"
+    },
+    {
+      "id": "ng-chaise-skieur",
+      "name": "La chaise du skieur",
+      "description": "Le parent s’appuie au mur et plie les genoux lentement en tenant bébé contre lui.",
+      "note": "À partir de 4 mois si bébé contrôle sa tête et son cou. Assurez une prise solide, portez des chaussures antidérapantes et arrêtez si votre équilibre est incertain.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Tenez bébé contre vous, dos à votre poitrine, avec une prise stable sous ses bras.",
+        "Appuyez votre dos au mur, pliez les genoux sans dépasser les orteils, puis redressez-vous lentement."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/chaise-skieur/"
+    },
+    {
+      "id": "ng-lacher-prise",
+      "name": "L’aider à lâcher prise",
+      "description": "Bébé explore le geste de laisser tomber un jouet et observe ce qui se passe ensuite.",
+      "note": "Choisissez un jouet assez gros pour ne pas présenter de risque d’étouffement et restez près de bébé.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Montrez un jouet adapté dans votre main, puis ouvrez lentement les doigts.",
+        "Laissez bébé essayer à son tour de relâcher le jouet au-dessus d’une surface dégagée."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-aider-lacher-prise/"
+    },
+    {
+      "id": "ng-bebe-kangourou",
+      "name": "Le bébé kangourou",
+      "description": "Assis au sol, le parent tourne doucement son tronc avec bébé solidement soutenu contre lui.",
+      "note": "À partir de 4 mois lorsque bébé contrôle bien sa tête et son cou. Maintenez-le solidement contre vous.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Asseyez-vous au sol, le dos droit, et soutenez bébé sous les bras près de votre corps.",
+        "Tournez légèrement le tronc d’un côté, revenez au centre, puis répétez de l’autre côté."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/bebe-kangourou/"
+    },
+    {
+      "id": "ng-bras-mecanique",
+      "name": "Le bras mécanique",
+      "description": "Le parent plie et déplie lentement les bras en soutenant bébé allongé sur ses avant-bras.",
+      "note": "À partir de 4 mois lorsque bébé contrôle sa tête et son cou; gardez-le soutenu et arrêtez si l’exercice fatigue.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Tenez bébé allongé sur vos avant-bras, une main soutenant sa tête et son cou, l’autre ses fesses.",
+        "Rapprochez doucement vos bras de votre corps, puis revenez lentement à la position de départ."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/bras-mecanique/"
+    },
+    {
+      "id": "ng-le-chat",
+      "name": "Le chat",
+      "description": "Le parent fait une posture de chat au sol et accompagne ses mouvements de petits sons amusants.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Installez bébé sur une couverture ferme, à côté de vous et non sous votre corps.",
+        "Mettez-vous à quatre pattes et arrondissez puis redressez doucement le dos en lui parlant."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/chat/"
+    },
+    {
+      "id": "ng-le-crocodile",
+      "name": "Le crocodile",
+      "description": "Le parent, couché sur le côté, fait un mouvement de jambe pendant que bébé est assis sur sa cuisse et bien soutenu.",
+      "note": "À partir de 6 mois si bébé peut s’asseoir avec du soutien. Maintenez-le fermement et gardez le mouvement lent.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le côté et installez bébé face à vous, assis à cheval sur votre cuisse, en le soutenant.",
+        "Soulevez lentement la jambe du dessous, puis redescendez-la sans à-coup."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/crocodile/"
+    },
+    {
+      "id": "ng-le-koala",
+      "name": "Le koala",
+      "description": "Assis sur une chaise stable, le parent lève puis abaisse les jambes pendant que bébé est couché sur ses cuisses.",
+      "note": "À partir de 4 mois lorsque bébé contrôle sa tête et son cou; privilégiez des mouvements doux et une position stable.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Asseyez-vous au fond d’une chaise stable et placez bébé sur vos jambes, en le surveillant et en le soutenant.",
+        "Allongez doucement les genoux, puis redescendez les talons au sol."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/koala/"
+    },
+    {
+      "id": "ng-le-laisser-choisir",
+      "name": "Le laisser choisir",
+      "description": "Deux objets sûrs présentés l’un après l’autre donnent à bébé l’occasion de montrer sa préférence.",
+      "note": "Proposez des objets adaptés à l’âge, sans petites pièces ni éléments qui se détachent.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 18,
+      "durationMinutes": 5,
+      "steps": [
+        "Présentez deux objets familiers à bébé, un à la fois, en les nommant.",
+        "Attendez son regard, son geste ou son mouvement vers l’un d’eux et respectez son choix."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-cooperate"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-le-laisser-choisir/"
+    },
+    {
+      "id": "ng-le-phoque",
+      "name": "Le phoque",
+      "description": "Le parent soulève doucement le haut du corps pendant que bébé est installé face à lui sur le sol.",
+      "note": "À partir de 6 mois si bébé peut s’asseoir avec du soutien; ne le placez pas dans une posture qu’il ne maîtrise pas.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le ventre, bébé couché face à vous sur une surface ferme et dégagée.",
+        "Relevez doucement le haut du corps sur vos avant-bras, puis redescendez lentement."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/phoque/"
+    },
+    {
+      "id": "ng-ptit-chien",
+      "name": "Le p’tit chien",
+      "description": "Le parent imite un petit chien et invite bébé à le regarder ou, lorsqu’il rampe, à le suivre.",
+      "note": "Pour les bébés qui rampent, libérez entièrement le passage et restez à portée de main.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 18,
+      "durationMinutes": 5,
+      "steps": [
+        "Pour un jeune bébé, allongez-vous face à lui sur le sol et faites doucement « ouaf ».",
+        "Quand bébé rampe, déplacez-vous lentement autour d’un espace dégagé pour l’inviter à vous suivre."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ptit-chien/"
+    },
+    {
+      "id": "ng-le-rouleau",
+      "name": "Le rouleau",
+      "description": "Le parent s’allonge sur le dos et fait un petit redressement pendant que bébé est installé sur son torse.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le dos, genoux pliés, et installez bébé sur votre poitrine en le tenant doucement.",
+        "Relevez lentement la tête et les épaules, puis redescendez sans tirer sur les bras de bébé."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/rouleau/"
+    },
+    {
+      "id": "ng-tour-du-monde",
+      "name": "Le tour du monde",
+      "description": "Deux adultes se passent bébé avec précaution pour créer un petit voyage d’un bras à l’autre.",
+      "note": "À partir de 4 mois lorsque bébé contrôle sa tête et son cou. Les deux adultes se coordonnent et soutiennent bébé en tout temps.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Placez-vous face à un autre adulte, tous deux debout de façon stable.",
+        "Passez bébé lentement de l’un à l’autre en vous assurant que la personne qui le reçoit le tient déjà solidement."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-family",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/tour-monde/"
+    },
+    {
+      "id": "ng-jeux-deau-bebe",
+      "name": "Les jeux d’eau",
+      "description": "Quelques gouttes et des éclaboussures légères font découvrir à bébé les sensations de l’eau.",
+      "note": "Surveillance constante à portée de main : un bébé peut se noyer dans très peu d’eau. Videz les contenants dès la fin du jeu.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Installez bébé sur une serviette et gardez près de vous un peu d’eau dans un contenant très peu profond.",
+        "Faites couler quelques gouttes sur ses pieds ou laissez-le taper doucement l’eau, sans jamais le quitter des yeux."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-towel",
+        "catalog-equipment-containers"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/jeux-d-eau/"
+    },
+    {
+      "id": "ng-horloge-tic-tac",
+      "name": "L’horloge Tic Tac",
+      "description": "Le parent berce doucement bébé de gauche à droite au rythme d’une petite chanson.",
+      "note": "Soutenez toujours la tête, le cou et le bassin de bébé; gardez les mouvements lents et de faible amplitude.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Tenez bébé contre vous dans une position bien soutenue.",
+        "Penchez-vous légèrement d’un côté puis de l’autre en chantant un « tic-tac » régulier."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-music",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/horloge-tic-tac/"
+    },
+    {
+      "id": "ng-signaux-vocaux",
+      "name": "Lui donner des signaux vocaux",
+      "description": "Une voix qui se déplace doucement encourage bébé à écouter et à tourner la tête.",
+      "note": "Gardez votre voix douce et placez-vous à une distance confortable pour bébé.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez bébé sur le dos dans un espace sûr et approchez-vous d’un côté, hors de son champ de vision.",
+        "Appelez-le doucement; quand il tourne vers vous, montrez-vous et échangez un sourire."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-donner-signaux-vocaux/"
+    },
+    {
+      "id": "ng-miaou-wouf-sons",
+      "name": "Miaou! Wouf! Wouf! Découvre les sons",
+      "description": "Des cris d’animaux et des images simples font découvrir à bébé différents sons.",
+      "minAgeMonths": 3,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Montrez à bébé une image claire d’un animal et nommez-le.",
+        "Imitez son cri, puis faites une pause pour laisser bébé écouter et réagir."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-books"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/miaou-wouf-decouvre-son/"
+    },
+    {
+      "id": "ng-montrer-emotions",
+      "name": "Montrer ses émotions",
+      "description": "Le parent exagère des expressions familières et met des mots simples sur les émotions.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Placez votre visage dans le champ de vision de bébé et montrez une expression douce.",
+        "Nommez l’émotion avec des mots simples et observez la réponse de bébé."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-montrer-emotions/"
+    },
+    {
+      "id": "ng-on-joue-0-6-mois",
+      "name": "On joue! (0 à 6 mois)",
+      "description": "Des chansons, des visages et des jouets sonores éveillent doucement les sens du tout-petit.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 6,
+      "durationMinutes": 10,
+      "steps": [
+        "Chantez une courte comptine en accompagnant les mots de gestes.",
+        "Faites entendre un jouet sonore adapté, puis arrêtez-vous pour que bébé écoute et observe."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-on-joue-naissance-a-6-mois/"
+    },
+    {
+      "id": "ng-on-joue-6-18-mois",
+      "name": "On joue! (6 à 18 mois)",
+      "description": "Des jeux de mouvement, d’imitation et de découverte accompagnent les nouvelles habiletés de bébé.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 18,
+      "durationMinutes": 10,
+      "steps": [
+        "Proposez un jouet solide à manipuler ou un objet familier à explorer ensemble.",
+        "Imitez les gestes de bébé et ajoutez un jeu de faire-semblant très simple."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-creative"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-on-joue-6-18-mois/"
+    },
+    {
+      "id": "ng-laver-vitres",
+      "name": "On lave les vitres",
+      "description": "Le parent dessine des cercles avec les mains pendant que bébé se repose sur ses cuisses ou y est assis avec soutien.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Asseyez-vous au sol, dos droit, et installez bébé sur vos cuisses en le soutenant.",
+        "Faites de petits cercles avec les mains devant vous, puis agrandissez-les graduellement."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lave-vitres/"
+    },
+    {
+      "id": "ng-ou-est-mon-jouet",
+      "name": "Où est mon jouet?",
+      "description": "Un jouet partiellement caché sous un linge invite bébé à le chercher.",
+      "note": "Gardez le linge loin du visage de bébé et utilisez un jouet assez gros pour son âge.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Montrez à bébé un jouet familier, puis cachez-en une partie sous un linge.",
+        "Demandez où il est et laissez bébé le découvrir ou tirer le linge."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-fabric-squares",
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-cache-cache-jouet/"
+    },
+    {
+      "id": "ng-chats-rouges",
+      "name": "Où sont les chats rouges?",
+      "description": "Des images ou objets de couleurs contrastées invitent bébé à repérer une couleur familière.",
+      "note": "Choisissez des images ou objets assez grands, sans petites pièces accessibles à bébé.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Placez une grande image rouge entre deux images de couleurs différentes.",
+        "Demandez à bébé où se trouve le rouge, pointez-le et nommez la couleur."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-books"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ou-sont-chats-rouges/"
+    },
+    {
+      "id": "ng-parcours-bossele",
+      "name": "Parcours bosselé",
+      "description": "Une courte exploration sur une couverture aux reliefs doux permet à bébé de sentir différentes textures.",
+      "note": "Utilisez uniquement des surfaces stables et souples; accompagnez bébé de près et ne le laissez jamais sans surveillance.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 10,
+      "steps": [
+        "Disposez une couverture et quelques serviettes pliées à plat sur le sol.",
+        "Invitez bébé à les toucher ou à se déplacer dessus selon ses capacités, en restant à côté de lui."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket",
+        "catalog-equipment-towel"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/parcours-bossele/"
+    },
+    {
+      "id": "ng-pompes-cou-cou",
+      "name": "Pompes cou-cou",
+      "description": "Le parent fait quelques pompes adaptées et dit « coucou » à bébé au retour vers le sol.",
+      "note": "Installez bébé à côté de votre zone de mouvement, jamais sous votre corps; arrêtez avant toute douleur ou fatigue.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Installez bébé sur le dos ou le ventre, sur une couverture, à côté de vous et non sous votre corps.",
+        "Faites des pompes adaptées en gardant le dos droit et dites « coucou » à bébé en revenant vers le sol."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/pompes-cou-cou/"
+    },
+    {
+      "id": "ng-pousse-et-tire",
+      "name": "Pousse et tire",
+      "description": "Le parent fait un exercice de bras pendant que bébé observe les mains bouger depuis ses cuisses.",
+      "note": "Ne tirez pas sur les bras ou les mains de bébé; soutenez-le sur vos cuisses et gardez-le près de vous.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Asseyez-vous et installez bébé sur vos cuisses, en le soutenant; un bébé plus grand peut s’asseoir avec appui.",
+        "Pressez vos propres paumes l’une contre l’autre, puis relâchez en expirant lentement pendant que bébé regarde."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-cooperate"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/pousse-tire/"
+    },
+    {
+      "id": "ng-promenade-safari",
+      "name": "Promenade-safari",
+      "description": "Couché sur le côté, le parent lève puis abaisse une jambe pendant que bébé est assis à cheval sur sa cuisse.",
+      "note": "À partir de 6 mois si bébé peut s’asseoir avec du soutien. Tenez-le solidement et ne le placez pas au-delà du genou.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez-vous sur le côté et assoyez bébé face à vous à cheval sur votre cuisse, en soutenant son corps.",
+        "Levez la jambe lentement puis redescendez-la près de l’autre jambe; changez de côté."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/promenade-safari/"
+    },
+    {
+      "id": "ng-remplir-vider-empiler-trier",
+      "name": "Remplir, vider, empiler et trier",
+      "description": "Des contenants légers permettent à bébé de déposer, retirer et empiler de gros objets sûrs.",
+      "note": "Choisissez uniquement des contenants et jouets assez gros pour éviter tout risque d’étouffement; surveillez bébé.",
+      "minAgeMonths": 6,
+      "maxAgeMonths": 18,
+      "durationMinutes": 10,
+      "steps": [
+        "Rassemblez quelques contenants propres et des jouets adaptés à l’âge de bébé.",
+        "Montrez comment remplir, vider ou empiler les contenants, puis laissez-le essayer."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-focus"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-containers",
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-remplir-vider-empiler-trier/"
+    },
+    {
+      "id": "ng-se-retourner",
+      "name": "Se retourner",
+      "description": "Un jouet placé légèrement sur le côté encourage bébé à regarder puis à amorcer un retournement.",
+      "note": "Installez bébé sur une surface ferme et sûre, au sol, et restez près de lui pendant tout le jeu.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Allongez bébé sur le dos sur une couverture ferme et placez-vous près de lui.",
+        "Montrez un jouet à côté de son épaule et déplacez-le lentement pour l’inviter à tourner la tête ou le corps."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-blanket",
+        "catalog-equipment-soft-toys"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-se-retourner/"
+    },
+    {
+      "id": "ng-se-tenir-debout-bouger",
+      "name": "Se tenir debout et bouger",
+      "description": "Un trajet entre des appuis stables motive bébé à se lever et à faire quelques pas lorsqu’il est prêt.",
+      "note": "À proposer seulement quand bébé commence à se lever seul; sécurisez les appuis et restez à portée de main.",
+      "minAgeMonths": 8,
+      "maxAgeMonths": 18,
+      "durationMinutes": 10,
+      "steps": [
+        "Dégagez une zone et placez des meubles lourds et stables rapprochés, sans espace dangereux.",
+        "Encouragez bébé à se déplacer d’un appui à l’autre sans le tirer ni le forcer à se tenir debout."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-chairs"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/lg-naitre-grandir-se-tenir-debout-bouger/"
+    },
+    {
+      "id": "ng-tresors-tactiles",
+      "name": "Trésors tactiles",
+      "description": "Quelques tissus de textures différentes éveillent le toucher de bébé pendant un jeu partagé.",
+      "note": "Surveillez bébé en tout temps; ne laissez aucun tissu ou petit objet dans sa bouche.",
+      "minAgeMonths": 4,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Choisissez de grands morceaux de tissus propres aux textures variées.",
+        "Faites-les toucher à bébé un à un et décrivez simplement les sensations."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-exploration",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-calm"
+      ],
+      "equipmentIds": [
+        "catalog-equipment-fabric-squares",
+        "catalog-equipment-textured-materials"
+      ],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/ik-naitre-grandir-tresor-tactile/"
+    },
+    {
+      "id": "ng-trrrrrres-grand",
+      "name": "Trrrrrès grand",
+      "description": "Le parent se grandit sur la pointe des pieds puis redescend lentement en tenant bébé contre lui.",
+      "note": "Tenez bébé fermement contre vous, soutenez sa tête et son cou et gardez l’équilibre; ne le soulevez pas au-dessus de vous.",
+      "minAgeMonths": 0,
+      "maxAgeMonths": 12,
+      "durationMinutes": 5,
+      "steps": [
+        "Tenez bébé contre vous, une main soutenant sa tête et son cou et l’autre ses fesses.",
+        "Montez doucement sur la pointe des pieds en disant « grand », puis redescendez lentement."
+      ],
+      "variants": [],
+      "tagIds": [
+        "catalog-tag-game",
+        "catalog-tag-inside",
+        "catalog-tag-pair",
+        "catalog-tag-active"
+      ],
+      "equipmentIds": [],
+      "document": "https://naitreetgrandir.com/fr/etape/0_12_mois/fiches-activites/jeux/tres-grand/"
     }
   ]
 }

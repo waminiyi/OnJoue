@@ -19,13 +19,21 @@ internal fun StoredActivity.toModel(): Activity = decodeStoredData {
         note = activity.note, age = AgeRange(AgeMonths(activity.minAge), AgeMonths(activity.maxAge)),
         duration = DurationMinutes(activity.duration),
         image = activity.image?.let(::Url), document = activity.document?.let(::Url),
-        steps = steps.sortedBy { it.position }.map { Step(it.text, it.timerSeconds) },
-        variants = variants.sortedBy { it.position }.map { it.text },
         tags = tags.map { it.toModel() }.toSet(),
         equipment = equipment.map { it.toModel() }.toSet(),
+        steps = steps.sortedBy { it.position }.map { Step(it.text, it.timerSeconds) },
+        variants = variants.sortedBy { it.position }.map { it.text },
     )
 }
 
 internal fun Activity.toEntity() = ActivityEntity(
-    id.id, name, description, note, age.min.value, age.max.value, duration.value, image?.value, document?.value,
+    id = id.id,
+    name = name,
+    description = description,
+    note = note,
+    minAge = age.min.value,
+    maxAge = age.max.value,
+    duration = duration.value,
+    image = image?.value,
+    document = document?.value,
 )

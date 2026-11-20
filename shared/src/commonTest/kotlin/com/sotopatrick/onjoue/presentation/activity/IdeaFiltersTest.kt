@@ -1,10 +1,18 @@
 package com.sotopatrick.onjoue.presentation.activity
 
-import com.sotopatrick.onjoue.data.models.activity.*
-import com.sotopatrick.onjoue.data.models.tag.*
+import com.sotopatrick.onjoue.data.models.activity.AgeMonths
+import com.sotopatrick.onjoue.data.models.activity.AgeRange
+import com.sotopatrick.onjoue.data.models.activity.DurationMinutes
+import com.sotopatrick.onjoue.data.models.tag.Tag
+import com.sotopatrick.onjoue.data.models.tag.TagGroup
+import com.sotopatrick.onjoue.data.models.tag.TagId
 import com.sotopatrick.onjoue.data.repositories.sampleActivity
 import com.sotopatrick.onjoue.data.repositories.sampleEquipment
-import kotlin.test.*
+import com.sotopatrick.onjoue.presentation.activity.listing.components.AgeFilter
+import com.sotopatrick.onjoue.presentation.activity.listing.components.IdeaFilters
+import kotlin.test.Test
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class IdeaFiltersTest {
     private val inside = Tag(TagId("inside"), TagGroup.LOCATION, "Dedans")
@@ -47,23 +55,13 @@ class IdeaFiltersTest {
     }
 
     @Test
-    fun querySearchesAllExistingFieldsAndTrimsWhitespace() {
-        listOf(" RONDE ", "BOUGER", "sAlOn", "BALLON", "  ").forEach {
-            assertTrue(IdeaFilters(query = it).matches(activity), it)
-        }
-        assertFalse(IdeaFilters(query = "introuvable").matches(activity))
-    }
-
-    @Test
     fun criteriaCombineAndResetRemovesEveryConstraint() {
-        val filters = IdeaFilters("ronde", AgeFilter.TODDLER, inside.id.value, true)
+        val filters = IdeaFilters(AgeFilter.TODDLER, inside.id.value, true)
         assertTrue(filters.active)
         assertTrue(filters.matches(activity))
         assertFalse(filters.copy(locationId = outside.id.value).matches(activity))
-        assertFalse(filters.copy(query = "absent").matches(activity))
         assertFalse(filters.matches(activity.copy(duration = DurationMinutes(16))))
         assertFalse(IdeaFilters().active)
-        assertFalse(IdeaFilters(query = "  ").active)
         assertTrue(IdeaFilters().matches(activity.copy(duration = DurationMinutes(60))))
     }
 }
