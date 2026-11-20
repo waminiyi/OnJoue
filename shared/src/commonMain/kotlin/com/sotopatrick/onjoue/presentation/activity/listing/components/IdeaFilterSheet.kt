@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,67 +22,66 @@ import com.sotopatrick.onjoue.designsystem.foundation.Spacing
 
 @Composable
 internal fun IdeaFilterSheet(
-    age: AgeFilter,
-    onAgeSelect: (AgeFilter) -> Unit,
+    filters: IdeaFilters,
+    onFiltersChange: (IdeaFilters) -> Unit,
     locations: List<Tag>,
-    locationId: String?,
-    onLocationSelect: (String?) -> Unit,
-    shortDuration: Boolean,
-    onDurationToggle: () -> Unit,
-    onReset: () -> Unit,
     onDismiss: () -> Unit,
 ) {
     DsBottomSheet(onDismissRequest = onDismiss) {
         Column(
-            Modifier.fillMaxWidth().padding(Spacing.ExtraLarge),
+            Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(Spacing.ExtraLarge),
             verticalArrangement = Arrangement.spacedBy(Spacing.Large),
         ) {
             DsText("Filtres", role = TextRole.TitleLarge)
-            DsText("Âge", role = TextRole.TitleSmall)
-            Row(
-                Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(Spacing.Small),
-            ) {
-                AgeFilter.entries.forEach { option ->
-                    DsFilterChip(
-                        selected = age == option,
-                        label = option.label,
-                        onClick = { onAgeSelect(option) },
-                    )
-                }
-            }
-            DsText("Lieu", role = TextRole.TitleSmall)
-            Row(
-                Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(Spacing.Small),
-            ) {
-                DsFilterChip(
-                    selected = locationId == null,
-                    label = "Lieu",
-                    onClick = { onLocationSelect(null) },
-                )
-                locations.forEach { location ->
-                    DsFilterChip(
-                        selected = locationId == location.id.value,
-                        label = location.label,
-                        onClick = { onLocationSelect(location.id.value) },
-                    )
-                }
-            }
+            FilterOptions(
+                title = "Âge",
+                options = AgeFilter.entries.map { it to it.label },
+                selected = filters.age,
+                onSelect = { onFiltersChange(filters.copy(age = it)) },
+            )
+            FilterOptions(
+                title = "Lieu",
+                options = listOf<Pair<String?, String>>(null to "Lieu") +
+                    locations.map { it.id.value to it.label },
+                selected = filters.locationId,
+                onSelect = { onFiltersChange(filters.copy(locationId = it)) },
+            )
             DsText("Durée", role = TextRole.TitleSmall)
             DsFilterChip(
-                selected = shortDuration,
+                selected = filters.shortDuration,
                 label = "≤ 15 min",
-                onClick = onDurationToggle,
+                onClick = { onFiltersChange(filters.copy(shortDuration = !filters.shortDuration)) },
             )
             Row(
                 Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                DsTextButton("Réinitialiser", onClick = onReset)
+                DsTextButton("Réinitialiser", onClick = { onFiltersChange(IdeaFilters()) })
                 DsButton("Appliquer", onClick = onDismiss)
             }
+        }
+    }
+}
+
+@Composable
+private fun <T> FilterOptions(
+    title: String,
+    options: List<Pair<T, String>>,
+    selected: T,
+    onSelect: (T) -> Unit,
+) {
+    DsText(title, role = TextRole.TitleSmall)
+    Row(
+        Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(Spacing.Small),
+    ) {
+        options.forEach { (value, label) ->
+            DsFilterChip(
+                selected = selected == value,
+                label = label,
+                onClick = { onSelect(value) },
+            )
         }
     }
 }

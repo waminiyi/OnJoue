@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,9 +19,9 @@ import com.sotopatrick.onjoue.designsystem.components.CardElevation
 import com.sotopatrick.onjoue.designsystem.components.DsBadge
 import com.sotopatrick.onjoue.designsystem.components.DsCard
 import com.sotopatrick.onjoue.designsystem.components.DsIconToggleButton
-import com.sotopatrick.onjoue.designsystem.components.DsRemoteIllustration
+import com.sotopatrick.onjoue.designsystem.components.DsImage
 import com.sotopatrick.onjoue.designsystem.components.DsText
-import com.sotopatrick.onjoue.designsystem.components.IllustrationStyle
+import com.sotopatrick.onjoue.designsystem.components.dsCardImage
 import com.sotopatrick.onjoue.designsystem.components.TextRole
 import com.sotopatrick.onjoue.designsystem.foundation.Spacing
 import com.sotopatrick.onjoue.presentation.activity.common.ageRangeLabel
@@ -47,15 +46,14 @@ internal fun IdeaCard(
         elevation = CardElevation.Low,
     ) {
         Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
-            DsRemoteIllustration(
-                imageUrl = activity.image?.value,
-                fallbackPainter = painterResource(Res.drawable.idea_image_placeholder),
+            DsImage(
+                url = activity.image?.value,
+                fallback = painterResource(Res.drawable.idea_image_placeholder),
                 contentDescription = null,
-                style = IllustrationStyle.Plain,
-                modifier = Modifier.fillMaxHeight(),
+                modifier = Modifier.dsCardImage(),
             )
             Column(
-                Modifier.weight(1f).padding(Spacing.MediumPlus),
+                Modifier.weight(1f).padding(Spacing.Small),
                 verticalArrangement = Arrangement.spacedBy(Spacing.Small),
             ) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -76,9 +74,6 @@ internal fun IdeaCard(
                 ) {
                     DsBadge(ageRangeLabel(activity), tone = BadgeTone.Plain)
                     DsBadge("${activity.duration.value} min", tone = BadgeTone.Plain)
-                    activity.tags.firstOrNull { it.group == TagGroup.MOOD }?.let {
-                        DsBadge(it.label, tone = BadgeTone.Plain)
-                    }
                 }
             }
         }

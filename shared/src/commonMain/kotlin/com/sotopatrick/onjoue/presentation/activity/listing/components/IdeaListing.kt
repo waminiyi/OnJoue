@@ -43,16 +43,16 @@ internal fun IdeaListing(
     var showSheet by rememberSaveable { mutableStateOf(false) }
     val filters = IdeaFilters(age, locationId, shortDuration)
     val results = state.activities.filter(filters::matches)
-    val reset = { age = AgeFilter.ALL; locationId = null; shortDuration = false }
+    val updateFilters: (IdeaFilters) -> Unit = {
+        age = it.age
+        locationId = it.locationId
+        shortDuration = it.shortDuration
+    }
     IdeaListingContent(
         state = state,
         results = results,
-        age = age,
-        onAgeSelect = { age = it },
-        locationId = locationId,
-        onLocationSelect = { locationId = it },
-        shortDuration = shortDuration,
-        onDurationToggle = { shortDuration = !shortDuration },
+        filters = filters,
+        onFiltersChange = updateFilters,
         onOpenFilters = { showSheet = true },
         onRetry = onRetry,
         onSelectActivity = onSelectActivity,
@@ -61,14 +61,9 @@ internal fun IdeaListing(
     )
     if (showSheet) {
         IdeaFilterSheet(
-            age = age,
-            onAgeSelect = { age = it },
+            filters = filters,
+            onFiltersChange = updateFilters,
             locations = state.locations,
-            locationId = locationId,
-            onLocationSelect = { locationId = it },
-            shortDuration = shortDuration,
-            onDurationToggle = { shortDuration = !shortDuration },
-            onReset = reset,
             onDismiss = { showSheet = false },
         )
     }
@@ -78,12 +73,8 @@ internal fun IdeaListing(
 private fun IdeaListingContent(
     state: ActivitySheetsState,
     results: List<Activity>,
-    age: AgeFilter,
-    onAgeSelect: (AgeFilter) -> Unit,
-    locationId: String?,
-    onLocationSelect: (String?) -> Unit,
-    shortDuration: Boolean,
-    onDurationToggle: () -> Unit,
+    filters: IdeaFilters,
+    onFiltersChange: (IdeaFilters) -> Unit,
     onOpenFilters: () -> Unit,
     onRetry: () -> Unit,
     onSelectActivity: (String) -> Unit,
@@ -100,13 +91,9 @@ private fun IdeaListingContent(
         }
         item(key = "single-line-filters") {
             SingleLineFilters(
-                age = age,
-                onAgeSelect = onAgeSelect,
+                filters = filters,
+                onFiltersChange = onFiltersChange,
                 locations = state.locations,
-                locationId = locationId,
-                onLocationSelect = onLocationSelect,
-                shortDuration = shortDuration,
-                onDurationToggle = onDurationToggle,
                 onOpenFilters = onOpenFilters,
             )
         }
@@ -129,13 +116,9 @@ private fun IdeaListingContent(
 
 @Composable
 private fun SingleLineFilters(
-    age: AgeFilter,
-    onAgeSelect: (AgeFilter) -> Unit,
+    filters: IdeaFilters,
+    onFiltersChange: (IdeaFilters) -> Unit,
     locations: List<Tag>,
-    locationId: String?,
-    onLocationSelect: (String?) -> Unit,
-    shortDuration: Boolean,
-    onDurationToggle: () -> Unit,
     onOpenFilters: () -> Unit,
 ) {
     Row(
@@ -145,28 +128,30 @@ private fun SingleLineFilters(
     ) {
         val ageOptions = AgeFilter.entries.map { it to it.label }
         DsFilterDropdown(
-            label = age.label,
+            label = filters.age.label,
             options = ageOptions,
-            onSelect = onAgeSelect,
-            selected = age != AgeFilter.ALL,
+            onSelect = { onFiltersChange(filters.copy(age = it)) },
+            selected = filters.age != AgeFilter.ALL,
         )
-        val locationLabel = locations.firstOrNull { it.id.value == locationId }?.label ?: "Lieu"
+        val locationLabel = locations.firstOrNull { it.id.value == filters.locationId }?.label ?: "Lieu"
         val locationOptions = listOf<Pair<String?, String>>(null to "Lieu") +
             locations.map { it.id.value to it.label }
         DsFilterDropdown(
             label = locationLabel,
             options = locationOptions,
-            onSelect = onLocationSelect,
-            selected = locationId != null,
+            onSelect = { onFiltersChange(filters.copy(locationId = it)) },
+            selected = filters.locationId != null,
         )
         DsFilterChip(
-            selected = shortDuration,
+            selected = filters.shortDuration,
             label = "≤ 15 min",
-            onClick = onDurationToggle,
+            onClick = { onFiltersChange(filters.copy(shortDuration = !filters.shortDuration)) },
         )
-        val activeCount = (if (age != AgeFilter.ALL) 1 else 0) +
-            (if (locationId != null) 1 else 0) +
-            (if (shortDuration) 1 else 0)
+        val activeCount = listOf(
+            filters.age != AgeFilter.ALL,
+            filters.locationId != null,
+            filters.shortDuration,
+        ).count { it }
         DsFilterIconButton(
             icon = painterResource(Res.drawable.ic_filter),
             contentDescription = "Filtres avancés",

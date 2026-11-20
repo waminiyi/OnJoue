@@ -10,7 +10,7 @@ Le module expose des **composants** et des **valeurs sémantiques**, jamais de t
 |---|---|
 | `designsystem` | `OnJoueTheme(darkTheme) { … }` |
 | `designsystem.foundation` | `Spacing` (`None` … `XXLarge`, constantes `Dp` à utiliser telles quelles avec `Modifier.padding`, `Arrangement.spacedBy`, `Spacer`), `Breakpoint` + `DsWidthBreakpoint` |
-| `designsystem.components` | Texte : `DsText` avec `TextRole` et `TextTone`. Actions : `DsButton`, `DsTextButton`, `DsOutlinedIconButton`, `DsIconToggleButton`, `DsFloatingActionButton`, `DsFilterChip`, `ActionTone`. Surfaces : `DsCard`, `DsActionCard`, `DsCallout`, `DsHeroBanner`, `DsSection`, `DsScreenHeader`, `DsBackground` avec `BackgroundTone`, `DsLoadingState`, `DsErrorState`. Contenu : `DsBadge` avec `BadgeTone` (`Accent`, `Surface`, `Neutral`, `Plain`), `DsIllustration` / `DsVectorIllustration` avec `IllustrationSize` (`Medium`, `Large`, `ExtraLarge`) et `IllustrationStyle`, `DsMonogram`, `DsNumberedItem`, `DsBulletItem`. Champs : `DsSearchField`, `DsTextField`, `DsSelectField`. Dialogues : `DsConfirmDialog`, `DsFormDialog`. Structure : `DsScaffold`, `DsAdaptiveGrid`, `DsCollapsibleHeader`, `DsNavigationScaffold` |
+| `designsystem.components` | Texte : `DsText` avec `TextRole` et `TextTone`. Actions : `DsButton`, `DsTextButton`, `DsOutlinedIconButton`, `DsIconToggleButton`, `DsFloatingActionButton`, `DsFilterChip`, `ActionTone`. Surfaces : `DsCard`, `DsActionCard`, `DsCallout`, `DsHeroBanner`, `DsSection`, `DsScreenHeader`, `DsBackground` avec `BackgroundTone`, `DsLoadingState`, `DsErrorState`. Contenu : `DsBadge` avec `BadgeTone` (`Accent`, `Surface`, `Neutral`, `Plain`), `DsImage`, `Modifier.dsCardImage()`, `DsMonogram`, `DsNumberedItem`, `DsBulletItem`. Champs : `DsSearchField`, `DsTextField`, `DsSelectField`. Dialogues : `DsConfirmDialog`, `DsFormDialog`. Structure : `DsScaffold`, `DsAdaptiveGrid`, `DsCollapsibleHeader`, `DsNavigationScaffold` |
 
 Les tokens (`tokens/ColorTokens.kt`, `TypographyTokens.kt`, `ShapeTokens.kt`, `DimensionTokens.kt`) sont `internal`. Le module est compilé en `explicitApi()` : toute déclaration publique est un choix délibéré.
 
@@ -70,13 +70,15 @@ Associer chaque fond à son rôle de contenu (`onPrimary`, `onPrimaryContainer`,
 |---|---|
 | Navigation | Icône et libellé français ; barre basse ou rail Material 3 ; sélection en couleur primaire |
 | Listing d’idées | `DsBackground(tone = BackgroundTone.Mint)` sur `primaryContainer` ; cartes blanches en clair et surfaces adaptées en sombre ; en-tête, recherche et critères défilent avec les résultats pour rester accessibles en petite hauteur |
-| Carte d’idée | Surface, rayon 24 dp, bordure 1 dp, élévation 1 dp ; emoji sans fond (`IllustrationStyle.Plain`), titre pouvant revenir à la ligne, cœur vide/plein sans fond (`DsIconToggleButton`) ; pas d’aperçu descriptif |
+| Carte d’idée | Surface, rayon 24 dp, bordure 1 dp, élévation 1 dp ; image affleurante au bord de début, arrondie uniquement en haut et en bas de ce côté via `Modifier.dsCardImage()` ; titre pouvant revenir à la ligne, cœur vide/plein sans fond (`DsIconToggleButton`) ; pas d’aperçu descriptif |
 | Métadonnées et badges | Listing : âge, durée, ambiance sans fond (`BadgeTone.Plain`), défilement horizontal si nécessaire ; détail : âge (`3–5 ans`) et durée dans des badges blancs séparés avec leurs icônes, illustration sans fond centrée dans le bandeau mint |
 | Recherche et filtres | Champ bordé ; chips d’âge, Dedans / Dehors exclusifs et durée courte ; entrée de filtres avancés désactivée, avec icône et mention « Bientôt disponible » |
 | Détail | Illustration centrée dans un bandeau mint arrondi, titre, âge et durée, action favori, description, matériel, étapes numérotées, note mise en évidence, variantes et source ; aucun tag affiché |
 | Paramètres | État explicitement vide tant qu’aucun paramètre n’est disponible |
 
-Les illustrations d’activités sont actuellement des emojis sélectionnés par le code, pas une bibliothèque d’images ni des photos du catalogue.
+`DsImage(url, fallback, contentDescription, modifier, contentScale)` encapsule Coil `AsyncImage` sans imposer de taille, de fond ni de découpe. Le rendu par défaut est `ContentScale.Crop` ; le painter embarqué sert pendant le chargement, en l’absence d’URL (y compris vide) et en cas d’erreur. Les anciens composants d’illustration et leurs enums `IllustrationSize` / `IllustrationStyle` sont remplacés par cette API.
+
+La mise en page appelante définit les dimensions et la découpe : `Modifier.dsCardImage()` conserve une largeur de 66 dp, remplit la hauteur de la carte et reprend ses coins de début sans arrondir les coins de fin. Dans le détail, l’image remplit la largeur disponible du bandeau avec un ratio 16:9.
 
 ## États et interactions
 

@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import com.sotopatrick.onjoue.designsystem.foundation.Spacing
 import com.sotopatrick.onjoue.designsystem.tokens.ComponentShapes
 import com.sotopatrick.onjoue.designsystem.tokens.Dimens
-import com.sotopatrick.onjoue.designsystem.tokens.HeroIllustrationSurfaceAlpha
 
 /** Visual emphasis of a badge. */
 public enum class BadgeTone {
@@ -147,89 +146,6 @@ private fun DsNeutralBadge(label: String, modifier: Modifier = Modifier, icon: P
                 role = TextRole.LabelLarge,
             )
         }
-    }
-}
-
-/** Size of an emoji illustration. */
-public enum class IllustrationSize {
-    /** In a list card. */
-    Medium,
-
-    /** In a hero banner. */
-    Large,
-
-    /** Large centerpiece for a detail-screen hero. */
-    ExtraLarge,
-}
-
-public enum class IllustrationStyle {
-    Tinted,
-    Plain,
-}
-
-/** Emoji illustration on a tinted rounded background. */
-@Composable
-public fun DsIllustration(
-    emoji: String,
-    modifier: Modifier = Modifier,
-    size: IllustrationSize = IllustrationSize.Medium,
-    style: IllustrationStyle = IllustrationStyle.Tinted,
-) {
-    val background = when (size) {
-        IllustrationSize.Medium -> MaterialTheme.colorScheme.primaryContainer
-        IllustrationSize.Large,
-        IllustrationSize.ExtraLarge -> MaterialTheme.colorScheme.surface.copy(alpha = HeroIllustrationSurfaceAlpha)
-    }
-    val medium = size == IllustrationSize.Medium
-    Box(
-        modifier
-            .size(size.dimension())
-            .clip(if (medium) ComponentShapes.Illustration else ComponentShapes.HeroIllustration)
-            .then(if (style == IllustrationStyle.Tinted) Modifier.background(background) else Modifier),
-        contentAlignment = Alignment.Center,
-    ) {
-        DsText(
-            emoji,
-            role = when (size) {
-                IllustrationSize.Medium -> TextRole.HeadlineMedium
-                IllustrationSize.Large -> TextRole.HeadlineLarge
-                IllustrationSize.ExtraLarge -> TextRole.HeadlineLarge
-            },
-        )
-    }
-}
-
-/** Vector icon illustration on a tinted rounded background. */
-@Composable
-public fun DsVectorIllustration(
-    painter: Painter,
-    contentDescription: String?,
-    modifier: Modifier = Modifier,
-    size: IllustrationSize = IllustrationSize.Medium,
-    style: IllustrationStyle = IllustrationStyle.Tinted,
-) {
-    val background = when (size) {
-        IllustrationSize.Medium -> MaterialTheme.colorScheme.primaryContainer
-        IllustrationSize.Large,
-        IllustrationSize.ExtraLarge -> MaterialTheme.colorScheme.surface.copy(
-            alpha = HeroIllustrationSurfaceAlpha,
-        )
-    }
-    val medium = size == IllustrationSize.Medium
-    val boxSize = size.dimension()
-    val shape = if (medium) ComponentShapes.Illustration else ComponentShapes.HeroIllustration
-    Box(
-        modifier
-            .size(boxSize)
-            .clip(shape)
-            .then(if (style == IllustrationStyle.Tinted) Modifier.background(background) else Modifier),
-        contentAlignment = Alignment.Center,
-    ) {
-        androidx.compose.foundation.Image(
-            painter = painter,
-            contentDescription = contentDescription,
-            modifier = Modifier.size(boxSize / 2),
-        )
     }
 }
 

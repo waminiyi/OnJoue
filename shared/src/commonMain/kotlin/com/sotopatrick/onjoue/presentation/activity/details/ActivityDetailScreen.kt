@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,13 +37,11 @@ import com.sotopatrick.onjoue.designsystem.components.DsCallout
 import com.sotopatrick.onjoue.designsystem.components.DsHeroBanner
 import com.sotopatrick.onjoue.designsystem.components.DsLoadingState
 import com.sotopatrick.onjoue.designsystem.components.DsNumberedItem
-import com.sotopatrick.onjoue.designsystem.components.DsRemoteIllustration
+import com.sotopatrick.onjoue.designsystem.components.DsImage
 import com.sotopatrick.onjoue.designsystem.components.DsScaffold
 import com.sotopatrick.onjoue.designsystem.components.DsSection
 import com.sotopatrick.onjoue.designsystem.components.DsText
 import com.sotopatrick.onjoue.designsystem.components.DsTextButton
-import com.sotopatrick.onjoue.designsystem.components.IllustrationSize
-import com.sotopatrick.onjoue.designsystem.components.IllustrationStyle
 import com.sotopatrick.onjoue.designsystem.components.TextRole
 import com.sotopatrick.onjoue.designsystem.components.TextTone
 import com.sotopatrick.onjoue.designsystem.foundation.Spacing
@@ -161,15 +160,12 @@ private fun ActivityDetailContent(
 @Composable
 private fun ActivityHero(activity: Activity) {
     DsHeroBanner {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            DsRemoteIllustration(
-                imageUrl = activity.image?.value,
-                fallbackPainter = painterResource(Res.drawable.idea_image_placeholder),
-                contentDescription = activity.name,
-                size = IllustrationSize.ExtraLarge,
-                style = IllustrationStyle.Plain,
-            )
-        }
+        DsImage(
+            url = activity.image?.value,
+            fallback = painterResource(Res.drawable.idea_image_placeholder),
+            contentDescription = activity.name,
+            modifier = Modifier.fillMaxWidth().aspectRatio(HeroImageAspectRatio),
+        )
     }
 }
 
@@ -258,3 +254,5 @@ private fun ActivityDetailPreviewContent(darkTheme: Boolean = false) {
         )
     }
 }
+
+private const val HeroImageAspectRatio = 16f / 9f

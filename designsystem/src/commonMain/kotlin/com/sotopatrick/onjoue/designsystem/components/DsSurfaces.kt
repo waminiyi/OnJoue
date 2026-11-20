@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ListItem
@@ -41,7 +44,7 @@ public fun DsCard(
     elevation: CardElevation = CardElevation.Raised,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    val shape = MaterialTheme.shapes.large
+    val shape = MaterialTheme.shapes.medium
     val colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     val border = BorderStroke(Dimens.BorderWidth, MaterialTheme.colorScheme.outlineVariant)
     val cardElevation = CardDefaults.cardElevation(
@@ -71,6 +74,13 @@ public fun DsCard(
         )
     }
 }
+
+/** Leading image flush with a card, rounded only at its start edge. */
+@Composable
+public fun Modifier.dsCardImage(): Modifier = this
+    .width(Dimens.CardImageWidth)
+    .fillMaxHeight()
+    .clip(MaterialTheme.shapes.medium.copy(topEnd = CornerSize(0), bottomEnd = CornerSize(0)))
 
 /** Card describing an action with a title and a description, e.g. in settings. */
 @Composable
@@ -108,7 +118,10 @@ public fun DsCallout(title: String, body: String, modifier: Modifier = Modifier)
 
 /** Tinted header block at the top of a detail screen. Text inside uses [TextTone.OnPrimaryContainer]. */
 @Composable
-public fun DsHeroBanner(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+public fun DsHeroBanner(
+    modifier: Modifier = Modifier,
+    content: @Composable ColumnScope.() -> Unit
+) {
     Column(
         modifier
             .fillMaxWidth()
@@ -122,7 +135,11 @@ public fun DsHeroBanner(modifier: Modifier = Modifier, content: @Composable Colu
 
 /** Titled block of a detail screen. */
 @Composable
-public fun DsSection(title: String, modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+public fun DsSection(
+    title: String,
+    modifier: Modifier = Modifier,
+    content: @Composable ColumnScope.() -> Unit
+) {
     Column(modifier, verticalArrangement = Arrangement.spacedBy(Spacing.Medium)) {
         DsText(title, role = TextRole.TitleLarge)
         content()
@@ -181,5 +198,3 @@ public fun DsErrorState(
         DsButton(retryLabel, onClick = onRetry)
     }
 }
-
-

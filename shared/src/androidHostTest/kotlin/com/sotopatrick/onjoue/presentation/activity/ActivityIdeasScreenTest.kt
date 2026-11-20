@@ -137,6 +137,31 @@ class ActivityIdeasScreenTest {
     }
 
     @Test
+    fun quickFiltersSurviveRestorationAndStayInSyncWithSheet() = runComposeUiTest {
+        val restoration = StateRestorationTester(this)
+        restoration.setContent {
+            OnJoueTheme { ActivitySheetsScreen(state, onRetry = {}) }
+        }
+        onNodeWithText("Tous âges ▾").performClick()
+        onNodeWithText("1–3 ans").performClick()
+        onNodeWithText("Lieu ▾").performClick()
+        onNodeWithText("Dedans").performClick()
+        onNodeWithText("≤ 15 min").performClick()
+        restoration.emulateSaveAndRestore()
+        onNodeWithText("1–3 ans ▾").assertExists()
+        onNodeWithText("Dedans ▾").assertExists()
+        onNodeWithText("≤ 15 min").assertIsSelected()
+        onNodeWithContentDescription("Filtres avancés").performClick()
+        onNodeWithText("1–3 ans").assertIsSelected()
+        onNodeWithText("Dedans").assertIsSelected()
+        onNodeWithText("Réinitialiser").performClick()
+        onNodeWithText("Appliquer").performClick()
+        onNodeWithText("Tous âges ▾").assertExists()
+        onNodeWithText("Lieu ▾").assertExists()
+        onNodeWithText("≤ 15 min").assertIsNotSelected()
+    }
+
+    @Test
     fun switchingTabsPreservesRenamedNavigation() = runComposeUiTest {
         val activities = IdeaTestActivities()
         setContent {
